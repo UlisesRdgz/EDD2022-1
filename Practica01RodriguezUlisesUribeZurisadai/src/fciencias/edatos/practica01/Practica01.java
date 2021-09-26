@@ -81,6 +81,16 @@ public class Practica01{
 		return true;
 	}
 
+    /**
+     * Método optimizado
+     * @param board
+     * @return
+     */
+
+    public static boolean isValidBoard(int[][] board){
+    
+    }
+
 	/**
 	* Rota position cantidad de veces los elementos de un arreglo
 	* hacia el vecino izquierdo.

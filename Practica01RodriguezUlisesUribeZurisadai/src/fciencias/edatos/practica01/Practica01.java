@@ -44,6 +44,7 @@ public class Practica01{
 		return result;
 	}
 
+
     /**
     * Verifica si un tablero contiene los números desde 0 hasta n-1 en cada fila y cada columna.
     * @param board el tablero de nxn que contiene elementos dentro del rango [0, n-1].
@@ -96,6 +97,14 @@ public class Practica01{
 			num[num.length-1] = aux;
 		}
 	}
+
+	/**
+	* Metodo optimizado
+	*/
+	public static void rotateArray(int[] num, int position){
+		
+	}
+
 
 	public static void main(String[] args) {
 

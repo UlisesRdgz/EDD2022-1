@@ -1,6 +1,7 @@
 package fciencias.edatos.practica01;
 
 import java.util.Arrays;
+import java.util.HashSet;
 
 /**
 * Práctica 1 del curso de Estructuras de Datos.
@@ -91,24 +92,17 @@ public class Practica01{
 
     public static boolean isValidBoardOP(int[][] board){
 		int length = board.length;
-        int num = 0;
 
-		for (int i = 0; i < length ; i++){	
-			// Verifica sobre las filas
-			for (int j = 1; j < length ; j++){
-				if(board[i][num] == board[i][j] || board[i][num] > length || board[i][num] < 0){
-					return false;
-				}
-			}
+		for (int i=0; i < length; i++) {
+			HashSet<Integer> set = new HashSet<Integer>();
 
-			// Verifica sobre las columnas
-			for(int j = 1 ; j < length; j++){
-				if(board[num][i] == board[j][i] || board[num][i] > length || board[num][i] < 0){
-					return false;
+			for (int j=0; j < length; j++) {
+				if (set.contains(board[j][i])) return false;{
+					set.add(board[j][i]);
 				}
 			}
 		}
-        return true;
+		return true;
 	}
 
 	/**

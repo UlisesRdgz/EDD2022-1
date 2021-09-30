@@ -45,7 +45,15 @@ public class Practica01{
 	}
 
 	/**
-	* Metodo opptimizado
+	* Método optimizado
+	* Hace la mezcla de dos arreglos ordenados enteros desde la primera posición hasta
+	* una posición límite n y m. Dando como resultado un arreglo ordenado de enteros de 
+	* longitud n+m.
+	* @param array1 el primer arreglo a mezlar
+	* @param n el límite de mezcla del primer arreglo
+	* @param array2 el segundo arreglo a mezclar
+	* @param m el límite de mezcla del segundo arreglo.
+	* @return un arreglo ordenado de longitud m+n con la mezcla definida.
 	*/
 	public static int[] mergeSortedArrayOP(int[] array1, int n, int[] array2, int m){
 		int[] result = new int[n + m];
@@ -144,7 +152,7 @@ public class Practica01{
 		int[] resultB = mergeSortedArray(arrayB1, 2000, arrayB2, 2000);
 		fin = System.currentTimeMillis();
 
-		// System.out.println("Resultado B: "+Arrays.toString(resultB));
+		System.out.println("Resultado B: "+Arrays.toString(resultB));
 		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		//
@@ -159,29 +167,31 @@ public class Practica01{
 		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
 		
 
-		// Optimizado
+		// EJEMPLOS DE ACTIVIDAD 1 con el método Optimizado
+		System.out.println("OPTIMIZADO \n");
+
 		inicio = System.currentTimeMillis();
 		int[] resultAOP = mergeSortedArrayOP(arrayA1, 3, arrayA2, 5);
 		fin = System.currentTimeMillis();
 
-		System.out.println("Resultado A (OP): "+Arrays.toString(resultAOP));
-		System.out.println("Tiempo de ejecución (OP): " + (fin-inicio)+" milisegundos.");
+		System.out.println("Resultado A: "+Arrays.toString(resultAOP));
+		System.out.println("Tiempo de ejecución Optimizado : " + (fin-inicio)+" milisegundos.");
 
 		//
 		inicio = System.currentTimeMillis();
 		int[] resultBOP = mergeSortedArrayOP(arrayB1, 2000, arrayB2, 2000);
 		fin = System.currentTimeMillis();
 
-		// System.out.println("Resultado B (OP): "+Arrays.toString(resultBOP));
-		System.out.println("Tiempo de ejecución (OP): " + (fin-inicio)+" milisegundos.");
+		System.out.println("Resultado B: "+Arrays.toString(resultBOP));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
 
 		//
 		inicio = System.currentTimeMillis();
 		int[] resultCOP = mergeSortedArrayOP(arrayC1, 4, arrayC2, 6);
 		fin = System.currentTimeMillis();
 
-		System.out.println("Resultado C (OP): "+Arrays.toString(resultCOP));
-		System.out.println("Tiempo de ejecución (OP): " + (fin-inicio)+" milisegundos.");
+		System.out.println("Resultado C: "+Arrays.toString(resultCOP));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
 
 
 

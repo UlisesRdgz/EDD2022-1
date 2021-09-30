@@ -165,7 +165,8 @@ public class Practica01{
 		inicio = System.currentTimeMillis();
 		boolean boardResultAOP = isValidBoardOP(boardA);
 		fin = System.currentTimeMillis();
-		System.out.println("El tablero A(optimizado) es válido: "+boardResultAOP);
+		System.out.println("----------- Optimizado");
+		System.out.println("El tablero A es válido: "+boardResultAOP);
 		System.out.println("Tiempo de ejecución optimizado: " + (fin-inicio)+" milisegundos.\n");
 
 		// BoardB
@@ -177,11 +178,13 @@ public class Practica01{
 		System.out.println("El tablero B  es válido: "+boardResultB);
 		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
+
 		// BoardB optimizado
 		inicio = System.currentTimeMillis();
 		boolean boardResultBOP = isValidBoardOP(boardB);
 		fin = System.currentTimeMillis();
-		System.out.println("El tablero B(optimizado) es válido: "+boardResultBOP);
+		System.out.println("----------- Optimizado");
+		System.out.println("El tablero B es válido: "+boardResultBOP);
 		System.out.println("Tiempo de ejecución optimizado: " + (fin-inicio)+" milisegundos.\n");
 
 		// BoardC
@@ -197,7 +200,8 @@ public class Practica01{
 		inicio = System.currentTimeMillis();
 		boolean boardResultCOP = isValidBoardOP(boardC);
 		fin = System.currentTimeMillis();
-		System.out.println("El tablero C(optimizado) es válido: "+boardResultCOP);
+		System.out.println("----------- Optimizado");
+		System.out.println("El tablero C es válido: "+boardResultCOP);
 		System.out.println("Tiempo de ejecución optimizado: " + (fin-inicio)+" milisegundos.\n");
 
 		// BoardD
@@ -213,7 +217,8 @@ public class Practica01{
 		inicio = System.currentTimeMillis();
 		boolean boardResultDOP = isValidBoardOP(boardD);
 		fin = System.currentTimeMillis();
-		System.out.println("El tablero D(optimizado) es válido: "+boardResultDOP);
+		System.out.println("----------- Optimizado");
+		System.out.println("El tablero D es válido: "+boardResultDOP);
 		System.out.println("Tiempo de ejecución optimizado: " + (fin-inicio)+" milisegundos.\n");
 
 		// EJEMPLOS DE ACTIVIDAD 3

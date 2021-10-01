@@ -100,9 +100,51 @@ public class Practica01{
 
 	/**
 	* Metodo optimizado
+	* [1,2,3,4], 6    l=4
+	* [0,0,0,0]		  p=0
+	* 
+
+	i = 0
+	p = (0 + 4) - 6 = 4 - 6 = -2
+	
+	if(-2 >= 4 && -2 < 0)
+	p = -2 % 4 = 2
+
+	aux[2] = num[0]
+
+	* [3,4,1,2] 
+	*
 	*/
-	public static void rotateArray(int[] num, int position){
-		
+	public static void rotateArrayOP(int[] num, int position){
+		int l = num.length;
+		int aux[] = new int[num.length];
+		int p = 0, a = 0;
+
+		for (int i = 0; i < l; i++) {
+			// Si el arreglo se rota 0 rompemos el ciclo.
+			if(position==0){
+				break;
+			}
+
+			// Crea un arreglo auxiliar con los mismo valores que num.
+			if(a<l){
+				aux[i] = num[i];
+				a++;
+			}
+			if(a == l){
+				a++;
+				i=0;
+			}
+
+			// Asignamos los valores rotados a num.
+			if(a>l){
+				p = (i + l) - position;
+				if (p >= l || p<0) {
+					p = (p % l + l)% l;
+				}	
+				num[p] = aux[i];
+			}
+		}
 	}
 
 
@@ -154,13 +196,95 @@ public class Practica01{
 		// EJEMPLOS DE ACTIVIDAD 3
 		System.out.println("\nEJEMPLOS DE ACTIVIDAD 3\n");
 
-		rotateArray(arrayA1, 5);
-		rotateArray(arrayB1, 0);
-		rotateArray(arrayC1, 6);
+		int[] arrayD1 = ArrayReader.readArray(directorio1 + "ArrayD1.txt");
+		int[] arrayE1 = ArrayReader.readArray(directorio1 + "ArrayE1.txt");
+		int[] arrayF1 = ArrayReader.readArray(directorio1 + "ArrayF1.txt");
 
-		System.out.println("Arreglo A1 rotado 5 veces: " + Arrays.toString(arrayA1));
-		System.out.println("Arreglo B1 rotado 0 veces: " + Arrays.toString(arrayB1));
-		System.out.println("Arreglo C1 rotado 6 veces: " + Arrays.toString(arrayC1));
+		// Arreglo A1 rotado 500 veces.
+		long inicio = System.currentTimeMillis();
+		rotateArray(arrayA1, 500);
+		long fin = System.currentTimeMillis();
+		// System.out.println("Arreglo A1 rotado 500 veces: " + Arrays.toString(arrayA1));
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo B1 rotado 1,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArray(arrayB1, 1000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo B1 rotado 1,000 veces: " + Arrays.toString(arrayB1));
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+		
+		// Arreglo C1 rotado 2,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArray(arrayC1, 2000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo C1 rotado 2,000 veces: " + Arrays.toString(arrayC1));
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo D1 rotado 3,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArray(arrayD1, 3000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo D1 rotado 3,000 veces: " + Arrays.toString(arrayD1));
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo E1 rotado 10,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArray(arrayE1, 10000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo E1 rotado 10,000 veces: " + Arrays.toString(arrayE1));
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo E1 rotado 20,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArray(arrayF1, 20000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo F1 rotado 20,000 veces: " + Arrays.toString(arrayF1));
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+
+		// ----- Optimizados ----
+
+		// Arreglo A1 optimizado rotado 500 veces.
+		inicio = System.currentTimeMillis();
+		rotateArrayOP(arrayA1, 500);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo A1 rotado 500 veces: " + Arrays.toString(arrayA1));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo B1 rotado 1,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArrayOP(arrayB1, 1000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo B1 rotado 1000 veces: " + Arrays.toString(arrayB1));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo C1 optimizado rotado 2,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArrayOP(arrayC1, 2000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo C1 rotado 2,000 veces: " + Arrays.toString(arrayC1));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo D1 optimizado rotado 3,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArrayOP(arrayD1, 3000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo D1 rotado 3,000 veces: " + Arrays.toString(arrayC1));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo E1 optimizado rotado 10,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArrayOP(arrayE1, 10000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo E1 rotado 10,000 veces: " + Arrays.toString(arrayC1));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo F1 optimizado rotado 20,000 veces.
+		inicio = System.currentTimeMillis();
+		rotateArrayOP(arrayF1, 20000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Arreglo F1 rotado 20,000 veces: " + Arrays.toString(arrayC1));
+		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
 
 		System.out.println("\n\nFIN DE EJEMPLOS\n");
 	}

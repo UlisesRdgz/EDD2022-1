@@ -1,11 +1,10 @@
 package fciencias.edatos.practica01;
 
-import java.util.Arrays;
-
 /**
 * Práctica 1 del curso de Estructuras de Datos.
-* @author Emmanuel Cruz Hernández.
-* @version 2.0 Septiembre 2021.
+* @author Ulises Rodríguez García - 318042202.
+* @author Zurisadai Uribe García - 318223197.
+* @version 2.0 Octubre 2021.
 * @since Laboratorio de Estructuras de Datos 2022-1.
 */
 public class Practica01{

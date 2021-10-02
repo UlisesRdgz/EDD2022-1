@@ -82,6 +82,33 @@ public class Practica01{
 		return true;
 	}
 
+    /**
+     * Método optimizado
+     * Verifica si un tablero nxn es válido considerando las filas y columnas, donde
+     * cada elemento es único en cada fila y cada columna.
+     * @param board arreglo bidimensional que representa al tablero nxn.
+     * @return true si el tablero es válido, false en otro caso.
+     */
+    public static boolean isValidBoardOP(int[][] board){
+		int length = board.length; 
+
+		for (int i = 0; i < length; i++) {
+		int[] aux = new int[length];
+		
+			for (int j = 0; j < length; j++) {
+				aux[board[i][j]] += 1;
+				aux[board[j][i]] += 1;
+			}
+
+			for (int j = 0; j < aux.length; j++) {
+				if(aux[j] > 2 || aux[j] < 2){
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+
 	/**
 	* Rota position cantidad de veces los elementos de un arreglo
 	* hacia el vecino izquierdo.
@@ -162,26 +189,106 @@ public class Practica01{
 
 
 		// EJEMPLOS DE ACTIVIDAD 2
-		System.out.println("\nEJEMPLOS DE ACTIVIDAD 2\n");
+		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 2\n");
 
+		// BoardA
 		int[][] boardA = ArrayReader.readMatrix(directorio2 + "BoardA.txt");
+		long inicio = System.currentTimeMillis();
 		boolean boardResultA = isValidBoard(boardA);
+		long fin = System.currentTimeMillis();
+
 		System.out.println("El tablero A es válido: "+boardResultA);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
+		// BoardB
 		int[][] boardB = ArrayReader.readMatrix(directorio2 + "BoardB.txt");
+		inicio = System.currentTimeMillis();
 		boolean boardResultB = isValidBoard(boardB);
-		System.out.println("El tablero B es válido: "+boardResultB);
+		fin = System.currentTimeMillis();
 
+		System.out.println("El tablero B  es válido: "+boardResultB);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+		
+		// BoardC
 		int[][] boardC = ArrayReader.readMatrix(directorio2 + "BoardC.txt");
+		inicio = System.currentTimeMillis();
 		boolean boardResultC = isValidBoard(boardC);
+		fin = System.currentTimeMillis();
+
 		System.out.println("El tablero C es válido: "+boardResultC);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
+		// BoardD
 		int[][] boardD = ArrayReader.readMatrix(directorio2 + "BoardD.txt");
+		inicio = System.currentTimeMillis();
 		boolean boardResultD = isValidBoard(boardD);
-		System.out.println("El tablero D es válido: "+boardResultD);
+		fin = System.currentTimeMillis();
 
+		System.out.println("El tablero D es válido: "+boardResultD);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// BoardE 
+		int[][] boardE = ArrayReader.readMatrix(directorio2 + "BoardE.txt");
+		inicio = System.currentTimeMillis();
+		boolean boardResultE = isValidBoard(boardE);
+		fin = System.currentTimeMillis();
+		System.out.println("El tablero E es válido: "+boardResultE);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// BoardF
+		 int[][] boardF = ArrayReader.readMatrix(directorio2 + "BoardF.txt");
+		// inicio = System.currentTimeMillis();
+		// boolean boardResultF = isValidBoard(boardF);
+		// fin = System.currentTimeMillis();
+		// System.out.println("El tablero F es válido: "+boardResultF);
+		// System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+
+		System.out.println("\n ----------- Optimizado ----------- ");
+		
+		// BoardA optimizado
+		inicio = System.currentTimeMillis();
+		boolean boardResultAOP = isValidBoardOP(boardA);
+		fin = System.currentTimeMillis();
+		System.out.println("El tablero A es válido: "+boardResultAOP);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// BoardB optimizado
+		inicio = System.currentTimeMillis();
+		boolean boardResultBOP = isValidBoardOP(boardB);
+		fin = System.currentTimeMillis();
+		System.out.println("El tablero B es válido: "+boardResultBOP);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// BoardC optimizado
+		inicio = System.currentTimeMillis();
+		boolean boardResultCOP = isValidBoardOP(boardC);
+		fin = System.currentTimeMillis();
+		System.out.println("El tablero C es válido: "+boardResultCOP);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// BoardD optimizado
+		inicio = System.currentTimeMillis();
+		boolean boardResultDOP = isValidBoardOP(boardD);
+		fin = System.currentTimeMillis();
+		System.out.println("El tablero D es válido: "+boardResultDOP);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// BoardE optimizado
+		inicio = System.currentTimeMillis();
+		boolean boardResultEOP = isValidBoardOP(boardE);
+		fin = System.currentTimeMillis();
+		System.out.println("El tablero E es válido: "+boardResultEOP);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+
+		// BoardF optimizado
+		inicio = System.currentTimeMillis();
+		boolean boardResultFOP = isValidBoardOP(boardF);
+		fin = System.currentTimeMillis();
+		System.out.println("El tablero F es válido: "+boardResultFOP);
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// EJEMPLOS DE ACTIVIDAD 3
+<<<<<<< HEAD
 		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 3\n")
 
 		// Arreglo A1 rotado 500 veces.
@@ -255,6 +362,9 @@ public class Practica01{
 		fin = System.currentTimeMillis();
 		// System.out.println("Arreglo D1 rotado 3000 veces: " + Arrays.toString(arrayD1));
 		System.out.println("Tiempo de ejecución D1: " + (fin-inicio)+" milisegundos.");
+=======
+		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 3\n");
+>>>>>>> metodo2
 
 		// Arreglo E1 optimizado rotado 10000 veces.
 		inicio = System.currentTimeMillis();

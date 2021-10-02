@@ -182,11 +182,7 @@ public class Practica01{
 
 
 		// EJEMPLOS DE ACTIVIDAD 3
-		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 3\n");
-
-		int[] arrayD1 = ArrayReader.readArray(directorio1 + "ArrayD1.txt");
-		int[] arrayE1 = ArrayReader.readArray(directorio1 + "ArrayE1.txt");
-		int[] arrayF1 = ArrayReader.readArray(directorio1 + "ArrayF1.txt");
+		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 3\n")
 
 		// Arreglo A1 rotado 500 veces.
 		long inicio = System.currentTimeMillis();

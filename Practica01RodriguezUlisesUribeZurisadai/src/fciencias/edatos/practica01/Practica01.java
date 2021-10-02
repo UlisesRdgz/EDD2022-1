@@ -56,6 +56,9 @@ public class Practica01{
 	* @return un arreglo ordenado de longitud m+n con la mezcla definida.
 	*/
 	public static int[] mergeSortedArrayOP(int[] array1, int n, int[] array2, int m){
+		if(n > array1.length || m > array2.length)
+			throw new RuntimeException("Límites no válidos");
+
 		int[] result = new int[n + m];
 		int i= 0, j=0;
 
@@ -327,7 +330,7 @@ public class Practica01{
 		boolean boardResultB = isValidBoard(boardB);
 		fin = System.currentTimeMillis();
 
-		System.out.println("El tablero B  es válido: "+boardResultB);
+		System.out.println("El tablero B es válido: "+boardResultB);
 		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 		
 		// BoardC
@@ -350,11 +353,11 @@ public class Practica01{
 
 		// BoardE 
 		int[][] boardE = ArrayReader.readMatrix(directorio2 + "BoardE.txt");
-		inicio = System.currentTimeMillis();
-		boolean boardResultE = isValidBoard(boardE);
-		fin = System.currentTimeMillis();
-		System.out.println("El tablero E es válido: "+boardResultE);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
+		// inicio = System.currentTimeMillis();
+		// boolean boardResultE = isValidBoard(boardE);
+		// fin = System.currentTimeMillis();
+		// System.out.println("El tablero E es válido: "+boardResultE);
+		// System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// BoardF
 		 int[][] boardF = ArrayReader.readMatrix(directorio2 + "BoardF.txt");
@@ -364,7 +367,7 @@ public class Practica01{
 		// System.out.println("El tablero F es válido: "+boardResultF);
 		// System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
 
-		System.out.println("\n ----------- Optimizado ----------- ");
+		System.out.println("\n ---------- Optimizados ---------- \n");
 		
 		// BoardA optimizado
 		inicio = System.currentTimeMillis();
@@ -409,7 +412,7 @@ public class Practica01{
 		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// EJEMPLOS DE ACTIVIDAD 3
-		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 3\n")
+		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 3\n");
 
 		// Arreglo A1 rotado 500 veces.
 		inicio = System.currentTimeMillis();

@@ -133,70 +133,119 @@ public class Practica01{
 		// EJEMPLOS DE ACTIVIDAD 1
 		System.out.println("\nEJEMPLOS DE ACTIVIDAD 1\n");
 
-		//
+		// Declaramos los arreglos.
 		int[] arrayA1 = ArrayReader.readArray(directorio1 + "ArrayA1.txt");
 		int[] arrayA2 = ArrayReader.readArray(directorio1 + "ArrayA2.txt");
 
+		// ArregloA
 		long inicio = System.currentTimeMillis();
-		int[] resultA = mergeSortedArray(arrayA1, 3, arrayA2, 5);
+		int[] resultA = mergeSortedArray(arrayA1, 500, arrayA2, 700);
 		long fin = System.currentTimeMillis();	
+		// System.out.println("Resultado A: "+Arrays.toString(resultA));
+		System.out.println("Tiempo de ejecución A: " + (fin-inicio)+" milisegundos.");
 
-		System.out.println("Resultado A: "+Arrays.toString(resultA));
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
-
-		//
+		// Declaramos los arreglos.
 		int[] arrayB1 = ArrayReader.readArray(directorio1 + "ArrayB1.txt");
 		int[] arrayB2 = ArrayReader.readArray(directorio1 + "ArrayB2.txt");
 		
+		// ArregloB
 		inicio = System.currentTimeMillis();
-		int[] resultB = mergeSortedArray(arrayB1, 2000, arrayB2, 2000);
+		int[] resultB = mergeSortedArray(arrayB1, 2000, arrayB2, 3500);
 		fin = System.currentTimeMillis();
+		// System.out.println("Resultado B: "+Arrays.toString(resultB));
+		System.out.println("Tiempo de ejecución B: " + (fin-inicio)+" milisegundos.");
 
-		System.out.println("Resultado B: "+Arrays.toString(resultB));
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
-
-		//
+		// Declaramos los arreglos.
 		int[] arrayC1 = ArrayReader.readArray(directorio1 + "ArrayC1.txt");
 		int[] arrayC2 = ArrayReader.readArray(directorio1 + "ArrayC2.txt");
 
+		// ArregloC
 		inicio = System.currentTimeMillis();
-		int[] resultC = mergeSortedArray(arrayC1, 4, arrayC2, 6);
+		int[] resultC = mergeSortedArray(arrayC1, 4000, arrayC2, 4000);
 		fin = System.currentTimeMillis();
+		// System.out.println("Resultado C: "+Arrays.toString(resultC));
+		System.out.println("Tiempo de ejecución C: " + (fin-inicio)+" milisegundos.");
 
-		System.out.println("Resultado C: "+Arrays.toString(resultC));
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		// Declaramos los arreglos.
+		int[] arrayD1 = ArrayReader.readArray(directorio1 + "ArrayD1.txt");
+		int[] arrayD2 = ArrayReader.readArray(directorio1 + "ArrayD2.txt");
+
+		// ArregloD
+		inicio = System.currentTimeMillis();
+		int[] resultD = mergeSortedArray(arrayD1, 7000, arrayD2, 8000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Resultado D: "+Arrays.toString(resultD));
+		System.out.println("Tiempo de ejecución D: " + (fin-inicio)+" milisegundos.");
+
+		// Declaramos los arreglos.
+		int[] arrayE1 = ArrayReader.readArray(directorio1 + "ArrayE1.txt");
+		int[] arrayE2 = ArrayReader.readArray(directorio1 + "ArrayE2.txt");
+
+		// ArregloE
+		inicio = System.currentTimeMillis();
+		int[] resultE = mergeSortedArray(arrayE1, 15000, arrayE2, 19000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Resultado E: "+Arrays.toString(resultE));
+		System.out.println("Tiempo de ejecución E: " + (fin-inicio)+" milisegundos.");
+
+		// Declaramos los arreglos.
+		int[] arrayF1 = ArrayReader.readArray(directorio1 + "ArrayF1.txt");
+		int[] arrayF2 = ArrayReader.readArray(directorio1 + "ArrayF2.txt");
+
+		// ArregloF
+		inicio = System.currentTimeMillis();
+		int[] resultF = mergeSortedArray(arrayF1, 30000, arrayF2, 25000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Resultado F: "+Arrays.toString(resultF));
+		System.out.println("Tiempo de ejecución F: " + (fin-inicio)+" milisegundos.\n");
 		
+		System.out.println(" ----------- Optimizados ----------- \n");
 
-		// EJEMPLOS DE ACTIVIDAD 1 con el método Optimizado
-		System.out.println("OPTIMIZADO \n");
-
+		// Arreglo A
 		inicio = System.currentTimeMillis();
-		int[] resultAOP = mergeSortedArrayOP(arrayA1, 3, arrayA2, 5);
+		int[] resultAOP = mergeSortedArrayOP(arrayA1, 500, arrayA2, 700);
 		fin = System.currentTimeMillis();
+		// System.out.println("Resultado A: "+Arrays.toString(resultAOP));
+		System.out.println("Tiempo de ejecución A: " + (fin-inicio)+" milisegundos.");
 
-		System.out.println("Resultado A: "+Arrays.toString(resultAOP));
-		System.out.println("Tiempo de ejecución Optimizado : " + (fin-inicio)+" milisegundos.");
-
-		//
+		// Arreglo B
 		inicio = System.currentTimeMillis();
-		int[] resultBOP = mergeSortedArrayOP(arrayB1, 2000, arrayB2, 2000);
+		int[] resultBOP = mergeSortedArrayOP(arrayB1, 2000, arrayB2, 3500);
 		fin = System.currentTimeMillis();
+		// System.out.println("Resultado B: "+Arrays.toString(resultBOP));
+		System.out.println("Tiempo de ejecución B: " + (fin-inicio)+" milisegundos.");
 
-		System.out.println("Resultado B: "+Arrays.toString(resultBOP));
-		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
-
-		//
+		// Arreglo C
 		inicio = System.currentTimeMillis();
-		int[] resultCOP = mergeSortedArrayOP(arrayC1, 4, arrayC2, 6);
+		int[] resultCOP = mergeSortedArrayOP(arrayC1, 4000, arrayC2, 4000);
 		fin = System.currentTimeMillis();
+		// System.out.println("Resultado C: "+Arrays.toString(resultCOP));
+		System.out.println("Tiempo de ejecución C: " + (fin-inicio)+" milisegundos.");
 
-		System.out.println("Resultado C: "+Arrays.toString(resultCOP));
-		System.out.println("Tiempo de ejecución Optimizado: " + (fin-inicio)+" milisegundos.");
+		// Arreglo D
+		inicio = System.currentTimeMillis();
+		int[] resultDOP = mergeSortedArrayOP(arrayD1, 7000, arrayD2, 8000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Resultado D: "+Arrays.toString(resultDOP));
+		System.out.println("Tiempo de ejecución D: " + (fin-inicio)+" milisegundos.");
 
+		// Arreglo E
+		inicio = System.currentTimeMillis();
+		int[] resultEOP = mergeSortedArrayOP(arrayE1, 15000, arrayE2, 19000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Resultado E: "+Arrays.toString(resultEOP));
+		System.out.println("Tiempo de ejecución E: " + (fin-inicio)+" milisegundos.");
+
+		// Arreglo F
+		inicio = System.currentTimeMillis();
+		int[] resultFOP = mergeSortedArrayOP(arrayF1, 30000, arrayF2, 25000);
+		fin = System.currentTimeMillis();
+		// System.out.println("Resultado F: "+Arrays.toString(resultFOP));
+		System.out.println("Tiempo de ejecución F: " + (fin-inicio)+" milisegundos.");
 
 
 		// EJEMPLOS DE ACTIVIDAD 2
-		System.out.println("\nEJEMPLOS DE ACTIVIDAD 2\n");
+		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 2\n");
 
 		int[][] boardA = ArrayReader.readMatrix(directorio2 + "BoardA.txt");
 		boolean boardResultA = isValidBoard(boardA);

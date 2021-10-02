@@ -150,7 +150,7 @@ public class Practica01{
 
 
 		// EJEMPLOS DE ACTIVIDAD 2
-		System.out.println("\nEJEMPLOS DE ACTIVIDAD 2\n");
+		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 2\n");
 
 		// BoardA
 		int[][] boardA = ArrayReader.readMatrix(directorio2 + "BoardA.txt");
@@ -194,62 +194,62 @@ public class Practica01{
 		boolean boardResultE = isValidBoard(boardE);
 		fin = System.currentTimeMillis();
 		System.out.println("El tablero E es válido: "+boardResultE);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// BoardF
-		int[][] boardF = ArrayReader.readMatrix(directorio2 + "BoardF.txt");
-		inicio = System.currentTimeMillis();
-		boolean boardResultF = isValidBoard(boardF);
-		fin = System.currentTimeMillis();
-		System.out.println("El tablero F es válido: "+boardResultF);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		 int[][] boardF = ArrayReader.readMatrix(directorio2 + "BoardF.txt");
+		// inicio = System.currentTimeMillis();
+		// boolean boardResultF = isValidBoard(boardF);
+		// fin = System.currentTimeMillis();
+		// System.out.println("El tablero F es válido: "+boardResultF);
+		// System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
 
-		System.out.println(" -------------- Optimizado -------------- ");
+		System.out.println("\n ----------- Optimizado ----------- ");
 		
 		// BoardA optimizado
 		inicio = System.currentTimeMillis();
 		boolean boardResultAOP = isValidBoardOP(boardA);
 		fin = System.currentTimeMillis();
 		System.out.println("El tablero A es válido: "+boardResultAOP);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// BoardB optimizado
 		inicio = System.currentTimeMillis();
 		boolean boardResultBOP = isValidBoardOP(boardB);
 		fin = System.currentTimeMillis();
 		System.out.println("El tablero B es válido: "+boardResultBOP);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// BoardC optimizado
 		inicio = System.currentTimeMillis();
 		boolean boardResultCOP = isValidBoardOP(boardC);
 		fin = System.currentTimeMillis();
 		System.out.println("El tablero C es válido: "+boardResultCOP);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// BoardD optimizado
 		inicio = System.currentTimeMillis();
 		boolean boardResultDOP = isValidBoardOP(boardD);
 		fin = System.currentTimeMillis();
 		System.out.println("El tablero D es válido: "+boardResultDOP);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// BoardE optimizado
 		inicio = System.currentTimeMillis();
 		boolean boardResultEOP = isValidBoardOP(boardE);
 		fin = System.currentTimeMillis();
 		System.out.println("El tablero E es válido: "+boardResultEOP);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// BoardF optimizado
 		inicio = System.currentTimeMillis();
 		boolean boardResultFOP = isValidBoardOP(boardF);
 		fin = System.currentTimeMillis();
 		System.out.println("El tablero F es válido: "+boardResultFOP);
-		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.\n");
+		System.out.println("Tiempo de ejecución: " + (fin-inicio)+" milisegundos.");
 
 		// EJEMPLOS DE ACTIVIDAD 3
-		System.out.println("\nEJEMPLOS DE ACTIVIDAD 3\n");
+		System.out.println("\n\nEJEMPLOS DE ACTIVIDAD 3\n");
 
 		rotateArray(arrayA1, 5);
 		rotateArray(arrayB1, 0);

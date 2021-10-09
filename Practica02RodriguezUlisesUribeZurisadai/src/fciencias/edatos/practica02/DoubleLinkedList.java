@@ -1,6 +1,9 @@
 package fciencias.edatos.practica02;
 
+import java.util.Iterator;
+
 import fciencias.edatos.practica01.TDAList;
+import jdk.javadoc.internal.doclets.toolkit.taglets.ThrowsTaglet;
 
 /**
 * Double Linked Lists.
@@ -86,7 +89,65 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * @throws IndexOutOfBoundException si el índice está fuera de rango.
 	 */
     @Override 
-	public void add(int i, T e) throws IndexOutOfBoundsException;
+	public void add(int i, T e) throws IndexOutOfBoundsException{
+		if(i<size || i>size){
+			throw new IndexOutOfBoundsException("Índice fuera del rango");
+		}
+
+		Nodo nuevo = new Node(e);
+
+		// Si la lista esta vacia.
+		if (head == null) {
+			head = nuevo;
+			tail = nuevo;
+			size++;
+			return;
+		}
+
+		// Si se agrega al inicio
+		if (i == 0) {
+			nuevo.setNext(head);
+			nuevo.setPrev(null);
+			head = nuevo;
+			size++;
+			return;
+		}
+
+		// Si se agrega al final
+		if (i == size) {
+			nuevo.setNext(null);
+			nuevo.setPrev(tail);
+			tail = nuevo;
+			size++;
+			return;
+		}
+
+		if (size/2 <= i) {
+			Node iterador = head;
+			for (int j = 0; j < i-1; j++) 
+				iterador = iterador.getNext();
+
+			nuevo.setNext(iterador.getNext());
+			nuevo.setPrev(iterador);
+			iterador.getNext().setPrev(nuevo);
+			iterador.setNext(nuevo);
+			size++;
+			return;
+
+		}else{
+			Node iterador = tail;
+			for(int j = size; j>i+1; j--){
+				iterador = iterador.getPrev();
+
+			nuevo.setNext(iterador);
+			nuevo.setPrev(iterador.getPrev());
+			iterador.setPrev(nuevo);
+			Iterator.getPrev().setNext(nuevo);
+			size++;
+			return;
+			}
+		}
+	}
 
 
 	/**

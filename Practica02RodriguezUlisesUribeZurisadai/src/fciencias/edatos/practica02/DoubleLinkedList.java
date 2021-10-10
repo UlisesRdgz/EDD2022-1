@@ -104,7 +104,6 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		// Si se agrega al inicio
 		if (i == 0) {
 			nuevo.setNext(head);
-			nuevo.setPrev(null);
 			head.setPrev(nuevo);
 			head = nuevo;
 			size++;
@@ -114,7 +113,6 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		// Si se agrega al final
 		if (i == size()) {
 			nuevo.setPrev(tail);
-			nuevo.setNext(null);
 			tail.setNext(nuevo);
 			tail = nuevo;
 			size++;

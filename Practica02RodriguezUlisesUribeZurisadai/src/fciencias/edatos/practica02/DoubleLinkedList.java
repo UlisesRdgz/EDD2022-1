@@ -2,9 +2,6 @@ package fciencias.edatos.practica02;
 
 import java.util.Iterator;
 
-import fciencias.edatos.practica01.TDAList;
-import jdk.javadoc.internal.doclets.toolkit.taglets.ThrowsTaglet;
-
 /**
 * Double Linked Lists.
 * @author Rodríguez García Ulises.
@@ -17,11 +14,11 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 
 	private class Node{
 
-		public T element;
+		private T element;
 
-		public Node next; //siguiente
+		private Node next; //siguiente
 
-		public Node prev; //anterior
+		private Node prev; //anterior
 
 		/**
 		 * Crea un nuevo nodo
@@ -90,14 +87,14 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public void add(int i, T e) throws IndexOutOfBoundsException{
-		if(i<size || i>size){
+		if(i<0 || i>size()){
 			throw new IndexOutOfBoundsException("Índice fuera del rango");
 		}
 
-		Nodo nuevo = new Node(e);
+		Node nuevo = new Node(e);
 
 		// Si la lista esta vacia.
-		if (head == null) {
+		if (isEmpty()) {
 			head = nuevo;
 			tail = nuevo;
 			size++;
@@ -108,21 +105,23 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		if (i == 0) {
 			nuevo.setNext(head);
 			nuevo.setPrev(null);
+			head.setPrev(nuevo);
 			head = nuevo;
 			size++;
 			return;
 		}
 
 		// Si se agrega al final
-		if (i == size) {
-			nuevo.setNext(null);
+		if (i == size()) {
 			nuevo.setPrev(tail);
+			nuevo.setNext(null);
+			tail.setNext(nuevo);
 			tail = nuevo;
 			size++;
 			return;
 		}
 
-		if (size/2 <= i) {
+		if (i <= size()/2) {
 			Node iterador = head;
 			for (int j = 0; j < i-1; j++) 
 				iterador = iterador.getNext();
@@ -136,16 +135,15 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 
 		}else{
 			Node iterador = tail;
-			for(int j = size; j>i+1; j--){
+			for(int j = size(); j>i+1; j--)
 				iterador = iterador.getPrev();
 
 			nuevo.setNext(iterador);
 			nuevo.setPrev(iterador.getPrev());
+			iterador.getPrev().setNext(nuevo);
 			iterador.setPrev(nuevo);
-			Iterator.getPrev().setNext(nuevo);
 			size++;
 			return;
-			}
 		}
 	}
 
@@ -166,7 +164,9 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * @return true si el elemento está contenid, false en otro caso.
 	 */
     @Override 
-	public boolean contains(T e);
+	public boolean contains(T e){
+		return true;
+	}
 
 	/**
 	 * Obtiene el elemento en la posición <i>i</i>.
@@ -174,7 +174,9 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * @throws IndexOutOfBoundException si el índice está fuera de rango.
 	 */
     @Override 
-	public T get(int i) throws IndexOutOfBoundsException;
+	public T get(int i) throws IndexOutOfBoundsException{
+		return null;
+	}
 
 	/**
 	 * Verifica si la lista está vacía.
@@ -182,9 +184,9 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public boolean isEmpty(){
-		if (size != 0) 
-			return false;
-		return true;
+		if (size() == 0) 
+			return true;
+		return false;
 	}
 
 
@@ -195,7 +197,9 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * @throws IndexOutOfBoundException si el índice está fuera de rango.
 	 */
     @Override 
-	public T remove(int i) throws IndexOutOfBoundsException;
+	public T remove(int i) throws IndexOutOfBoundsException{
+		return null;
+	}
 
 	/**
 	 * Regresa la cantidad de elementos contenidos en la lista.
@@ -210,7 +214,9 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * Revierte los elementos de la lista. Esto es, da la reversa de la lista.
 	 */
     @Override 
-	public void revert();
+	public void revert(){
+
+	}
 
 	/**
 	 * Da la mitad derecha o izquierda de una lista.
@@ -220,20 +226,33 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * @return una nueva lista con la mitad de los elementos.
 	 */
     @Override 
-	public TDAList cut(boolean side);
+	public TDAList cut(boolean side){
+		return null;
+	}
 
 	/**
 	 * Da una cadena con los elementos contenidos en la lista.
 	 * @return una representación de la lista.
 	 */
     @Override 
-	public String toString();
+	public String toString(){
+		String formato = "";
+
+        Node iterador = head;
+        while(iterador != null){
+            formato += iterador.getElement() + "\n";
+            iterador = iterador.getNext();
+        }
+
+        return formato;
+	}
 
 	/**
 	 * Da un iterador para la lista.
 	 * @return un iterador para la estructura.
 	 */
     @Override 
-	public Iterator listIterador();
-
+	public Iterator listIterador(){
+		return null;
+	}
 }

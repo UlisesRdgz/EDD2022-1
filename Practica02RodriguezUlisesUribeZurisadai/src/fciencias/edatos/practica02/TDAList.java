@@ -1,4 +1,4 @@
-package fciencias.edatos.practica01;
+package fciencias.edatos.practica02;
 
 import java.util.Iterator;
 

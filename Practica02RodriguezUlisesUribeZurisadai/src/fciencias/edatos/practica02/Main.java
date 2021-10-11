@@ -25,5 +25,16 @@ public class Main {
         System.out.println(lista.contains("xd"));
         System.out.println(lista.contains("Para"));
         System.out.println(lista.contains("El"));
+
+        System.out.println("");
+        System.out.println("Remover");
+        System.out.println(lista.remove(4));
+        System.out.println(lista.remove(4));
+        System.out.println(lista.remove(4));
+        System.out.println(lista.remove(4));   
+        System.out.println(lista.remove(4));   
+        System.out.println("");
+        System.out.print("Longitud de la lista: " + lista.size() + "\n");
+        System.out.println(lista);
     }
 }

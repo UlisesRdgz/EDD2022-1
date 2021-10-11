@@ -208,8 +208,53 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public T remove(int i) throws IndexOutOfBoundsException{
-		return null;
-	}
+		if(i<0 || i>=size()){
+			throw new IndexOutOfBoundsException("Índice fuera del rango");
+		}
+	
+		T element;
+		if (size() == 1) {
+			element = head.getElement();
+			clear();
+			return element;
+		}
+		if (i == 0) {
+			element = head.getElement();
+			head = head.getNext();
+			head.setPrev(null);
+			size--;
+			return element;
+		} 
+		if (i== size()-1) {
+			element = tail.getElement();
+			tail = tail.getPrev();
+			tail.setNext(null);
+			size--;
+			return element;
+		}
+		if (i < size()/2) {
+			Node iterador = head;
+			for (int j = 0; j < i; j++) 
+				iterador = iterador.getNext();
+
+			element = iterador.getElement();
+			iterador.getNext().setPrev(iterador.getPrev());
+			iterador.getPrev().setNext(iterador.getNext());
+			size--;
+			return element;
+
+		}else{
+			Node iterador = tail;
+			for(int j = size(); j>i+1; j--)
+				iterador = iterador.getPrev();
+
+			element = iterador.getElement();
+			iterador.getPrev().setNext(iterador.getNext());
+			iterador.getNext().setPrev(iterador.getPrev());
+			size--;			
+			return element;
+		}
+	} 
 
 	/**
 	 * Regresa la cantidad de elementos contenidos en la lista.

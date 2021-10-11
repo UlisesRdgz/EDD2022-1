@@ -159,11 +159,26 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	/**
 	 * Verifica si un elemento está contenido en la lista.
 	 * @param e el elemento a verificar si está contenido.
-	 * @return true si el elemento está contenid, false en otro caso.
+	 * @return true si el elemento está contenido, false en otro caso.
 	 */
     @Override 
 	public boolean contains(T e){
-		return true;
+		
+		Node iterador = head;
+		for (int j = 1; j <= size()/2; j++){
+			if (iterador.getElement() == e)
+				return true;
+			iterador = iterador.getNext();
+		}
+
+		iterador = tail;
+		for(int j = size(); j>size()/2; j--){
+			if (iterador.getElement() == e) 
+				return true;
+			iterador = iterador.getPrev();
+		}
+		
+		return false;
 	}
 
 	/**

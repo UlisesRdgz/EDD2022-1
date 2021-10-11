@@ -15,7 +15,8 @@ public class Main {
         lista.add(8, "Método");
 
         System.out.print("Longitud de la lista: " + lista.size() + "\n");
+        System.out.println(lista);
 
-        System.out.print(lista);
+        System.out.println(lista.contains("Ejemplo"));
     }
 }

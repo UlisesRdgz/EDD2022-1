@@ -167,7 +167,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		Node iterador1 = head;
 		Node iterador2 = tail;
 
-		for (int j = 1, k = size(); j <= size()/2 || k>size()/2; j++, k--){
+		for (int j = 1, k = size(); j <= size()/2 || k-1>size()/2; j++, k--){
 			if (iterador1.getElement() == e || iterador2.getElement() == e)
 				return true;
 			

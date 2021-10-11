@@ -164,20 +164,17 @@ public class DoubleLinkedList<T> implements TDAList<T>{
     @Override 
 	public boolean contains(T e){
 		
-		Node iterador = head;
-		for (int j = 1; j <= size()/2; j++){
-			if (iterador.getElement() == e)
+		Node iterador1 = head;
+		Node iterador2 = tail;
+
+		for (int j = 1, k = size(); j <= size()/2 || k>size()/2; j++, k--){
+			if (iterador1.getElement() == e || iterador2.getElement() == e)
 				return true;
-			iterador = iterador.getNext();
+			
+			iterador1 = iterador1.getNext();
+			iterador2 = iterador2.getPrev();
 		}
 
-		iterador = tail;
-		for(int j = size(); j>size()/2; j--){
-			if (iterador.getElement() == e) 
-				return true;
-			iterador = iterador.getPrev();
-		}
-		
 		return false;
 	}
 

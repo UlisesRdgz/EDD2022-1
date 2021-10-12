@@ -87,9 +87,8 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public void add(int i, T e) throws IndexOutOfBoundsException{
-		if(i<0 || i>size()){
+		if(i<0 || i>size())
 			throw new IndexOutOfBoundsException("Índice fuera del rango");
-		}
 
 		Node nuevo = new Node(e);
 
@@ -145,7 +144,6 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		}
 	}
 
-
 	/**
 	 * Limpia la lista. Elimina todos los elementos.
 	 */
@@ -185,7 +183,30 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public T get(int i) throws IndexOutOfBoundsException{
-		return null;
+		if(i<0 || i>=size())
+			throw new IndexOutOfBoundsException("Índice fuera del rango");
+		
+		if (i == 0) 
+			return head.getElement();
+		
+		if (i == size()-1) 
+			return tail.getElement();
+		
+
+		if (i < size()/2) {
+			Node iterador = head;
+			for (int j = 0; j < i; j++) 
+				iterador = iterador.getNext();
+
+			return iterador.getElement();
+
+		}else{
+			Node iterador = tail;
+			for(int j = size(); j>i+1; j--)
+				iterador = iterador.getPrev();
+
+			return iterador.getElement();
+		}
 	}
 
 	/**
@@ -208,9 +229,8 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public T remove(int i) throws IndexOutOfBoundsException{
-		if(i<0 || i>=size()){
+		if(i<0 || i>=size())
 			throw new IndexOutOfBoundsException("Índice fuera del rango");
-		}
 	
 		T element;
 		if (size() == 1) {

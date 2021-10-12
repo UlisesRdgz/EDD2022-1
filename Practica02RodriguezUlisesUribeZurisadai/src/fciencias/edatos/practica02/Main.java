@@ -29,12 +29,18 @@ public class Main {
         System.out.println("");
         System.out.println("Remover");
         System.out.println(lista.remove(4));
-        System.out.println(lista.remove(4));
-        System.out.println(lista.remove(4));
         System.out.println(lista.remove(4));   
-        System.out.println(lista.remove(4));   
+        System.out.println(lista.remove(4));
         System.out.println("");
         System.out.print("Longitud de la lista: " + lista.size() + "\n");
         System.out.println(lista);
+
+        System.out.println("Get");
+        System.out.println(lista.get(0));
+        System.out.println(lista.get(1));
+        System.out.println(lista.get(2));
+        System.out.println(lista.get(3));
+        System.out.println(lista.get(4));
+
     }
 }

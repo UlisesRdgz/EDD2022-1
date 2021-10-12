@@ -16,13 +16,14 @@ public class Main {
         System.out.print("Longitud de la lista: " + lista.size() + "\n");
         System.out.println(lista);
 
+        System.out.println(lista.contains("Hola"));
         System.out.println(lista.contains("Este"));
         System.out.println(lista.contains("Es"));
         System.out.println(lista.contains("uwuw"));
         System.out.println(lista.contains("Un"));
         System.out.println(lista.contains("Ejemplo"));
-        System.out.println(lista.contains(":)"));
         System.out.println(lista.contains("xd"));
+        System.out.println(lista.contains(":)"));
         System.out.println(lista.contains("Para"));
         System.out.println(lista.contains("El"));
 
@@ -40,10 +41,19 @@ public class Main {
         System.out.println(lista.get(1));
         System.out.println(lista.get(2));
         System.out.println(lista.get(3));
-        System.out.println(lista.get(4));
+        System.out.println(lista.get(4) + "\n");
 
         System.out.println("Reverse");
         lista.revert();
         System.out.println(lista);
+        lista.revert();
+
+        System.out.println(lista);
+
+        System.out.println("Cut izquierda");
+        System.out.println(lista.cut(true));
+
+        System.out.println("Cut derecha");
+        System.out.println(lista.cut(false));
     }
 }

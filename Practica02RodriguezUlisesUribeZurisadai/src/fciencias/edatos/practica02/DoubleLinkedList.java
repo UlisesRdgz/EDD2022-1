@@ -161,11 +161,17 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public boolean contains(T e){
+
+		if (isEmpty())
+			return false;
+
+		if (size() == 1)
+			return e == head.getElement();	
 		
 		Node iterador1 = head;
 		Node iterador2 = tail;
 
-		for (int j = 1, k = size(); j <= size()/2 || k-1>size()/2; j++, k--){
+		for (int j = 1; j <= size()/2; j++){
 			if (iterador1.getElement() == e || iterador2.getElement() == e)
 				return true;
 			
@@ -219,7 +225,6 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 			return true;
 		return false;
 	}
-
 
 	/**
 	 * Elimina el elemento en la posición <i>i</i>.
@@ -311,8 +316,24 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * @return una nueva lista con la mitad de los elementos.
 	 */
     @Override 
-	public TDAList cut(boolean side){
-		return null;
+	public TDAList<T> cut(boolean side){
+		
+		TDAList<T> nuevaLista = new DoubleLinkedList<>(); 
+
+		if (side == true) {
+			Node iterador = head;
+			for (int j = 0; j < size()/2; j++){
+				nuevaLista.add(j, iterador.getElement());
+				iterador = iterador.getNext();
+			}
+		}else{
+			Node iterador = tail;
+			for (int j = size(); j>size()/2; j--){
+				nuevaLista.add(0, iterador.getElement());
+				iterador = iterador.getPrev();
+			}
+		}
+		return nuevaLista;
 	}
 
 	/**

@@ -42,5 +42,8 @@ public class Main {
         System.out.println(lista.get(3));
         System.out.println(lista.get(4));
 
+        System.out.println("Reverse");
+        lista.revert();
+        System.out.println(lista);
     }
 }

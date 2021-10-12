@@ -88,7 +88,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
     @Override 
 	public void add(int i, T e) throws IndexOutOfBoundsException{
 		if(i<0 || i>size())
-			throw new IndexOutOfBoundsException("Índice fuera del rango");
+			throw new IndexOutOfBoundsException("Indice fuera del rango");
 
 		Node nuevo = new Node(e);
 
@@ -184,7 +184,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
     @Override 
 	public T get(int i) throws IndexOutOfBoundsException{
 		if(i<0 || i>=size())
-			throw new IndexOutOfBoundsException("Índice fuera del rango");
+			throw new IndexOutOfBoundsException("Indice fuera del rango");
 		
 		if (i == 0) 
 			return head.getElement();
@@ -230,7 +230,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
     @Override 
 	public T remove(int i) throws IndexOutOfBoundsException{
 		if(i<0 || i>=size())
-			throw new IndexOutOfBoundsException("Índice fuera del rango");
+			throw new IndexOutOfBoundsException("Indice fuera del rango");
 	
 		T element;
 		if (size() == 1) {
@@ -290,8 +290,18 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public void revert(){
-
-	}
+		Node iterador = head;
+		Node aux = null;
+		while(iterador != null){
+			aux = iterador.getPrev();
+			iterador.setPrev(iterador.getNext());
+			iterador.setNext(aux);
+			iterador= iterador.getPrev();
+		}			
+		aux = head;
+		head = tail;
+		tail = aux;
+	} 
 
 	/**
 	 * Da la mitad derecha o izquierda de una lista.

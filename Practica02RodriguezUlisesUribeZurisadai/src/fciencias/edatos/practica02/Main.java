@@ -1,59 +1,72 @@
 package fciencias.edatos.practica02;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         DoubleLinkedList<String> lista = new DoubleLinkedList<>();
 
-        lista.add(0, "Es");
-        lista.add(1, "Un");
-        lista.add(2, "Ejemplo");
-        lista.add(3, "El");
-        lista.add(0, "Hola");
-        lista.add(1, "Este");
-        lista.add(5, "Para");
-        lista.add(5, ":)");
+    Scanner sc = new Scanner(System.in);
 
-        System.out.print("Longitud de la lista: " + lista.size() + "\n");
-        System.out.println(lista);
+    do{
+        System.out.println("Menú \n" +
+                           "1)  Agregar una cadena \n" +
+                           "2)  Elimina una cadena \n" +
+                           "3)  Limpiar \n" +
+                           "4)  Verificar si hay algún elemento \n" +
+                           "5)  Obtener un elemento \n " +
+                           "6)  Verificar si está vacía\n" +
+                           "7)  Longitud \n" +
+                           "8)  Reversa \n" +
+                           "9)  Cortar \n" +
+                           "10) Mostrar \n" +
+                           "11) Salir \n");
+                 
+        int opcion = sc.nextInt();
+        
+        switch (opcion) {
+            case 1:
+                System.out.println("Coloca la posición de la cadena que deseas agregar: ");
+                int i= sc.nextInt();
+                sc.nextLine();
+                String s= sc.nextLine();
+                lista.add(i, s);
+                System.out.println("Se agregó correctamente");
+                break;
+            
+            case 2:
+                System.out.println("Coloca la posición de la cadena que deseas eliminar: ");
+                i= sc.nextInt();
+                sc.nextLine();
+                lista.remove(i);
+                System.out.println("Se eliminó correctamente la cadena");
+                break;
 
-        System.out.println(lista.contains("Hola"));
-        System.out.println(lista.contains("Este"));
-        System.out.println(lista.contains("Es"));
-        System.out.println(lista.contains("uwuw"));
-        System.out.println(lista.contains("Un"));
-        System.out.println(lista.contains("Ejemplo"));
-        System.out.println(lista.contains("xd"));
-        System.out.println(lista.contains(":)"));
-        System.out.println(lista.contains("Para"));
-        System.out.println(lista.contains("El"));
+            case 3:
+                System.out.println("La lista se limpiará en un momento");   
+                lista.clear();
+                System.out.println("Se limpió correctamente ");
+                break;
 
-        System.out.println("");
-        System.out.println("Remover");
-        System.out.println(lista.remove(4));
-        System.out.println(lista.remove(4));   
-        System.out.println(lista.remove(4));
-        System.out.println("");
-        System.out.print("Longitud de la lista: " + lista.size() + "\n");
-        System.out.println(lista);
+            case 4:
+                System.out.println("Coloca el elemento que deseas verificar: ");
+                i= sc.nextInt();
+                sc.nextLine();
+                s= sc.nextLine();                
+                System.out.println(lista.contains(s));
 
-        System.out.println("Get");
-        System.out.println(lista.get(0));
-        System.out.println(lista.get(1));
-        System.out.println(lista.get(2));
-        System.out.println(lista.get(3));
-        System.out.println(lista.get(4) + "\n");
+            case 5:
+                System.out.println("Coloca el elemento que deseas obtener: ");
+                i= sc.nextInt();
+                sc.nextLine();            
+                System.out.println(lista.get(i));     
 
-        System.out.println("Reverse");
-        lista.revert();
-        System.out.println(lista);
-        lista.revert();
+            default:
+                System.out.println("Opción inválida :c ");
+                break;
+        }
 
-        System.out.println(lista);
+    }while(true);
 
-        System.out.println("Cut izquierda");
-        System.out.println(lista.cut(true));
-
-        System.out.println("Cut derecha");
-        System.out.println(lista.cut(false));
     }
 }

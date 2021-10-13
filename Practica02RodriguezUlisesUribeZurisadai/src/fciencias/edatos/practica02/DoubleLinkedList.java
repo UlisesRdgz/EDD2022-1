@@ -67,9 +67,46 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		public Node getPrev(){
 			return prev;
 		}
-
-		
 	}
+
+	/**
+	 * Iterador de la clase 
+	 */ 
+	private class IteratorDouble<T> implements Iterator<T> {
+		
+		/** Atributos */
+		private DoubleLinkedList<T> lista;
+
+
+		/** Tope */
+		private int size;
+
+		/** Iterador, punto de recorrido */
+		private int apuntador; 
+		
+		/**
+		 * 
+		 */
+		public IteratorDouble(DoubleLinkedList<T>lista, int size){
+			this.lista = lista;
+			this.size = size;
+			this.apuntador = 0;
+		} 
+
+		@Override
+		public boolean hasNext(){
+			if(apuntador < lista.size())
+				return true;
+			return false;	
+		}
+
+		@Override
+		public T next(){
+			return lista.get(apuntador++);
+		}
+	}
+
+
 	/** Cabeza de la lista */
 	private Node head;
 

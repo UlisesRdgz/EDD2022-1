@@ -14,7 +14,7 @@ public class Main {
                            "2)  Elimina una cadena \n" +
                            "3)  Limpiar \n" +
                            "4)  Verificar si hay algún elemento \n" +
-                           "5)  Obtener un elemento \n " +
+                           "5)  Obtener un elemento \n" +
                            "6)  Verificar si está vacía\n" +
                            "7)  Longitud \n" +
                            "8)  Reversa \n" +
@@ -26,17 +26,27 @@ public class Main {
         
         switch (opcion) {
             case 1:
-                System.out.println("Coloca la posición de la cadena que deseas agregar: ");
-                int i= sc.nextInt();
-                sc.nextLine();
-                String s= sc.nextLine();
-                lista.add(i, s);
-                System.out.println("Se agregó correctamente");
-                break;
+                if (lista.isEmpty()) {
+                    System.out.println("Escribe el elemento que deseas agregar: ");
+                    sc.nextLine();
+                    String s = sc.nextLine();
+                    lista.add(0, s);
+                    System.out.println("Se agregó correctamente \n");
+                    break;
+                }else{
+                    System.out.println("Coloca la posición de la cadena que deseas agregar (0 - " + lista.size() + "):\n ");
+                    int i = sc.nextInt();
+                    System.out.println("Escribe el elemento que deseas agregar: ");
+                    sc.nextLine();
+                    String s = sc.nextLine();
+                    lista.add(i, s);
+                    System.out.println("Se agregó correctamente \n");
+                    break;
+                }
             
             case 2:
                 System.out.println("Coloca la posición de la cadena que deseas eliminar: ");
-                i= sc.nextInt();
+                int i= sc.nextInt();
                 sc.nextLine();
                 lista.remove(i);
                 System.out.println("Se eliminó correctamente la cadena");
@@ -52,7 +62,7 @@ public class Main {
                 System.out.println("Coloca el elemento que deseas verificar: ");
                 i= sc.nextInt();
                 sc.nextLine();
-                s= sc.nextLine();                
+                String s= sc.nextLine();                
                 System.out.println(lista.contains(s));
 
             case 5:

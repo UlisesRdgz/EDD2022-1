@@ -1,6 +1,7 @@
 package fciencias.edatos.practica02;
 
 import java.util.Iterator;
+import java.util.NoSuchElementException;
 
 /**
 * Double Linked Lists.
@@ -72,40 +73,41 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	/**
 	 * Iterador de la clase 
 	 */ 
-	private class IteratorDouble<T> implements Iterator<T> {
+	private class IteratorDouble implements Iterator<T> {
 		
 		/** Atributos */
-		private DoubleLinkedList<T> lista;
-
+		private Node current;
 
 		/** Tope */
 		private int size;
 
 		/** Iterador, punto de recorrido */
-		private int apuntador; 
+		private int index; 
 		
 		/**
 		 * 
 		 */
-		public IteratorDouble(DoubleLinkedList<T>lista, int size){
-			this.lista = lista;
+		public IteratorDouble(Node current, int size){
+			this.current = current;
 			this.size = size;
-			this.apuntador = 0;
 		} 
 
 		@Override
 		public boolean hasNext(){
-			if(apuntador < lista.size())
-				return true;
-			return false;	
+			return index < size;
 		}
 
 		@Override
 		public T next(){
-			return lista.get(apuntador++);
+			if (!hasNext()) 
+				throw new NoSuchElementException();
+
+			index++;
+			T aux = current.element;
+			current = current.getNext();
+			return aux;
 		}
 	}
-
 
 	/** Cabeza de la lista */
 	private Node head;

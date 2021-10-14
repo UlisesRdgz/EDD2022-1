@@ -397,7 +397,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 * @return un iterador para la estructura.
 	 */
     @Override 
-	public Iterator listIterador(){
-		return null;
+	public Iterator<T> listIterador(){
+		return new IteratorDouble(head, size());
 	}
 }

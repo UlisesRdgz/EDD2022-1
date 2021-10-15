@@ -103,59 +103,56 @@ public class Main {
                 
             case 6:
                 if(lista.isEmpty())
-                    System.out.println("La lista esta vacia");
+                    System.out.println("\nLa lista esta vacia.");
                 
                 else
-                    System.out.println("La lista no esta vacia");
+                    System.out.println("\nLa lista no esta vacia.");
                 
-                sleep1();
-                clearScreen();
                 break;
             
             case 7:
-                System.out.println("La longitud de la lista es: " + lista.size());
-                sleep1();
-                clearScreen();
+                System.out.println("\nLa longitud de la lista es: " + lista.size() + ".");
                 break;
 
             case 8:
-                System.out.println("La reversa de la lista es: \n");   
+                System.out.println("\nLa reversa de la lista es: ");   
                 lista.revert();
                 System.out.println(lista);
 
-                sleep1();
-                clearScreen();
                 break;
 
             case 9:
-                System.out.println("¿Mitad izquierda o mitad derecha?");
-                sc.nextLine();
-                s = sc.nextLine();
-
-                if(s=="true")
-                    lista.cut(true);
-        
-                else
-                    lista.cut(false);
-
-                System.out.println("Lista cortada: ");
+                if (lista.size() == 1){
+                System.out.println("\nLa lista tiene solo 1 elemento, no se puede cortar.");
                 System.out.println(lista);
-                sleep1();
-                clearScreen();
                 break;
+                }
+
+                do{
+                    System.out.println("\nEscribe \"I\" para la mitad izquierda o \"D\" para la mitad derecha.");
+                    s = sc.next();
+                }while(!s.equals("I") && !s.equals("D"));
+
+                if(s.equals("I")){
+                    System.out.println("\nMitad izquierda de la lista: ");
+                    System.out.println(lista.cut(true));
+                    break;
+                }
+                else if(s.equals("D")){
+                    System.out.println("\nMitad derecha de la lista: ");
+                    System.out.println(lista.cut(false));
+                    break;
+                }   
 
             case 10:
-                System.out.println("Lista: ");          
-                System.out.println(lista);
-                sleep1();
-                clearScreen(); 
+                System.out.println("\nLista: " + lista);    
                 break;
 
             case 11:
                 return;
 
             default:
-                System.out.println(" Opción inválida :c ");
+                System.out.println("\nOpción inválida :c\n"); 
                 break;
         }
 

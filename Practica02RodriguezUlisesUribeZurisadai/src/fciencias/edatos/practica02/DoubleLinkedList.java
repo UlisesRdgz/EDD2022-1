@@ -205,13 +205,13 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 			return false;
 
 		if (size() == 1)
-			return e == head.getElement();	
+			return e.equals(head.getElement());	
 		
 		Node iterador1 = head;
 		Node iterador2 = tail;
 
 		for (int j = 1; j <= size()/2; j++){
-			if (iterador1.getElement() == e || iterador2.getElement() == e)
+			if (e.equals(iterador1.getElement()) || e.equals(iterador2.getElement()))
 				return true;
 			
 			iterador1 = iterador1.getNext();
@@ -381,13 +381,17 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	 */
     @Override 
 	public String toString(){
-		String formato = "";
+		String formato = "[";
 
         Node iterador = head;
         while(iterador != null){
-            formato += iterador.getElement() + "\n";
-            iterador = iterador.getNext();
+            	formato += iterador.getElement() + ", ";
+            	iterador = iterador.getNext();
         }
+		formato += "\b\b]";
+
+		if(isEmpty())
+			formato = "[]";
 
         return formato;
 	}

@@ -97,8 +97,10 @@ public class Main {
                         }else if(lista.size() == 1){
                             System.out.println("\nEl único elemento en la lista es: " + lista.get(0) + ".");
                         }else{
-                            System.out.println("\nColoca la posición del elemento que deseas obtener: (0 - " + size + ").");
-                            i= sc.nextInt(); 
+                            do{
+                                System.out.println("\nColoca la posición del elemento que deseas obtener: (0 - " + size + ").");
+                                i= sc.nextInt(); 
+                            }while(i > size);
                             System.out.println("\nEl elemento en la posición " + i +" es: " + lista.get(i) + ".");
                         }
                         

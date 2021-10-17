@@ -2,6 +2,14 @@ package fciencias.edatos.practica02;
 
 import java.util.Scanner;
 
+/**
+ * Menú para la clase DoubleLInkedList
+ * @author Rodríguez García Ulises.
+ * @author Uribe García Zurisadai. 
+ * @version 8.0 Octubre 2021.
+ * @since Estructuras de datos 2022-1. Prática 2.
+ */
+
 public class Main {
 
     public static void main(String[] args) {
@@ -10,13 +18,13 @@ public class Main {
         Scanner sc = new Scanner(System.in);
         do{
             try{
-                System.out.println("\nMenú \n" +
+                System.out.println("\n           Menú        \n" +
                                 " 1)  Agregar una cadena \n" +
                                 " 2)  Elimina una cadena \n" +
                                 " 3)  Limpiar \n" +
-                                " 4)  Verificar si hay algún elemento \n" +
+                                " 4)  Verificar un elemento \n" +
                                 " 5)  Obtener un elemento \n" +
-                                " 6)  Verificar si está vacía\n" +
+                                " 6)  Comprobar si está vacía\n" +
                                 " 7)  Longitud \n" +
                                 " 8)  Reversa \n" +
                                 " 9)  Cortar \n" +
@@ -69,7 +77,7 @@ public class Main {
 
                     case 3:
                         if (lista.isEmpty()){ 
-                            System.out.println("\nLa lista ya esta vacia.");
+                            System.out.println("\nLa lista ya está vacía.");
                         }else{
                             lista.clear();
                             System.out.println("\nLa lista se limpió correctamente.");
@@ -83,9 +91,9 @@ public class Main {
                             System.out.println("\nColoca el elemento que deseas verificar.");
                             s = sc.next();
                             if(lista.contains(s))
-                                System.out.println("\nEl elemento se encuentra dentro de la lista.");
+                                System.out.println("\nEl elemento está dentro de la lista.");
                             else
-                                System.out.println("\nEl elemento no se encuentra.");
+                                System.out.println("\nEl elemento no se encuentra :(");
                             
                         }
                         break;
@@ -154,6 +162,7 @@ public class Main {
                         break;
 
                     case 11:
+                        System.out.println("Hasta la próxima!");
                         return;
 
                     default:

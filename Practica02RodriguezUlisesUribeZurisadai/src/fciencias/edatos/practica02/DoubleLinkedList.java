@@ -15,14 +15,15 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 
 	private class Node{
 
+		/** Atributos */
 		private T element;
 
-		private Node next; //siguiente
+		private Node next; 
 
-		private Node prev; //anterior
+		private Node prev; 
 
 		/**
-		 * Crea un nuevo nodo
+		 * Crea un nuevo nodo.
 		 * @param element elemento que almacena el nodo 
 		 */
 		public Node(T element){
@@ -30,7 +31,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		} 
 
 		/**
-		 * Permite cambiar al siguiente nodo
+		 * Permite cambiar al siguiente nodo.
 		 * @param newNode
 		 */
 		public void setNext(Node newNode){
@@ -38,7 +39,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		}
 
 		/**
-		 * Permite cambiar al nodo anterior
+		 * Permite cambiar al nodo anterior.
 		 * @param newNode
 		 */
 		public void setPrev(Node newNode){
@@ -46,7 +47,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		}
 
 		/**
-		 * Accede a la información del nodo
+		 * Accede a la información del nodo.
 		 * @return element 
 		 */
 		public T getElement(){
@@ -54,7 +55,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		}
 
 		/**
-		 * Accede al nodo siguiente
+		 * Accede al nodo siguiente.
 		 * @return next
 		 */
 		public Node getNext(){
@@ -62,7 +63,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		}
 
 		/**
-		 * Accede al nodo anterior
+		 * Accede al nodo anterior.
 		 * @return prev
 		 */
 		public Node getPrev(){
@@ -71,7 +72,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	}
 
 	/**
-	 * Iterador de la clase 
+	 * Iterador de la clase.
 	 */ 
 	private class IteratorDouble implements Iterator<T> {
 		
@@ -85,18 +86,28 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		private int index; 
 		
 		/**
-		 * 
+		 * Constructor del Iterador.
+		 * @param current para ver dónde empieza la lista
+		 * @param size Longitud de la lista
 		 */
 		public IteratorDouble(Node current, int size){
 			this.current = current;
 			this.size = size;
 		} 
 
+		/**
+		 * Método para verificar si hay siguiente.
+		 * @return true si tiene siguiente, false en otro caso.
+		 */
 		@Override
 		public boolean hasNext(){
 			return index < size;
 		}
 
+		/**
+		 * Método que regresa el siguiente elemento.
+		 * @return aux 
+		 */
 		@Override
 		public T next(){
 			if (!hasNext()) 
@@ -131,7 +142,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 
 		Node nuevo = new Node(e);
 
-		// Si la lista esta vacia.
+		/* Si la lista esta vacia.*/
 		if (isEmpty()) {
 			head = nuevo;
 			tail = nuevo;
@@ -139,7 +150,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 			return;
 		}
 
-		// Si se agrega al inicio
+		/* Si se agrega al inicio. */
 		if (i == 0) {
 			nuevo.setNext(head);
 			head.setPrev(nuevo);
@@ -148,7 +159,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 			return;
 		}
 
-		// Si se agrega al final
+		/* Si se agrega al final. */
 		if (i == size()) {
 			nuevo.setPrev(tail);
 			tail.setNext(nuevo);
@@ -157,6 +168,8 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 			return;
 		}
 
+		/* Si el elemento se desea agregar 
+		 en algún punto intermedio.*/
 		if (i <= size()/2) {
 			Node iterador = head;
 			for (int j = 0; j < i-1; j++) 

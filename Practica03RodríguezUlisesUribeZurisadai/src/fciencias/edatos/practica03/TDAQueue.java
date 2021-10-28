@@ -1,3 +1,5 @@
+package fciencias.edatos.practica03;
+
 /**
 * TDA para colas.
 * @author Emmanuel Cruz Hernández.

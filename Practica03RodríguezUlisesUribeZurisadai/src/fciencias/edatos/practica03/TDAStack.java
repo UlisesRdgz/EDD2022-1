@@ -1,3 +1,5 @@
+package fciencias.edatos.practica03;
+
 import java.util.EmptyStackException;
 
 /**

@@ -3,6 +3,7 @@ package fciencias.edatos.practica03;
 import java.util.EmptyStackException;
 
 public class Stack<T> implements TDAStack<T> {
+	
     private DoubleLinkedList<T> stack = new DoubleLinkedList<>();
     
     /**
@@ -10,7 +11,7 @@ public class Stack<T> implements TDAStack<T> {
 	 */
 	@Override
 	public void clear(){
-		stack.clear();;
+		stack.clear();
 	}
 
 	/**

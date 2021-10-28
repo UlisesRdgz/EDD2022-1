@@ -4,14 +4,14 @@ import java.util.EmptyStackException;
 
 public class Stack<T> implements TDAStack<T> {
 	
-    private DoubleLinkedList<T> stack = new DoubleLinkedList<>();
+    private DoubleLinkedList<T> lista = new DoubleLinkedList<>();
     
     /**
 	 * Limpia la pila. Elimina todos los elementos.
 	 */
 	@Override
 	public void clear(){
-		stack.clear();
+		lista.clear();
 	}
 
 	/**
@@ -20,7 +20,7 @@ public class Stack<T> implements TDAStack<T> {
 	 */
 	@Override
 	public boolean isEmpty(){
-		return stack.isEmpty();
+		return lista.isEmpty();
 	}
 
 	/**
@@ -30,10 +30,10 @@ public class Stack<T> implements TDAStack<T> {
 	 */
 	@Override
 	public T pop() throws EmptyStackException{
-		if(stack.isEmpty())
+		if(lista.isEmpty())
 			throw new EmptyStackException();
 
-		return stack.remove(0);
+		return lista.remove(0);
 	}
 
 	/**
@@ -42,7 +42,7 @@ public class Stack<T> implements TDAStack<T> {
 	 */
 	@Override
 	public void push(T e){
-		stack.add(0, e);
+		lista.add(0, e);
 	}
 
 	/**
@@ -51,9 +51,9 @@ public class Stack<T> implements TDAStack<T> {
 	 */
 	@Override
 	public T top() throws EmptyStackException{
-		if (stack.isEmpty())
+		if (lista.isEmpty())
 			throw new EmptyStackException();
 
-		return stack.get(0);
+		return lista.get(0);
 	}
 }

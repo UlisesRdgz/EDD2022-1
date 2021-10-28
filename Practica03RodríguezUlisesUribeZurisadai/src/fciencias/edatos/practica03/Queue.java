@@ -2,13 +2,13 @@ package fciencias.edatos.practica03;
 
 public class Queue<T> implements TDAQueue<T> {
     
-    private DoubleLinkedList<T> queue = new DoubleLinkedList<>();
+    private DoubleLinkedList<T> lista = new DoubleLinkedList<>();
 
     /**
 	 * Limpia la cola. Elimina todos los elementos.
 	 */
 	public void clear(){
-        queue.clear();
+        lista.clear();
     }
 
 	/**
@@ -16,10 +16,10 @@ public class Queue<T> implements TDAQueue<T> {
 	 * @return el siguiente en la cola o null si es vacía.
 	 */
 	public T dequeue(){
-        if(queue.isEmpty())
+        if(lista.isEmpty())
             return null;
 
-        return queue.remove(0);    
+        return lista.remove(0);    
     }
 
 	/**
@@ -27,7 +27,7 @@ public class Queue<T> implements TDAQueue<T> {
 	 * @param e el elemento a agregar.
 	 */
 	public void enqueue(T e){
-        queue.add(queue.size(), e);        
+        lista.add(lista.size(), e);        
     }
 
 	/**
@@ -35,7 +35,10 @@ public class Queue<T> implements TDAQueue<T> {
 	 * @return el siguiente elemento en la cola o null si es vacía.
 	 */
 	public T first(){
-        return queue.get(0);
+        if (lista.isEmpty()) 
+            return null;
+            
+        return lista.get(0);
     }
 
 	/**
@@ -43,6 +46,6 @@ public class Queue<T> implements TDAQueue<T> {
 	 * @return true si la cola no contiene elementos, false en otro caso.
 	 */
 	public boolean isEmpty(){
-        return queue.isEmpty();
+        return lista.isEmpty();
     }
 }

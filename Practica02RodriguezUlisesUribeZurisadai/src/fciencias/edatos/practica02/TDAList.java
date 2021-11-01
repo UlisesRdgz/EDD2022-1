@@ -69,7 +69,7 @@ public interface TDAList<T>{
 	 * false - mitad izquierda.
 	 * @return una nueva lista con la mitad de los elementos.
 	 */
-	public TDAList cut(boolean side);
+	public TDAList<T> cut(boolean side);
 
 	/**
 	 * Da una cadena con los elementos contenidos en la lista.
@@ -81,6 +81,6 @@ public interface TDAList<T>{
 	 * Da un iterador para la lista.
 	 * @return un iterador para la estructura.
 	 */
-	public Iterator listIterador();
+	public Iterator<T> listIterador();
 
 }

@@ -223,7 +223,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 		Node iterador1 = head;
 		Node iterador2 = tail;
 
-		for (int j = 1; j <= size()/2; j++){
+		for (int j = 0; j <= size()/2; j++){
 			if (e.equals(iterador1.getElement()) || e.equals(iterador2.getElement()))
 				return true;
 			

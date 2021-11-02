@@ -1,5 +1,7 @@
 package fciencias.edatos.practica03;
 
+import java.util.Random;
+
 public class Box {
     
     /** Atributos */
@@ -18,13 +20,8 @@ public class Box {
         this.wall = wall;
         this.row = row;
         this.column = column;
-
-        if(!isWall()){
-            neighbors.enqueue(0);
-            neighbors.enqueue(1);
-            neighbors.enqueue(2);
-            neighbors.enqueue(3);
-        }
+        if (!wall) 
+            fill();
     }
 
     public int getRow(){
@@ -44,7 +41,30 @@ public class Box {
     } 
 
     public int peek(){
+        if (neighbors.isEmpty()) 
+            return 4;
+
         return neighbors.dequeue();
+    }
+
+    public void fill(){
+        DoubleLinkedList<Integer> visited = new DoubleLinkedList<>(); 
+        Random rn = new Random();
+		int random = rn.nextInt(4);
+        visited.add(0, random);
+
+        for (int i = 0; i < 3; i++) {
+            while (visited.contains(random)) {
+                random = rn.nextInt(4);
+            }
+
+            visited.add(0, random);
+        }
+
+        for (int i = 0; i < 4; i++) {
+            neighbors.enqueue(visited.get(i));
+        }
+
     }
     
 

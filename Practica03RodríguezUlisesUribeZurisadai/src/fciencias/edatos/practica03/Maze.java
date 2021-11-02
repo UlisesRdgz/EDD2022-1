@@ -4,19 +4,21 @@ public class Maze {
     
     Box[][] board; 
     
-    Box actual, temp, inicio, fin;
+    Box actual, inicio, fin;
+
+    int casilla;
     
     /**
      * 
      */
-    public Maze(int xini, int yini, int xfin, int yfin, String tablero){
+    public Maze(int xInicial, int yInicial, int xFinal, int yFinal, String tablero){
         if (tablero == "A") 
             this.board = ArrayReader.readMatrix("Laberintos/LaberintoA.txt");
         else
             this.board = ArrayReader.readMatrix("Laberintos/LaberintoB.txt");
         
-        this.inicio = new Box(xini, yini, false);
-        this.fin = new Box(xfin, yfin, false);
+        this.inicio = new Box(xInicial, yInicial, false);
+        this.fin = new Box(xFinal, yFinal, false);
         
     }
 
@@ -25,10 +27,11 @@ public class Maze {
      * @return true si el laberinto está resuelto
      */
     public boolean isSolution(){
-        if (actual != fin)
+        if (actual.getRow() == fin.getRow() && actual.getColumn() == fin.getColumn()){
+            return true;
+        }else{
             return false;
-
-        return isExtensible();
+        }
     }
     
     /**
@@ -36,31 +39,33 @@ public class Maze {
      * @return true si la casilla actual tiene vecinos
      */
     public boolean isExtensible(){
-        int casilla = actual.peek();
-        temp = actual;
+        casilla = actual.peek();
+        Box temp = actual;
 
-        for (int i = 0; i < 4; i++) {
-            // Arriba
-            if (casilla == 0) 
-                temp = board[actual.getRow()-1][actual.getColumn()];
+        if (casilla == 4) 
+            return false;
 
-            // Derecha
-            else if(casilla == 1)
-                temp = board[actual.getRow()][actual.getColumn()+1];
+        // Arriba
+        if (casilla == 0) 
+            temp = board[actual.getRow()-1][actual.getColumn()];
+
+        // Derecha
+        else if(casilla == 1) 
+            temp = board[actual.getRow()][actual.getColumn()+1];
     
-            // Abajo
-            else if(casilla == 2)
-                temp = board[actual.getRow()+1][actual.getColumn()];
+        // Abajo
+        else if(casilla == 2)
+            temp = board[actual.getRow()+1][actual.getColumn()];
     
-            // Izquierda
-            else if(casilla == 3)
+        // Izquierda
+        else if(casilla == 3 && !actual.equals(inicio)) {
                 temp = board[actual.getRow()][actual.getColumn()-1];
-
-            if(!temp.isWall() || !temp.isVisited() || temp != null)
-                return true;
-                
         }
-        return false;
+        
+        if(temp.isWall() == true || temp.isVisited() == true)
+            return false;
+            
+        return true;
     }
 
 
@@ -71,7 +76,21 @@ public class Maze {
      */
     public void extend(){
         actual.visit();
-        actual = temp;    
+        // Arriba
+        if (casilla == 0) 
+            actual = board[actual.getRow()-1][actual.getColumn()];
+
+        // Derecha
+        else if(casilla == 1){
+            actual = board[actual.getRow()][actual.getColumn()+1];
+    
+        // Abajo
+        }else if(casilla == 2)
+            actual = board[actual.getRow()+1][actual.getColumn()];
+    
+        // Izquierda
+        else if(casilla == 3)
+            actual = board[actual.getRow()][actual.getColumn()-1];   
     }
 
 
@@ -79,20 +98,54 @@ public class Maze {
      * Encuentra la solución del laberinto
      */
     public TDAStack<Box> solve(){
+        TDAStack<Box> stack = new Stack<>();
         actual = inicio;
-        Stack<Box> stack = new Stack<>();
         stack.push(actual);
-        
-        while(!isSolution()) {
+
+        while (!isSolution()) {
             if (isExtensible()) {
                 extend();
                 stack.push(actual);
             }
-            else{
-                stack.pop();
+
+            if (casilla == 4) 
+                actual = stack.pop();
+        }
+
+        return stack;
+    }
+
+    public String[][] drawMaze(){
+        TDAStack<Box> solucion = new Stack<>();
+        String[][] aux = new String[board.length][board[0].length];
+        solucion = solve();
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) {
+
+                if (board[i][j].isWall()) {
+                    aux[i][j] = "@@@@";
+                }else if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) {
+                    aux[i][j] = ":)))";
+                }else if(board[i][j] == board[fin.getRow()][fin.getColumn()]) {
+                    aux[i][j] = "FIN!";
+                }else{
+                    aux[i][j] = "    ";
+                } 
             }
         }
-        return stack;
+
+        while (!solucion.isEmpty()) {
+            for (int i = 0; i < board.length; i++) {
+                for (int j = 0; j < board[0].length; j++) {
+                    if (board[i][j] == board[actual.getRow()][actual.getColumn()]) {
+                        aux[i][j] = " *- ";
+                        actual = solucion.pop();
+                    }
+                }
+            }
+        }
+        return aux;
     }
     
     
@@ -101,24 +154,34 @@ public class Maze {
      */
     @Override
     public String toString(){
-        String laberinto = "";
+        // TDAStack<Box> solucion = new Stack<>();
+        // String laberinto = "";
+        // solucion = solve();
+        String[][] solucion = drawMaze();
+        String resultado = "";
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
-                if (board[i][j].isWall()) {
-                    laberinto += "@@@@";
-                }else if (board[i][j] == board[inicio.row][inicio.column]) {
-                    laberinto += ":)))";
-                }else if (board[i][j] == board[fin.row][fin.column]) {
-                    laberinto += "FIN!";
-                }else{
-                    laberinto += "    ";
-                }
-                
-            }
-            laberinto += "\n";
-        }
+                resultado += solucion[i][j];
+                // if (board[i][j].isWall()) {
+                //     laberinto += "@@@@";
+                // }else if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) {
+                //     laberinto += ":)))";
+                // }else if (board[i][j] == board[actual.getRow()][actual.getColumn()]) {
+                //     laberinto += "----";
+                // }else if(board[i][j] == board[fin.getRow()][fin.getColumn()]) {
+                //     laberinto += "FIN!";
+                // }else{
+                //     laberinto += "    ";
+                // } 
 
-        return laberinto;
+                // if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) {
+                //     actual = solucion.pop();
+                }
+                resultado += "\n";
+                // laberinto += "\n";
+            }
+        // return laberinto;
+        return resultado;
     }
 }

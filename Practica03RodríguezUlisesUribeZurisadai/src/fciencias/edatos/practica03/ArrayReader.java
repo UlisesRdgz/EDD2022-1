@@ -38,7 +38,6 @@ public class ArrayReader {
             }
 
             String line = null;
-            int index = 0;
             while((line = reader.readLine()) != null){
                 String[] data = line.split(",");
                 // Se obtiene la fila y columna de la casilla del laberinto

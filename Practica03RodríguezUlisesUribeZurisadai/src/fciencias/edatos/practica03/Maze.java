@@ -41,6 +41,8 @@ public class Maze {
     public boolean isExtensible(){
         casilla = actual.peek();
         Box temp = actual;
+        temp.visit();
+        System.out.println(casilla);
 
         if (casilla == 4) 
             return false;
@@ -58,13 +60,14 @@ public class Maze {
             temp = board[actual.getRow()+1][actual.getColumn()];
     
         // Izquierda
-        else if(casilla == 3 && !actual.equals(inicio)) {
+        else if(casilla == 3 && temp.getColumn() != 0) {
                 temp = board[actual.getRow()][actual.getColumn()-1];
         }
         
         if(temp.isWall() == true || temp.isVisited() == true)
             return false;
             
+        temp.visit();
         return true;
     }
 
@@ -75,7 +78,6 @@ public class Maze {
      * 
      */
     public void extend(){
-        actual.visit();
         // Arriba
         if (casilla == 0) 
             actual = board[actual.getRow()-1][actual.getColumn()];
@@ -103,22 +105,38 @@ public class Maze {
         stack.push(actual);
 
         while (!isSolution()) {
+
             if (isExtensible()) {
+                System.out.println("Es Extensible :)");
                 extend();
                 stack.push(actual);
+                System.out.println(actual.getRow());
+                System.out.println(actual.getColumn() + "\n");
+            }else{
+                System.out.println("No es extensible");
+                System.out.println(actual.getRow());
+                System.out.println(actual.getColumn() + "\n");
             }
 
-            if (casilla == 4) 
+            if (casilla == 4) {
+                System.out.println("Pop");
                 actual = stack.pop();
+                System.out.println(actual.getRow());
+                System.out.println(actual.getColumn() + "\n");
+            }
+
+            if (stack.isEmpty()) {
+                System.out.println("No tiene solución");
+                break;
+            }
         }
 
         return stack;
     }
 
-    public String[][] drawMaze(){
+    public String[][] drawMaze(boolean resuelto){
         TDAStack<Box> solucion = new Stack<>();
         String[][] aux = new String[board.length][board[0].length];
-        solucion = solve();
 
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
@@ -135,17 +153,38 @@ public class Maze {
             }
         }
 
-        while (!solucion.isEmpty()) {
-            for (int i = 0; i < board.length; i++) {
-                for (int j = 0; j < board[0].length; j++) {
-                    if (board[i][j] == board[actual.getRow()][actual.getColumn()]) {
-                        aux[i][j] = " *- ";
-                        actual = solucion.pop();
+        if (resuelto) {
+            solucion = solve();
+
+            while (!solucion.isEmpty()) {
+                for (int i = 0; i < board.length; i++) {
+                    for (int j = 0; j < board[0].length; j++) {
+                        if (board[i][j] == board[actual.getRow()][actual.getColumn()]) {
+                            aux[i][j] = " *- ";
+                            actual = solucion.pop();
+                        }
                     }
                 }
             }
         }
         return aux;
+    }
+
+    /**
+     * Muestra la representación de un tablero
+     */
+    public String printEmpty(){
+        String[][] empty = drawMaze(false);
+        String mazeEmpty = "";
+
+        for (int i = 0; i < board.length; i++) {
+            for (int j = 0; j < board[0].length; j++) 
+                mazeEmpty += empty[i][j];
+                
+            mazeEmpty += "\n";
+        }
+
+        return mazeEmpty;
     }
     
     
@@ -154,34 +193,16 @@ public class Maze {
      */
     @Override
     public String toString(){
-        // TDAStack<Box> solucion = new Stack<>();
-        // String laberinto = "";
-        // solucion = solve();
-        String[][] solucion = drawMaze();
+        String[][] solucion = drawMaze(true);
         String resultado = "";
 
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) {
+            for (int j = 0; j < board[0].length; j++) 
                 resultado += solucion[i][j];
-                // if (board[i][j].isWall()) {
-                //     laberinto += "@@@@";
-                // }else if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) {
-                //     laberinto += ":)))";
-                // }else if (board[i][j] == board[actual.getRow()][actual.getColumn()]) {
-                //     laberinto += "----";
-                // }else if(board[i][j] == board[fin.getRow()][fin.getColumn()]) {
-                //     laberinto += "FIN!";
-                // }else{
-                //     laberinto += "    ";
-                // } 
+                
+            resultado += "\n";
+        }
 
-                // if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) {
-                //     actual = solucion.pop();
-                }
-                resultado += "\n";
-                // laberinto += "\n";
-            }
-        // return laberinto;
         return resultado;
     }
 }

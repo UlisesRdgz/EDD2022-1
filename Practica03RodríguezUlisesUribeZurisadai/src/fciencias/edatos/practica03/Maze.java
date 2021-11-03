@@ -113,11 +113,9 @@ public class Maze {
             }else
                 aux++;
             
-
             if (casilla == 4) 
                 actual = stack.pop();
             
-
             if (stack.isEmpty() && aux == 4) {
                 System.out.println("No tiene solución");
                 break;
@@ -150,8 +148,8 @@ public class Maze {
         }
 
         if (resuelto) {
-            solucion = solve();
 
+            solucion = solve();
             while (!solucion.isEmpty()) {
                 for (int i = 0; i < board.length; i++) {
                     for (int j = 0; j < board[0].length; j++) {
@@ -170,7 +168,7 @@ public class Maze {
                 }
             }
         }
-        return aux;
+    return aux;
     }
 
     /**
@@ -182,9 +180,16 @@ public class Maze {
 
         mazeEmpty = "  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 \n";
         for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board[0].length; j++) 
+            for (int j = 0; j < board[0].length; j++){ 
+                if (i == inicio.getRow() && j == inicio.getColumn()) 
+                    empty[i][j] = "    ";
+
+                if (i == fin.getRow() && j == fin.getColumn()) 
+                    empty[i][j] = "    ";
+
                 mazeEmpty += empty[i][j];
-                
+            }
+
             mazeEmpty += " " + i;
             mazeEmpty += "\n";
         }

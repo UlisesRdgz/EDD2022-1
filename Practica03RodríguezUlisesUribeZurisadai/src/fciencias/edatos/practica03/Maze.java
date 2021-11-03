@@ -19,8 +19,8 @@ public class Maze {
         
         this.inicio = new Box(xInicial, yInicial, false);
         this.fin = new Box(xFinal, yFinal, false);
-        
     }
+    
 
     /**
      * Método para ver si el laberinto está resuelto
@@ -52,7 +52,7 @@ public class Maze {
             temp = board[actual.getRow()-1][actual.getColumn()];
 
         // Derecha
-        else if(casilla == 1) 
+        else if(casilla == 1 && temp.getColumn() != 21) 
             temp = board[actual.getRow()][actual.getColumn()+1];
     
         // Abajo
@@ -63,11 +63,13 @@ public class Maze {
         else if(casilla == 3 && temp.getColumn() != 0) {
                 temp = board[actual.getRow()][actual.getColumn()-1];
         }
+
+        if (temp.getRow() == inicio.getRow() && temp.getColumn() == inicio.getColumn()) 
+            return false;
         
-        if(temp.isWall() == true || temp.isVisited() == true)
+        if(temp.isWall() || temp.isVisited())
             return false;
             
-        temp.visit();
         return true;
     }
 
@@ -102,17 +104,19 @@ public class Maze {
     public TDAStack<Box> solve(){
         TDAStack<Box> stack = new Stack<>();
         actual = inicio;
-        stack.push(actual);
+        int aux = 0;        
 
         while (!isSolution()) {
 
             if (isExtensible()) {
                 System.out.println("Es Extensible :)");
-                extend();
                 stack.push(actual);
+                extend();
+                
                 System.out.println(actual.getRow());
                 System.out.println(actual.getColumn() + "\n");
             }else{
+                aux++;
                 System.out.println("No es extensible");
                 System.out.println(actual.getRow());
                 System.out.println(actual.getColumn() + "\n");
@@ -125,7 +129,7 @@ public class Maze {
                 System.out.println(actual.getColumn() + "\n");
             }
 
-            if (stack.isEmpty()) {
+            if (stack.isEmpty() && aux == 4) {
                 System.out.println("No tiene solución");
                 break;
             }
@@ -141,15 +145,18 @@ public class Maze {
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) {
 
-                if (board[i][j].isWall()) {
+                if (board[i][j].isWall()) 
                     aux[i][j] = "@@@@";
-                }else if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) {
+
+                else if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) 
                     aux[i][j] = ":)))";
-                }else if(board[i][j] == board[fin.getRow()][fin.getColumn()]) {
+
+                else if(board[i][j] == board[fin.getRow()][fin.getColumn()]) 
                     aux[i][j] = "FIN!";
-                }else{
+                
+                else
                     aux[i][j] = "    ";
-                } 
+                 
             }
         }
 
@@ -161,12 +168,21 @@ public class Maze {
                     for (int j = 0; j < board[0].length; j++) {
                         if (board[i][j] == board[actual.getRow()][actual.getColumn()]) {
                             aux[i][j] = " *- ";
-                            actual = solucion.pop();
+                            System.out.println("Actual " + actual.getRow() + " " + actual.getColumn());
+                            if (!solucion.isEmpty()) 
+                                actual = solucion.pop();
                         }
+
+                        if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) 
+                            aux[i][j] = ":)))";
+
+                        if(board[i][j] == board[fin.getRow()][fin.getColumn()]) 
+                            aux[i][j] = "FIN!";
                     }
                 }
             }
         }
+            
         return aux;
     }
 

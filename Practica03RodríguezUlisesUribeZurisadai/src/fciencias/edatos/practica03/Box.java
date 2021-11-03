@@ -1,5 +1,13 @@
 package fciencias.edatos.practica03;
 
+/**
+* Box.
+* @author Rodríguez García Ulises.
+* @author Uribe García Zurisadai. 
+* @version 2.0 Noviembre 2021.
+* @since Estructuras de datos 2022-1. Prática 3.
+*/
+
 import java.util.Random;
 
 public class Box {
@@ -14,7 +22,10 @@ public class Box {
     int row, column;
 
     /**
-     * 
+     * Constructor de columnas, filas y pared
+     * @param row
+     * @param column
+     * @param wall
      */
     public Box(int row, int column, boolean wall){
         this.wall = wall;
@@ -47,6 +58,9 @@ public class Box {
         return neighbors.dequeue();
     }
 
+    /**
+     * Método que llena la cola.
+     */
     public void fill(){
         DoubleLinkedList<Integer> visited = new DoubleLinkedList<>(); 
         Random rn = new Random();

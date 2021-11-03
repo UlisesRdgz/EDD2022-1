@@ -2,8 +2,16 @@ package fciencias.edatos.practica03;
 
 import java.util.Scanner;
 
+/**
+* Maze.
+* @author Rodríguez García Ulises.
+* @author Uribe García Zurisadai. 
+* @version 2.0 Noviembre 2021.
+* @since Estructuras de datos 2022-1. Prática 3.
+*/
+
 public class Maze {
-    
+
     Box[][] board; 
     
     Box actual, inicio, fin;
@@ -11,7 +19,12 @@ public class Maze {
     int casilla;
     
     /**
-     * 
+     * Tablero
+     * @param xInicial
+     * @param yInicial
+     * @param xFinal
+     * @param yFinal
+     * @param tablero
      */
     public Maze(int xInicial, int yInicial, int xFinal, int yFinal, String tablero){
         if (tablero.equals("a")) 
@@ -32,8 +45,8 @@ public class Maze {
     
 
     /**
-     * Método para ver si el laberinto está resuelto
-     * @return true si el laberinto está resuelto
+     * Método para ver si el laberinto está resuelto.
+     * @return true si el laberinto está resuelto.
      */
     public boolean isSolution(){
         if (actual.getRow() == fin.getRow() && actual.getColumn() == fin.getColumn()){
@@ -44,8 +57,8 @@ public class Maze {
     }
     
     /**
-     * 
-     * @return true si la casilla actual tiene vecinos
+     * Método que verifica si el tablero se puede extender.
+     * @return true si la casilla actual tiene vecinos.
      */
     public boolean isExtensible(){
         casilla = actual.peek();
@@ -84,8 +97,7 @@ public class Maze {
 
     /**
      * Método que mueve la casilla actual a una casilla vecina que no sea
-     * pared y no haya sido visitada
-     * 
+     * pared y no haya sido visitada.
      */
     public void extend(){
         // Arriba
@@ -107,7 +119,8 @@ public class Maze {
 
 
     /**
-     * Encuentra la solución del laberinto
+     * Encuentra la solución del laberinto.
+     * @return stack.
      */
     public TDAStack<Box> solve(){
         TDAStack<Box> stack = new Stack<>();
@@ -130,6 +143,11 @@ public class Maze {
         return stack;
     }
 
+    /**
+     * Forma en la que el tablero se imprimirá.
+     * @param resuelto
+     * @return aux
+     */
     public String[][] drawMaze(boolean resuelto){
         TDAStack<Box> solucion = new Stack<>();
         String[][] aux = new String[board.length][board[0].length];
@@ -186,6 +204,7 @@ public class Maze {
 
     /**
      * Muestra la representación de un tablero
+     * @return mazeEmpty
      */
     public String printEmpty(){
         String[][] empty = drawMaze(false);
@@ -211,7 +230,8 @@ public class Maze {
     }
     
     /**
-     * Muestra la representación de un tablero
+     * Muestra la representación de un tablero.
+     * @return resultado
      */
     @Override
     public String toString(){
@@ -229,6 +249,11 @@ public class Maze {
 
         return resultado;
     }
+    
+    /**
+     * Clase Main para correr el programa
+     * @param args
+     */
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         String respuesta1;
@@ -330,7 +355,7 @@ public class Maze {
                 }
             
             }catch (Exception e) {
-                System.out.println("\nError: Ingresa un número entero\n");
+                System.out.println("\nError\n");
                 sc.next();
             }
             

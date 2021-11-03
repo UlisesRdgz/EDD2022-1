@@ -271,88 +271,101 @@ public class Maze {
                             System.out.println(" (c) Salir                ");
                             System.out.println("                          ");
                             System.out.println("--------------------------");
-                            System.out.println("");
-                            System.out.println("Si no ingresas una opción correcta, el programa no seguira.");
+                            System.out.println("                          ");
                             
-                            respuesta1 = sc.next();
+                            respuesta1 = sc.nextLine();
                             
                             switch (respuesta1) {
                                 case "a":
                                     //Imprime el Tablero
                                     int x,y,x1,y1;
-                                    System.out.println("\nEl laberinto A es:\n");
-                                    Maze laberintoA = new Maze(9,0,9,20, respuesta1);
-                                    System.out.println(laberintoA.printEmpty());
-                                
-                                    System.out.println("Coloca las coordenadas donde desees INICIAR...");
-                                    System.out.println("Coordenada en y para la fila: ");
-                                    y = sc.nextInt();
-                                    System.out.println("Coordenada en x para la columna: ");    
-                                    x = sc.nextInt();
-                                    System.out.println("---------------------------------------------");             
-                                    System.out.println("Ahora elije el FINAL...");
-                                    System.out.println("Coordenada en y para la fila: ");
-                                    y1 = sc.nextInt(); 
-                                    System.out.println("Coordenada en x para la columna: ");
-                                    x1 = sc.nextInt();
 
-                                    if (board[y][x].isWall()) {
-                                        System.out.println("\nPARED: Ingresa una posición valida para Iniciar.\n");
-                                        break;
+                                    while (true) {
+                                        try {
+                                            System.out.println("\nEl laberinto A es:\n");
+                                            Maze laberintoA = new Maze(9,0,9,20, respuesta1);
+                                            System.out.println(laberintoA.printEmpty());
+                                        
+                                            System.out.println("Coloca las coordenadas donde desees INICIAR...");
+                                            System.out.println("Coordenada en y para la fila: ");
+                                            y = Integer.parseInt(sc.nextLine());
+                                            System.out.println("Coordenada en x para la columna: ");    
+                                            x = Integer.parseInt(sc.nextLine());
+                                            System.out.println("---------------------------------------------");             
+                                            System.out.println("Ahora elije el FINAL...");
+                                            System.out.println("Coordenada en y para la fila: ");
+                                            y1 = Integer.parseInt(sc.nextLine());
+                                            System.out.println("Coordenada en x para la columna: ");
+                                            x1 = Integer.parseInt(sc.nextLine());;
+    
+                                            if (board[y][x].isWall()) {
+                                                System.out.println("\nPARED: Ingresa una posición valida para Iniciar.\n");
+                                                break;
+                                            }
+                                            if (board[y1][x1].isWall()) {
+                                                System.out.println("\nPARED: Ingresa una posición valida para Finalizar.\n");
+                                                break;
+                                            }
+                                            if (board[y][x] == board[y1][x1]) {
+                                                System.out.println("\nError: Selecciona diferentes posiciones.");
+                                                break;
+                                            }
+                                        
+                                            Maze laberinto1 = new Maze(y, x, y1, x1, respuesta1);
+                                            
+                                            //Imprime el laberinto con INICIO, FIN & SOLUCIÓN
+                                            System.out.println(laberinto1);
+                                            break;                  
+                                            
+                                        } catch (Exception e) {
+                                            System.out.println("Debes ingresar un número valido.");
+                                        }
                                     }
-                                    if (board[y1][x1].isWall()) {
-                                        System.out.println("\nPARED: Ingresa una posición valida para Finalizar.\n");
-                                        break;
-                                    }
-                                    if (board[y][x] == board[y1][x1]) {
-                                        System.out.println("\nError: Selecciona diferentes posiciones.\n");
-                                        break;
-                                    }
-                                
-                                    Maze laberinto1 = new Maze(y, x, y1, x1, respuesta1);
-                                    
-                                    //Imprime el laberinto con INICIO, FIN & SOLUCIÓN
-                                    System.out.println(laberinto1); 
-                                                            
                                     break;
-
 
                                 case "b":
-                                    System.out.println("\nEl laberinto B es:\n");
-                                    Maze laberintoB = new Maze(9,0,9,20, respuesta1);
-                                    System.out.println(laberintoB.printEmpty());
-                                    
-                                    System.out.println("Coloca las coordenadas donde desees INICIAR...");
-                                    System.out.println("Coordenada en y para la fila: ");
-                                    y = sc.nextInt();
-                                    System.out.println("Coordenada en x para la columna: ");    
-                                    x = sc.nextInt();
-                                    System.out.println("---------------------------------------------");             
-                                    System.out.println("Ahora elije el FINAL...");
-                                    System.out.println("Coordenada en y para la fila: ");
-                                    y1 = sc.nextInt(); 
-                                    System.out.println("Coordenada en x para la columna: ");
-                                    x1 = sc.nextInt();
-                        
-                                    if (board[y][x].isWall()) {
-                                        System.out.println("\nPARED: Ingresa una posición valida para Iniciar\n");
-                                        break;
+                                    while (true) {
+                                        try {
+                                            System.out.println("\nEl laberinto B es:\n");
+                                            Maze laberintoB = new Maze(9,0,9,20, respuesta1);
+                                            System.out.println(laberintoB.printEmpty());
+                                            
+                                            System.out.println("Coloca las coordenadas donde desees INICIAR...");
+                                            System.out.println("Coordenada en y para la fila: ");
+                                            y = Integer.parseInt(sc.nextLine());
+                                            System.out.println("Coordenada en x para la columna: ");    
+                                            x = Integer.parseInt(sc.nextLine());
+                                            System.out.println("---------------------------------------------");             
+                                            System.out.println("Ahora elije el FINAL...");
+                                            System.out.println("Coordenada en y para la fila: ");
+                                            y1 = Integer.parseInt(sc.nextLine()); 
+                                            System.out.println("Coordenada en x para la columna: ");
+                                            x1 = Integer.parseInt(sc.nextLine());
+                                
+                                            if (board[y][x].isWall()) {
+                                                System.out.println("\nPARED: Ingresa una posición valida para Iniciar\n");
+                                                break;
+                                            }
+                                            if (board[y1][x1].isWall()) {
+                                                System.out.println("\nPARED: Ingresa una posición valida para Finalizar\n");
+                                                break;
+                                            }
+                                            if (board[y][x] == board[y1][x1]) {
+                                                System.out.println("\nError: Selecciona diferentes posiciones.\n");
+                                                break;
+                                            }
+                            
+                                            Maze laberinto2 = new Maze(y, x, y1, x1, respuesta1);
+                                            
+                                            //Imprime el laberinto con INICIO, FIN & SOLUCIÓN
+                                            System.out.println(laberinto2); 
+                                                        
+                                            break;
+                                        } catch (Exception e) {
+                                            System.out.println("Debes ingresar un número valido.");
+                                        }
                                     }
-                                    if (board[y1][x1].isWall()) {
-                                        System.out.println("\nPARED: Ingresa una posición valida para Finalizar\n");
-                                        break;
-                                    }
-                                    if (board[y][x] == board[y1][x1]) {
-                                        System.out.println("\nError: Selecciona diferentes posiciones.\n");
-                                        break;
-                                    }
-                       
-                                    Maze laberinto2 = new Maze(y, x, y1, x1, respuesta1);
-                                    
-                                    //Imprime el laberinto con INICIO, FIN & SOLUCIÓN
-                                    System.out.println(laberinto2); 
-                                                  
-                                    break;
+                                break;
 
                                 case "c":
                                     return ;

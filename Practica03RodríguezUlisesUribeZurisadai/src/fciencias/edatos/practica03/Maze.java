@@ -1,5 +1,7 @@
 package fciencias.edatos.practica03;
 
+import java.util.Scanner;
+
 public class Maze {
     
     Box[][] board; 
@@ -12,7 +14,7 @@ public class Maze {
      * 
      */
     public Maze(int xInicial, int yInicial, int xFinal, int yFinal, String tablero){
-        if (tablero == "A") 
+        if (tablero == "LaberintoA") 
             this.board = ArrayReader.readMatrix("Laberintos/LaberintoA.txt");
         else
             this.board = ArrayReader.readMatrix("Laberintos/LaberintoB.txt");
@@ -216,5 +218,92 @@ public class Maze {
         }
 
         return resultado;
+    }
+    public static void main(String[] args) {
+        
+        DoubleLinkedList<String> lista = new DoubleLinkedList<>();
+        Scanner sc = new Scanner(System.in);
+        String respuesta1;
+        int respuesta;
+
+        do{
+            try{
+                System.out.println("        LABERINTO       \n");
+                System.out.println("1) Resolver un laberinto ");
+                System.out.println("2) Salir");
+
+                respuesta = sc.nextInt();
+                
+                switch (respuesta) {
+
+                    case 1:
+                        do {
+                            System.out.println(" LaberintoA");
+                            System.out.println(" LaberintoB");
+                            System.out.println(" Menú ");
+                            
+                            respuesta1 = sc.next();
+
+                    switch (respuesta1) {
+                        case "LaberintoA":
+                            //Imprime el Tablero
+                            int x,y,x1,y1;
+                            System.out.println("El laberinto A es:\n");
+                            Maze laberintoA = new Maze(9,0,9,20, respuesta1);
+                            System.out.println(laberintoA.printEmpty());
+                             
+
+                            System.out.println("Coloca las coordenadas donde desees iniciar...");
+                            System.out.println("Dame la coordenada en x para la fila: ");
+                            x= sc.nextInt();
+                            System.out.println("Dame la coordenada en y para la columna: ");    
+                            y= sc.nextInt();           
+                            System.out.println("        Ahora elije el final...");
+                            System.out.println("Dame la coordenada en x para la fila: ");
+                            x1= sc.nextInt();
+                            System.out.println("Dame la coordenada en y para la columna: ");    
+                            y1= sc.nextInt();                  
+                            
+                           
+                            Maze laberinto1 = new Maze(x, y, x1, y1, respuesta1);
+                            
+                            //Imprime el laberinto con INICIO, FIN & SOLUCIÓN 
+                            System.out.println(laberinto1); 
+                                                      
+                            break;
+
+
+                        case "LaberintoB":
+                            //Imprime el Tablero
+                            System.out.println("El laberinto B es:\n");
+                            Maze laberintoB = new Maze(9,11,9,20, respuesta1);
+                            System.out.println(laberintoB.printEmpty());
+                           
+
+                        case "Menu":
+                            return;
+
+                        default:
+                            break;
+                        }
+                    } while (respuesta1 != "Menu");
+
+                    break;
+                        
+                    case 2:
+                        System.out.println("Hasta la próxima!");
+                        return;
+
+                    default:
+                        System.out.println("\nOpción inválida :c\n"); 
+                        break;
+                }
+            
+            }catch (Exception e) {
+                System.out.println("\nError: Solo puedes ingresar números enteros\n");
+                sc.next();
+            }
+            
+        }while(true);
     }
 }

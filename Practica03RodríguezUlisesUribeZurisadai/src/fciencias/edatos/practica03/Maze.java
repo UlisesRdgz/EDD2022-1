@@ -19,8 +19,15 @@ public class Maze {
         else
             this.board = ArrayReader.readMatrix("Laberintos/LaberintoB.txt");
         
-        this.inicio = new Box(xInicial, yInicial, false);
-        this.fin = new Box(xFinal, yFinal, false);
+        if (!this.board[xInicial][yInicial].isWall())
+            this.inicio = new Box(xInicial, yInicial, false);
+        else    
+            System.out.println("\nPARED: Debes colocar una posición correcta donde desees inciar.");
+
+        if (!this.board[xFinal][yFinal].isWall())
+            this.fin = new Box(xFinal, yFinal, false);
+        else    
+            System.out.println("\nPARED: Debes colocar una posición correcta donde desees finalizar.");
     }
     
 
@@ -104,23 +111,19 @@ public class Maze {
      */
     public TDAStack<Box> solve(){
         TDAStack<Box> stack = new Stack<>();
-        actual = inicio;
-        int aux = 0;        
+        actual = inicio;      
 
         while (!isSolution()) {
 
             if (isExtensible()) {
                 stack.push(actual);
                 extend();
-            }else
-                aux++;
+            }
             
-            if (casilla == 4) 
+            if (casilla == 4){
+                if(stack.isEmpty())
+                    break;
                 actual = stack.pop();
-            
-            if (stack.isEmpty() && aux == 4) {
-                System.out.println("No tiene solución");
-                break;
             }
         }
 
@@ -152,6 +155,14 @@ public class Maze {
         if (resuelto) {
 
             solucion = solve();
+
+            if (solucion.isEmpty()) {
+                System.out.println("\nNo hay solución:");
+                return aux;
+            }else{
+                System.out.println("\nSolución encontrada:"); 
+            }
+            
             while (!solucion.isEmpty()) {
                 for (int i = 0; i < board.length; i++) {
                     for (int j = 0; j < board[0].length; j++) {
@@ -198,7 +209,6 @@ public class Maze {
 
         return mazeEmpty;
     }
-    
     
     /**
      * Muestra la representación de un tablero
@@ -254,22 +264,20 @@ public class Maze {
                              
 
                             System.out.println("Coloca las coordenadas donde desees INICIAR...");
-                            System.out.print("Coordenada en x para la fila: ");
-                            x = sc.nextInt();
-                            System.out.print("Coordenada en y para la columna: ");    
+                            System.out.println("Coordenada en y para la fila: ");
                             y = sc.nextInt();
+                            System.out.println("Coordenada en x para la columna: ");    
+                            x = sc.nextInt();
                             System.out.println("---------------------------------------------");             
                             System.out.println("Ahora elije el FINAL...");
-                            System.out.print("Coordenada en x para la fila: ");
+                            System.out.print("Coordenada en y para la fila: ");
+                            y1 = sc.nextInt(); 
+                            System.out.println("Coordenada en x para la columna: ");
                             x1 = sc.nextInt();
-                            System.out.print("Coordenada en y para la columna: ");    
-                            y1 = sc.nextInt();                  
-                            
                            
-                            Maze laberinto1 = new Maze(x, y, x1, y1, respuesta1);
+                            Maze laberinto1 = new Maze(y, x, y1, x1, respuesta1);
                             
                             //Imprime el laberinto con INICIO, FIN & SOLUCIÓN
-                            System.out.println("Solución encontrada:\n"); 
                             System.out.println(laberinto1); 
                                                       
                             break;
@@ -281,15 +289,15 @@ public class Maze {
                         System.out.println(laberintoB.printEmpty());
                          
                         System.out.println("Coloca las coordenadas donde desees INICIAR...");
-                        System.out.print("Coordenada en x para la fila: ");
+                        System.out.println("Coordenada en x para la fila: ");
                         x = sc.nextInt();
-                        System.out.print("Coordenada en y para la columna: ");    
+                        System.out.println("Coordenada en y para la columna: ");    
                         y = sc.nextInt();
                         System.out.println("---------------------------------------------");             
                         System.out.println("Ahora elije el FINAL...");
-                        System.out.print("Coordenada en x para la fila: ");
+                        System.out.println("Coordenada en x para la fila: ");
                         x1 = sc.nextInt();
-                        System.out.print("Coordenada en y para la columna: ");    
+                        System.out.println("Coordenada en y para la columna: ");    
                         y1 = sc.nextInt();   
                         
                        

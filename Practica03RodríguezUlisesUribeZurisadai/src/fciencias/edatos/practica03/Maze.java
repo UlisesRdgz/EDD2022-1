@@ -42,7 +42,6 @@ public class Maze {
         casilla = actual.peek();
         Box temp = actual;
         temp.visit();
-        System.out.println(casilla);
 
         if (casilla == 4) 
             return false;
@@ -109,25 +108,15 @@ public class Maze {
         while (!isSolution()) {
 
             if (isExtensible()) {
-                System.out.println("Es Extensible :)");
                 stack.push(actual);
                 extend();
-                
-                System.out.println(actual.getRow());
-                System.out.println(actual.getColumn() + "\n");
-            }else{
+            }else
                 aux++;
-                System.out.println("No es extensible");
-                System.out.println(actual.getRow());
-                System.out.println(actual.getColumn() + "\n");
-            }
+            
 
-            if (casilla == 4) {
-                System.out.println("Pop");
+            if (casilla == 4) 
                 actual = stack.pop();
-                System.out.println(actual.getRow());
-                System.out.println(actual.getColumn() + "\n");
-            }
+            
 
             if (stack.isEmpty() && aux == 4) {
                 System.out.println("No tiene solución");
@@ -149,10 +138,10 @@ public class Maze {
                     aux[i][j] = "@@@@";
 
                 else if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) 
-                    aux[i][j] = ":)))";
+                    aux[i][j] = " :D ";
 
                 else if(board[i][j] == board[fin.getRow()][fin.getColumn()]) 
-                    aux[i][j] = "FIN!";
+                    aux[i][j] = "EXIT";
                 
                 else
                     aux[i][j] = "    ";
@@ -168,21 +157,19 @@ public class Maze {
                     for (int j = 0; j < board[0].length; j++) {
                         if (board[i][j] == board[actual.getRow()][actual.getColumn()]) {
                             aux[i][j] = " *- ";
-                            System.out.println("Actual " + actual.getRow() + " " + actual.getColumn());
                             if (!solucion.isEmpty()) 
                                 actual = solucion.pop();
                         }
 
                         if (board[i][j] == board[inicio.getRow()][inicio.getColumn()]) 
-                            aux[i][j] = ":)))";
+                            aux[i][j] = " :D ";
 
                         if(board[i][j] == board[fin.getRow()][fin.getColumn()]) 
-                            aux[i][j] = "FIN!";
+                            aux[i][j] = "EXIT";
                     }
                 }
             }
         }
-            
         return aux;
     }
 
@@ -193,10 +180,12 @@ public class Maze {
         String[][] empty = drawMaze(false);
         String mazeEmpty = "";
 
+        mazeEmpty = "  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 \n";
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) 
                 mazeEmpty += empty[i][j];
                 
+            mazeEmpty += " " + i;
             mazeEmpty += "\n";
         }
 
@@ -212,10 +201,12 @@ public class Maze {
         String[][] solucion = drawMaze(true);
         String resultado = "";
 
+        resultado = "  0   1   2   3   4   5   6   7   8   9  10  11  12  13  14  15  16  17  18  19  20 \n";
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[0].length; j++) 
                 resultado += solucion[i][j];
-                
+            
+            resultado += " " + i;
             resultado += "\n";
         }
 

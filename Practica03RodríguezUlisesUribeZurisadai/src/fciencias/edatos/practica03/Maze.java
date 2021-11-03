@@ -14,7 +14,7 @@ public class Maze {
      * 
      */
     public Maze(int xInicial, int yInicial, int xFinal, int yFinal, String tablero){
-        if (tablero == "LaberintoA") 
+        if (tablero.equals("a")) 
             this.board = ArrayReader.readMatrix("Laberintos/LaberintoA.txt");
         else
             this.board = ArrayReader.readMatrix("Laberintos/LaberintoB.txt");
@@ -53,7 +53,7 @@ public class Maze {
             temp = board[actual.getRow()-1][actual.getColumn()];
 
         // Derecha
-        else if(casilla == 1 && temp.getColumn() != 21) 
+        else if(casilla == 1 && temp.getColumn() != 20) 
             temp = board[actual.getRow()][actual.getColumn()+1];
     
         // Abajo
@@ -220,17 +220,15 @@ public class Maze {
         return resultado;
     }
     public static void main(String[] args) {
-        
-        DoubleLinkedList<String> lista = new DoubleLinkedList<>();
         Scanner sc = new Scanner(System.in);
         String respuesta1;
         int respuesta;
 
         do{
             try{
-                System.out.println("        LABERINTO       \n");
+                System.out.println("      ~ LABERINTO ~      \n");
                 System.out.println("1) Resolver un laberinto ");
-                System.out.println("2) Salir");
+                System.out.println("2) Cerrar");
 
                 respuesta = sc.nextInt();
                 
@@ -238,55 +236,79 @@ public class Maze {
 
                     case 1:
                         do {
-                            System.out.println(" LaberintoA");
-                            System.out.println(" LaberintoB");
-                            System.out.println(" Menú ");
+                            System.out.println("--------------------------");
+                            System.out.println(" (a) Laberinto A        ");
+                            System.out.println(" (b) Laberinto B        ");
+                            System.out.println(" (c) Salir               ");
+                            System.out.println("--------------------------");
                             
                             respuesta1 = sc.next();
 
                     switch (respuesta1) {
-                        case "LaberintoA":
+                        case "a":
                             //Imprime el Tablero
                             int x,y,x1,y1;
-                            System.out.println("El laberinto A es:\n");
+                            System.out.println("\nEl laberinto A es:\n");
                             Maze laberintoA = new Maze(9,0,9,20, respuesta1);
                             System.out.println(laberintoA.printEmpty());
                              
 
-                            System.out.println("Coloca las coordenadas donde desees iniciar...");
-                            System.out.println("Dame la coordenada en x para la fila: ");
-                            x= sc.nextInt();
-                            System.out.println("Dame la coordenada en y para la columna: ");    
-                            y= sc.nextInt();           
-                            System.out.println("        Ahora elije el final...");
-                            System.out.println("Dame la coordenada en x para la fila: ");
-                            x1= sc.nextInt();
-                            System.out.println("Dame la coordenada en y para la columna: ");    
-                            y1= sc.nextInt();                  
+                            System.out.println("Coloca las coordenadas donde desees INICIAR...");
+                            System.out.print("Coordenada en x para la fila: ");
+                            x = sc.nextInt();
+                            System.out.print("Coordenada en y para la columna: ");    
+                            y = sc.nextInt();
+                            System.out.println("---------------------------------------------");             
+                            System.out.println("Ahora elije el FINAL...");
+                            System.out.print("Coordenada en x para la fila: ");
+                            x1 = sc.nextInt();
+                            System.out.print("Coordenada en y para la columna: ");    
+                            y1 = sc.nextInt();                  
                             
                            
                             Maze laberinto1 = new Maze(x, y, x1, y1, respuesta1);
                             
-                            //Imprime el laberinto con INICIO, FIN & SOLUCIÓN 
+                            //Imprime el laberinto con INICIO, FIN & SOLUCIÓN
+                            System.out.println("Solución encontrada:\n"); 
                             System.out.println(laberinto1); 
                                                       
                             break;
 
 
-                        case "LaberintoB":
-                            //Imprime el Tablero
-                            System.out.println("El laberinto B es:\n");
-                            Maze laberintoB = new Maze(9,11,9,20, respuesta1);
-                            System.out.println(laberintoB.printEmpty());
+                        case "b":
+                        System.out.println("\nEl laberinto B es:\n");
+                        Maze laberintoB = new Maze(9,0,9,20, respuesta1);
+                        System.out.println(laberintoB.printEmpty());
+                         
+                        System.out.println("Coloca las coordenadas donde desees INICIAR...");
+                        System.out.print("Coordenada en x para la fila: ");
+                        x = sc.nextInt();
+                        System.out.print("Coordenada en y para la columna: ");    
+                        y = sc.nextInt();
+                        System.out.println("---------------------------------------------");             
+                        System.out.println("Ahora elije el FINAL...");
+                        System.out.print("Coordenada en x para la fila: ");
+                        x1 = sc.nextInt();
+                        System.out.print("Coordenada en y para la columna: ");    
+                        y1 = sc.nextInt();   
+                        
+                       
+                        Maze laberinto2 = new Maze(x, y, x1, y1, respuesta1);
+                        
+                        //Imprime el laberinto con INICIO, FIN & SOLUCIÓN
+                        System.out.println("\nSolución encontrada:\n"); 
+                        System.out.println(laberinto2); 
+                                                  
+                        break;
                            
 
-                        case "Menu":
-                            return;
+                        case "c":
+                            return ;
 
                         default:
                             break;
                         }
-                    } while (respuesta1 != "Menu");
+                    } while (respuesta1 != "c");
 
                     break;
                         
@@ -300,7 +322,7 @@ public class Maze {
                 }
             
             }catch (Exception e) {
-                System.out.println("\nError: Solo puedes ingresar números enteros\n");
+                System.out.println("\nError: Ingresa un número entero\n");
                 sc.next();
             }
             

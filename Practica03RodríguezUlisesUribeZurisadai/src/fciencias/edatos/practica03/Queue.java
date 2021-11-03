@@ -1,13 +1,13 @@
 package fciencias.edatos.practica03;
 
 /**
-* Queue.
+* Implementación de una cola basada en una lista oblemente ligada.
+* Implementa las operaciones del TDAQueue.
 * @author Rodríguez García Ulises.
 * @author Uribe García Zurisadai. 
 * @version 2.0 Noviembre 2021.
 * @since Estructuras de datos 2022-1. Prática 3.
 */
-
 public class Queue<T> implements TDAQueue<T> {
     
     private DoubleLinkedList<T> lista = new DoubleLinkedList<>();

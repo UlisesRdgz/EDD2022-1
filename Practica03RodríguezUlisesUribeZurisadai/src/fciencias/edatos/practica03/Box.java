@@ -1,31 +1,32 @@
 package fciencias.edatos.practica03;
 
+import java.util.Random;
+
 /**
-* Box.
+* Implementación para crear cada casilla del laberinto.
 * @author Rodríguez García Ulises.
 * @author Uribe García Zurisadai. 
 * @version 2.0 Noviembre 2021.
 * @since Estructuras de datos 2022-1. Prática 3.
 */
-
-import java.util.Random;
-
 public class Box {
     
-    /** Atributos */
+    /** Representación de una pared */
     boolean wall;
 
+    /** Casilla visitada */
     boolean visited = false;
 
+    /** Elementos por visitar */
     Queue<Integer> neighbors = new Queue<>();
     
     int row, column;
 
     /**
-     * Constructor de columnas, filas y pared
-     * @param row
-     * @param column
-     * @param wall
+     * Constructor de las casillas. 
+     * @param row coordenada para la fila de la casilla.
+     * @param column coordenada para la columna de la casilla.
+     * @param wall true si es pared, false en otro caso
      */
     public Box(int row, int column, boolean wall){
         this.wall = wall;
@@ -35,22 +36,26 @@ public class Box {
             fill();
     }
 
+    /**
+     * Método get para obtener la fila.
+     * @return la posición de la fila.
+     */
     public int getRow(){
         return row;
     }
 
+    /**
+     * Método get para obtener la columna.
+     * @return la posición de la columna.
+     */
     public int getColumn(){
         return column;
     }
 
-    public void setRow(int row){
-        this.row = row;
-    }
-
-    public void setColumn(int column){
-        this.column = column;
-    } 
-
+    /**
+     * Obtener el vecino próximo a visitar. 
+     * @return un número random al cual se va a visitar.
+     */
     public int peek(){
         if (neighbors.isEmpty()) 
             return 4;
@@ -59,7 +64,8 @@ public class Box {
     }
 
     /**
-     * Método que llena la cola.
+     * Método para llenar la cola neightbors de números del 0 al 3
+     * insertados aleatoreamente.
      */
     public void fill(){
         DoubleLinkedList<Integer> visited = new DoubleLinkedList<>(); 
@@ -84,7 +90,7 @@ public class Box {
 
     /**
      * Permite saber si una casilla es pared o no.
-     * @return
+     * @return true si es pared, false en otro caso.
      */
     public boolean isWall(){
         return wall;
@@ -92,14 +98,14 @@ public class Box {
 
     /**
      * Permite saber si una casilla está visitada o no.
-     * @return
+     * @return true si ya ha sido visitada, false en otro caso.
      */
     public boolean isVisited(){
         return visited;
     }
 
     /**
-     * Visita la casilla.
+     * Método para visitar una casilla.
      */
     public void visit(){
         visited = true;

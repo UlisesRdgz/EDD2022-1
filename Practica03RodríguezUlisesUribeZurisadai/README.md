@@ -1,13 +1,13 @@
-# Práctica 02 :)
+# Práctica 03 :)
 
 ## Rodríguez García Ulises - 318042202 &emsp;&emsp;&emsp;&emsp;&emsp; Uribe García Zurisadai - 318223197
 
 ### Descripción
-Creamos una lista doblemente ligada y un menú para correrla.
+Encontrar las distintas soluciones de un laberinto dependiendo de su inicio y su final.
 
 ### Inconvenientes
-Tuvimos problemas en el listIterator ya que no sabíamos como implementar el método next, en cut nos imprimía más elementos de un lado que del otro.
-Al momento de verificar si había un elemento en la lista nosotros estábamos comparando referencias en memoria y no los elementos.
+Tuvimos problemas con el inicio ya que no aparecía como visitado, se volvía a visitar a pesar de haber estado
+ya ahí y se empezaba a hacer el camino al final sólo que quedaban algunas casillas del camino vacías. 
 
 ### Compilación y ejecución
 Para ejecutar esta práctica se utilizarán los siguientes comandos:
@@ -20,8 +20,8 @@ Para ejecutar esta práctica se utilizarán los siguientes comandos:
 Ambos participamos en la práctica en general, primero nos dividimos los métodos e intentamos implementarlos 
 pero no funcionaron a la primera, así que fuimos arreglando los errores entre ambos.
 
-* Ulises - DoubleLinkedList y Main
-* Zurisadai - DoubleLinkedList y Main
+* Ulises - Subió la clase Stack y Maze -- Main
+* Zurisadai - Subió la clase Queque y Box -- Main
 
 ### ¿Cómo nos organizamos?
-Nuevamente tuvimos videollamadas así como constante comunicación por medio de las redes sociales además de reuniones presenciales.
+Nuevamente tuvimos videollamadas

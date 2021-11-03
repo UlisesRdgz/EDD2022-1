@@ -30,7 +30,7 @@ public class ArrayReader {
             int h = Integer.valueOf(dimensions[0]), w = Integer.valueOf(dimensions[1]);
             Box[][] result = new Box[h][w];
             
-            // Creamos el tablero solo con paredes.
+            // Creamos el laberinto solo con paredes.
             for (int i = 0; i < result.length; i++) {
                 for (int j = 0; j < result.length; j++) {
                     result[i][j] = new Box(i, j, true);
@@ -43,7 +43,7 @@ public class ArrayReader {
                 // Se obtiene la fila y columna de la casilla del laberinto
                 int row = Integer.valueOf(data[0]), column = Integer.valueOf(data[1]);
 
-                // Depende de como definas el constructor de Box ajusta la siguiente linea
+                // Crea los caminos del laberinto.
                 result[row][column] = new Box(row, column, false);
             }
             

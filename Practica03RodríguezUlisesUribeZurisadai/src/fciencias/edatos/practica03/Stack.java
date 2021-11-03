@@ -2,6 +2,14 @@ package fciencias.edatos.practica03;
 
 import java.util.EmptyStackException;
 
+/**
+* Implementación de una pila basada en una lista oblemente ligada.
+* Implementa las operaciones del TDAStack.
+* @author Rodríguez García Ulises.
+* @author Uribe García Zurisadai. 
+* @version 2.0 Noviembre 2021.
+* @since Estructuras de datos 2022-1. Prática 3.
+*/
 public class Stack<T> implements TDAStack<T> {
 	
     private DoubleLinkedList<T> lista = new DoubleLinkedList<>();

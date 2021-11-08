@@ -72,4 +72,4 @@ public class Deck{
             System.out.print(deck[i+39] + " " );
         }
     }    
-} 
+}

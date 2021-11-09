@@ -25,7 +25,7 @@ Contiene los siguientes comandos:
 <manifest>
 <attribute name="DependencyFinder" value="main"/>
 <!--  TODO SET MAIN CLASS  -->
-<attribute name="Main-Class" value="fciencias.edatos.proyecto01"/>
+<attribute name="Main-Class" value="fciencias.edatos.proyecto01.OldMaid"/>
 </manifest>
 </jar>
 </target>

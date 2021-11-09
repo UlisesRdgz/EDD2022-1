@@ -85,11 +85,21 @@ public class Jugador {
 
     public void eliminarCartas(){
         for (int i = 0; i < cartas.size(); i++) {
-            if (uno.equals(cartas.get(i)))
+            if (uno.equals(cartas.get(i))){
+                if (isUser()) 
+                    System.out.print("Cuentas con el siguiente par de cartas: " + uno + " ");
+                else
+                    System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
                 cartas.remove(i);
+            }
             
-            if (dos.equals(cartas.get(i)))
+            if (dos.equals(cartas.get(i))){
+                if (isUser()) 
+                    System.out.println(dos);
+                else
+                    System.out.println(dos);
                 cartas.remove(i);
+            }
         }
     }
 

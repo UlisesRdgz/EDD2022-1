@@ -59,8 +59,6 @@ public class OldMaid {
             numero4 = 41;
             numero5 = 51;
         }
-
-        System.out.println(numero + " " + numero2);
         
         /** Primer jugador */
         for (int i = 0; i < numero; i++) {
@@ -101,29 +99,15 @@ public class OldMaid {
 
     public void juego(){
         baraja.shuffle();
-        agregaJugador("Ulises", 0);
+        agregaJugador("Jugador1", 0);
         listaJugadores.get(0).setJugador(true);
-        agregaJugador("Zuri", 1);
-        agregaJugador("Cuau", 2);
-        agregaJugador("Emi", 3);
+        agregaJugador("Jugador2", 1);
+        agregaJugador("Jugador3", 2);
+        agregaJugador("Jugador4", 3);
+
+        System.out.println("Primera ronda");
 
         assign();
-
-        System.out.println("\n\n" + listaJugadores.get(0).getNombre());
-        System.out.println(listaJugadores.get(0).getCartas());
-        System.out.println("\n");
-
-        System.out.println(listaJugadores.get(1).getNombre());
-        System.out.println(listaJugadores.get(1).getCartas());
-        System.out.println("\n");
-
-        System.out.println(listaJugadores.get(2).getNombre());
-        System.out.println(listaJugadores.get(2).getCartas());
-        System.out.println("\n");
-
-        System.out.println(listaJugadores.get(3).getNombre());
-        System.out.println(listaJugadores.get(3).getCartas());
-        System.out.println("\n");
 
         /** Juego */
         Scanner sc = new Scanner(System.in);
@@ -144,8 +128,8 @@ public class OldMaid {
                         listaJugadores.remove(j);
                     }
 
-                    System.out.println(listaJugadores.get(j).getNombre() + " " + listaJugadores.get(j).getCartas());
-                    System.out.println("");
+                    // System.out.println(listaJugadores.get(j).getNombre() + " " + listaJugadores.get(j).getCartas());
+                    // System.out.println("");
                 }
                 
                 if (listaJugadores.size() == 1) 
@@ -153,22 +137,37 @@ public class OldMaid {
 
                 // Turno del usuario
                 if (listaJugadores.get(i).isUser()) {
-                    System.out.println("Carta que deseas robar");
-                    String lista = "[";
+                    System.out.println("\n" + listaJugadores.get(i).getNombre() + ", tus cartas:\n");
+                    System.out.println(listaJugadores.get(i).getCartas());
+                    System.out.println("");
+                    
+                    System.out.println("Carta que deseas robar del " + listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getNombre() + "\n");
+                    String lista = "";
                     for (int index = 1; index <= listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size(); index++) {
-                        lista += index;
+                        lista += "\uD83C\uDCA0" + " ";
                     }
-                    lista += "]";
+                    lista += "\n";
+                    for (int index = 1; index <= listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size(); index++) {
+                        lista += index + " ";
+                    }
                     System.out.println(lista);
                     stolen = sc.nextInt() - 1;
-                    System.out.println("Numero " + stolen);
-                    System.out.println(listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().get(stolen));
+                    System.out.print("\033[H\033[2J");  
+                    System.out.flush();
+                    System.out.println("\nRobaste la carta " + listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().get(stolen));
                 }else{
                     // Turno de la maquina
                     Random rn = new Random();
                     stolen = rn.nextInt(listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size());  
-                    System.out.println("Random " + stolen);
-                    System.out.println(listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().get(stolen));
+                    String lista = "";
+                    System.out.println("\nCartas del " + listaJugadores.get(i).getNombre() + ":");
+                    for (int index = 1; index <= listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size(); index++) {
+                        lista += "\uD83C\uDCA0" + " ";
+                    }
+                    System.out.println(lista);
+                    lista += "\n";
+                    // System.out.println("Random " + stolen);
+                    // System.out.println(listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().get(stolen));
                 }
 
                 // Robamos la carta

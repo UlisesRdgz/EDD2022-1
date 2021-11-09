@@ -1,6 +1,5 @@
 package fciencias.edatos.proyecto01;
 
-import java.util.Random;
 import java.util.Scanner;
 
 public class OldMaid {
@@ -59,6 +58,8 @@ public class OldMaid {
             numero4 = 41;
             numero5 = 51;
         }
+
+        System.out.println(numero + " " + numero2);
         
         /** Primer jugador */
         for (int i = 0; i < numero; i++) {
@@ -100,40 +101,41 @@ public class OldMaid {
     public void juego(){
         baraja.shuffle();
         agregaJugador("Jugador1", 0);
-        listaJugadores.get(0).setJugador(true);
         agregaJugador("Jugador2", 1);
         agregaJugador("Jugador3", 2);
         agregaJugador("Jugador4", 3);
 
         System.out.println("Primera ronda");
-
         assign();
 
-        /** Juego */
+        // Primera ronda
+        for (int i = 0; i < listaJugadores.size(); i++) {
+            // Comparar y eliminar cartas
+            while(listaJugadores.get(i).compare()){
+                listaJugadores.get(i).eliminarCartas();
+            }
+
+            // Eliminar jugadores sin cartas
+            if (listaJugadores.get(i).verificarJugador()) {
+                System.out.println("Se borró el jugador " + listaJugadores.get(i).getNombre());
+                listaJugadores.remove(i);
+                
+            }
+        }
+
+        /** Siguientes rondas */
         Scanner sc = new Scanner(System.in);
         while(listaJugadores.size() > 1){
             int stolen = 0;
 
             for (int i = 0; i < listaJugadores.size(); i++) {
                 
-                for (int j = 0; j < listaJugadores.size(); j++) {
-                    // Comparar y eliminar cartas
-                    while(listaJugadores.get(j).compare()){
-                        listaJugadores.get(j).eliminarCartas();
-                    }
-
-                    // Eliminar jugadores sin cartas
-                    if (listaJugadores.get(j).verificarJugador()) {
-                        System.out.println("Se borró el jugador " + listaJugadores.get(j).getNombre());
-                        listaJugadores.remove(j);
-                    }
-
-                    // System.out.println(listaJugadores.get(j).getNombre() + " " + listaJugadores.get(j).getCartas());
-                    // System.out.println("");
-                }
-                
                 if (listaJugadores.size() == 1) 
                     break;
+
+                System.out.println(i);
+                System.out.println(listaJugadores.size());
+                int jugadorRobar = (i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size();
 
                 // Turno del usuario
                 if (listaJugadores.get(i).isUser()) {
@@ -141,58 +143,119 @@ public class OldMaid {
                     System.out.println(listaJugadores.get(i).getCartas());
                     System.out.println("");
                     
-                    System.out.println("Carta que deseas robar del " + listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getNombre() + "\n");
+                    System.out.println("Carta que deseas robar del " + listaJugadores.get(jugadorRobar).getNombre() + "\n");
                     String lista = "";
-                    for (int index = 1; index <= listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size(); index++) {
+                    for (int index = 1; index <= listaJugadores.get(jugadorRobar).getCartas().size(); index++) {
                         lista += "\uD83C\uDCA0" + " ";
                     }
                     lista += "\n";
-                    for (int index = 1; index <= listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size(); index++) {
+                    for (int index = 1; index <= listaJugadores.get(jugadorRobar).getCartas().size(); index++) {
                         lista += index + " ";
                     }
                     System.out.println(lista);
                     stolen = sc.nextInt() - 1;
                     System.out.print("\033[H\033[2J");  
                     System.out.flush();
-                    System.out.println("\nRobaste la carta " + listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().get(stolen));
+                    System.out.println("\nRobaste la carta " + listaJugadores.get(jugadorRobar).getCartas().get(stolen));
                 }else{
                     // Turno de la maquina
                     Random rn = new Random();
-                    stolen = rn.nextInt(listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size());  
+                    stolen = rn.nextInt(listaJugadores.get(jugadorRobar).getCartas().size());  
                     String lista = "";
-                    System.out.println("\nCartas del " + listaJugadores.get(i).getNombre() + ":");
-                    for (int index = 1; index <= listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().size(); index++) {
-                        lista += "\uD83C\uDCA0" + " ";
-                    }
-                    System.out.println(lista);
-                    lista += "\n";
-                    // System.out.println("Random " + stolen);
-                    // System.out.println(listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()).getCartas().get(stolen));
-                }
+                    
+                    // for (int index = 1; index <= listaJugadores.get(jugadorRobar).getCartas().size(); index++) {
+                    //     lista += "\uD83C\uDCA0" + " ";
+                    // }
+                    // System.out.println(lista);
+                    // lista += "\n";
 
+                    System.out.print("\nCarta robada: ");
+                    System.out.println(listaJugadores.get(jugadorRobar).getCartas().get(stolen));
+                }
                 // Robamos la carta
-                listaJugadores.get(i).robar(stolen, listaJugadores.get((i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size()));
+                listaJugadores.get(i).robar(stolen, listaJugadores.get(jugadorRobar));
+                System.out.println("\nCartas del " + listaJugadores.get(i).getNombre() + ":");
+                System.out.println(listaJugadores.get(i).getCartas());
+
+                for (int j = 0; j < listaJugadores.size(); j++) {
+                    // Comparar y eliminar cartas
+                    while(!listaJugadores.get(j).verificarJugador() && listaJugadores.get(j).compare()){
+                        listaJugadores.get(j).eliminarCartas();
+                    }
+
+                    // Eliminar jugadores sin cartas
+                    if (listaJugadores.get(j).verificarJugador()) {
+                        System.out.println("Se borró el jugador " + listaJugadores.get(j).getNombre());
+                        listaJugadores.remove(j);
+                        i = (i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size();
+                    }
+                }
             }
         }
         System.out.println("El jugador " + listaJugadores.get(0).getNombre() + " perdio.");
-    }
+    } 
     
     public static void main(String[] args) {
+    
+        // OldMaid juego = new OldMaid(4);
         
-        OldMaid juego = new OldMaid(4);
-        
-        juego.juego();
+        // juego.juego();
 
-        // Scanner respuesta = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
+        String respuesta = " ";
+        int jugadores;
 
-        // do {
-        //     try {
-                
-        //         System.out.println();
-        //     } catch (Exception e) {
-        //         //TODO: handle exception
-        //     }
-        // } while (condition);
+        do {
+            try {
+                System.out.println("\n   Bienvenido  ");
+                System.out.println(" ~~ OLD MAID ~~ \n");
+                System.out.println("1) Reglas");
+                System.out.println("2) Jugar");
+                System.out.println("3) Historial");
+                System.out.println("4) Salir\n");
+
+                respuesta = sc.nextLine();
+
+                switch (respuesta) {
+                    case "1":
+                        System.out.println("\n  *********** Reglas del juego ***********\n");
+                        System.out.println("- Cada jugador le debe robar una carta al \n" +
+                                           "  jugador que tenga a la derecha.");
+                        System.out.println("- Si logra formar un par, automáticamente \n"+
+                                           "  se descartan esas cartas.");
+                        System.out.println("- Si el jugador se queda sin cartas, tendrá\n"+
+                                           "  que abandonar la partida.");   
+                        System.out.println("- Pierde el jugador que quede al final.");                                                 
+                        break;
+
+                    case "2":
+                        
+                        System.out.println("¿Cuántos jugadores deseas en la partida?");
+                        jugadores = Integer.parseInt(sc.nextLine());
+
+                        
+                        OldMaid juego = new OldMaid(jugadores);
+                        juego.juego();
+                        System.out.println("\n");
+                        break;
+                      
+                    case "3":
+                        System.out.println("\n********* Historial de la partida *********\n");
+                        
+                    
+                    case "4":
+                        System.out.println("Esperamos que te hayas divertido");
+                        System.out.println("Vuelve pronto!");
+                        return;
+                                    
+                    default:
+                        break;
+                }
+
+            } catch (Exception e) {
+                System.out.print("\nError: Vuelvelo a intentarlo.\n\n");
+                sc.next();
+            }
+        } while (respuesta != "3");                          
     }
-
-}
+} 

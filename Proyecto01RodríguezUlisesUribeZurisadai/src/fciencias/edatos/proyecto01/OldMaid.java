@@ -1,5 +1,6 @@
 package fciencias.edatos.proyecto01;
 
+import java.util.Random;
 import java.util.Scanner;
 
 public class OldMaid {
@@ -106,7 +107,15 @@ public class OldMaid {
         agregaJugador("Emi", 3);
 
         assign();
-        System.out.println(listaJugadores.get(0).getNombre());
+
+        /** Primera ronda */
+        for (int i = 0; i < jugadores; i++) {
+            while(listaJugadores.get(i).compare()){
+                listaJugadores.get(i).eliminarCartas();
+            }
+        }
+
+        System.out.println("\n\n" + listaJugadores.get(0).getNombre());
         System.out.println(listaJugadores.get(0).getCartas());
         System.out.println("\n");
 
@@ -122,7 +131,53 @@ public class OldMaid {
         System.out.println(listaJugadores.get(3).getCartas());
         System.out.println("\n");
 
-        baraja.printDeck();
+        /** Segunda ronda */
+        Scanner sc = new Scanner(System.in);
+        while(listaJugadores.size() > 1){
+            for (int i = 0; i < listaJugadores.size(); i++) {
+                int gamers = listaJugadores.size();
+                int stolen = 0;
+                System.out.println(gamers);
+
+                // Turno del usuario
+                if (listaJugadores.get(i).isUser()) {
+                    System.out.println("Carta que deseas robar");
+                    String lista = "[";
+                    for (int index = 1; index <= listaJugadores.get((i-1% gamers + gamers)% gamers).getCartas().size(); index++) {
+                        lista += index;
+                    }
+                    lista += "]";
+                    System.out.println(lista);
+                    stolen = sc.nextInt() - 1;
+                    System.out.println("Numero " + stolen);
+                    System.out.println(listaJugadores.get((i-1% gamers + gamers)% gamers).getCartas().get(stolen));
+                }else{
+                    // Turno de la maquina
+                    Random rn = new Random();
+                    stolen = rn.nextInt(listaJugadores.get((i-1% gamers + gamers)% gamers).getCartas().size());  
+                    System.out.println("Random " + stolen);
+                    System.out.println(listaJugadores.get((i-1% gamers + gamers)% gamers).getCartas().get(stolen));
+                }
+    
+                // Robamos la carta
+                listaJugadores.get(i).robar(stolen, listaJugadores.get((i-1% gamers + gamers)% gamers));
+                // Comparamos cartas de los jugadores
+                while(listaJugadores.get(i).compare()){ 
+                    listaJugadores.get(i).eliminarCartas();
+                }
+                System.out.println(listaJugadores.get(i).getNombre() + " " + listaJugadores.get(i).getCartas());
+                System.out.println("");
+                
+                // Eliminamos jugadores sin cartas
+                for (int j = 0; j < gamers; j++) {
+                    if (listaJugadores.get(i).verificarJugador()) {
+                        System.out.println("Se borró el jugador " + listaJugadores.get(i).getNombre());
+                        listaJugadores.remove(i);
+                    }
+                }
+            }
+        }
+        System.out.println("El jugador " + listaJugadores.get(0).getNombre() + " perdio.");
     }
     
     public static void main(String[] args) {

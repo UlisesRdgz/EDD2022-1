@@ -37,23 +37,6 @@ public class Deck{
             deck[random] = aux; 
         }
     }
-    
-    /**
-     * Compara dos cartas
-     * @param uno
-     * @param dos
-     * @return
-     */
-    public boolean compare(Carta uno, Carta dos){
-        if (uno.getNum() == dos.getNum()) 
-            return true;
-        return false;
-    }
-
-    public void discard(){
-
-        
-    }
 
     public void printDeck(){
         for (int i = 0; i < 13; i++) {

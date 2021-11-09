@@ -74,7 +74,7 @@ public class DoubleLinkedList<T> implements TDAList<T>{
 	/**
 	 * Iterador de la clase.
 	 */ 
-	private class IteratorDouble implements Iterator<T> {
+	public class IteratorDouble implements Iterator<T> {
 		
 		/** Atributos */
 		private Node current;

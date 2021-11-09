@@ -1,6 +1,7 @@
 package fciencias.edatos.proyecto01;
 
 import java.util.Scanner;
+import java.util.Random;
 
 public class OldMaid {
 
@@ -36,63 +37,174 @@ public class OldMaid {
         TDAList<Carta> cartasJugador3 = new DoubleLinkedList<>();
         TDAList<Carta> cartasJugador4 = new DoubleLinkedList<>();
         TDAList<Carta> cartasJugador5 = new DoubleLinkedList<>();
+        TDAList<Carta> cartasJugador6 = new DoubleLinkedList<>();
+        TDAList<Carta> cartasJugador7 = new DoubleLinkedList<>();
+        TDAList<Carta> cartasJugador8 = new DoubleLinkedList<>();
+        TDAList<Carta> cartasJugador9 = new DoubleLinkedList<>();
+        TDAList<Carta> cartasJugador10 = new DoubleLinkedList<>();
 
-        int numero = 0, numero2 = 0, numero3 = 0, numero4 = 0, numero5 = 0;
+        int numero = 0, numero2 = 0, numero3 = 0, numero4 = 0, numero5 = 0,
+            numero6 = 0, numero7 = 0, numero8 = 0, numero9 = 0, numero10 = 0;
+
+        switch (jugadores) {
+            case 2:
+                numero = 26;
+                numero2 = 51;
+                break;
+
+            case 3:
+                numero = 17;
+                numero2 = 34;
+                numero3 = 51;
+                break;
+                
+            case 4:
+                numero = 13;
+                numero2 = 26;
+                numero3 = 39;
+                numero4 = 51;
+                break;
+
+            case 5:
+                numero = 11;
+                numero2 = 21;
+                numero3 = 31;
+                numero4 = 41;
+                numero5 = 51;
+                break;
+
+            case 6:
+                numero = 9;
+                numero2 = 18;
+                numero3 = 27;
+                numero4 = 35;
+                numero5 = 43;
+                numero6 = 51;
+                break;
+                
+            case 7:
+                numero = 8;
+                numero2 = 16;
+                numero3 = 23;
+                numero4 = 30;
+                numero5 = 37;
+                numero6 = 44;
+                numero7 = 51;
+                break;
+
+            case 8:
+                numero = 7;
+                numero2 = 14;
+                numero3 = 21;
+                numero4 = 27;
+                numero5 = 33;
+                numero6 = 39;
+                numero7 = 45;
+                numero8 = 51;
+                break;
+
+            case 9:
+                numero = 6;
+                numero2 = 12;
+                numero3 = 18;
+                numero4 = 24;
+                numero5 = 30;
+                numero6 = 36;
+                numero7 = 41;
+                numero8 = 46;
+                numero9 = 51;
+                break;
+
+            case 10:
+                numero = 6;
+                numero2 = 11;
+                numero3 = 16;
+                numero4 = 21;
+                numero5 = 26;
+                numero6 = 31;
+                numero7 = 36;
+                numero8 = 41;
+                numero9 = 46;
+                numero10 = 51;
+                break;
         
-        if (jugadores == 2) {
-            numero = 26;
-            numero2 = 51;
-        }else if (jugadores == 3){
-            numero = 17;
-            numero2 = 34;
-            numero3 = 51;
-        }else if (jugadores == 4) {
-            numero = 13;
-            numero2 = 26;
-            numero3 = 39;
-            numero4 = 51;
-        }else if (jugadores == 5) {
-            numero = 11;
-            numero2 = 21;
-            numero3 = 31;
-            numero4 = 41;
-            numero5 = 51;
+            default:
+                break;
         }
-
-        System.out.println(numero + " " + numero2);
+        
         
         /** Primer jugador */
-        for (int i = 0; i < numero; i++) {
+        for (int i = 0; i < numero; i++) 
             cartasJugador1.add(i, baraja.getCarta(i));
-        }
+        
         listaJugadores.get(0).setCartas(cartasJugador1);
 
         /** Segundo jugador */
-        for (int i = numero, j = 0; i < numero2; i++, j++) {
+        for (int i = numero, j = 0; i < numero2; i++, j++) 
             cartasJugador2.add(j, baraja.getCarta(i));
-        }
+        
         listaJugadores.get(1).setCartas(cartasJugador2);
         
         if (jugadores >= 3) {
             /** Tecer jugardor */
-            for (int i = numero2, j = 0; i < numero3; i++, j++) {
+            for (int i = numero2, j = 0; i < numero3; i++, j++) 
                 cartasJugador3.add(j, baraja.getCarta(i));
-            }
+            
             listaJugadores.get(2).setCartas(cartasJugador3);
 
             if (jugadores >= 4) {
                 /** Cuarto jugador */
-                for (int i = numero3, j = 0; i < numero4; i++, j++) {
+                for (int i = numero3, j = 0; i < numero4; i++, j++) 
                     cartasJugador4.add(j, baraja.getCarta(i));
-                }
+                
                 listaJugadores.get(3).setCartas(cartasJugador4);
 
                 if (jugadores >= 5) {
-                    /** Cuarto jugador */
-                    for (int i = numero4, j = 0; i < numero5; i++, j++) {
+                    /** Quinto jugador */
+                    for (int i = numero4, j = 0; i < numero5; i++, j++) 
                         cartasJugador5.add(j, baraja.getCarta(i));
+                    
+                    listaJugadores.get(4).setCartas(cartasJugador5); 
+
+                    if (jugadores >= 6) {
+                        /** Sexto jugador */
+                        for (int i = numero5, j = 0; i < numero6; i++, j++) 
+                            cartasJugador6.add(j, baraja.getCarta(i));
+                        
+                        listaJugadores.get(5).setCartas(cartasJugador6);
+
+                        if (jugadores >= 7) {
+                            /** Séptimo jugador */
+                            for (int i = numero6, j = 0; i < numero7; i++, j++) 
+                                cartasJugador7.add(j, baraja.getCarta(i));
+                            
+                            listaJugadores.get(6).setCartas(cartasJugador7);
+
+                            if (jugadores >= 8) {
+                                /** Octavo jugador */
+                                for (int i = numero7, j = 0; i < numero8; i++, j++) 
+                                    cartasJugador8.add(j, baraja.getCarta(i));
+                                
+                                listaJugadores.get(7).setCartas(cartasJugador8);
+
+                                if (jugadores >= 9) {
+                                    /** nueve jugadores */
+                                    for (int i = numero8, j = 0; i < numero9; i++, j++) 
+                                        cartasJugador9.add(j, baraja.getCarta(i));
+                                    
+                                    listaJugadores.get(8).setCartas(cartasJugador9);
+
+                                    if (jugadores == 10) {
+                                        /** Diez jugadores */
+                                        for (int i = numero9, j = 0; i < numero10; i++, j++) 
+                                            cartasJugador10.add(j, baraja.getCarta(i));
+                                        
+                                        listaJugadores.get(9).setCartas(cartasJugador10);
+                                    }
+                                }
+                            }
+                        }
                     }
-                    listaJugadores.get(4).setCartas(cartasJugador5);
                 }
             }
         }
@@ -100,10 +212,9 @@ public class OldMaid {
 
     public void juego(){
         baraja.shuffle();
-        agregaJugador("Jugador1", 0);
-        agregaJugador("Jugador2", 1);
-        agregaJugador("Jugador3", 2);
-        agregaJugador("Jugador4", 3);
+        for (int i = 1; i <= jugadores; i++) {
+            agregaJugador("Jugador" + i, i-1);
+        }
 
         System.out.println("Primera ronda");
         assign();
@@ -119,7 +230,6 @@ public class OldMaid {
             if (listaJugadores.get(i).verificarJugador()) {
                 System.out.println("Se borró el jugador " + listaJugadores.get(i).getNombre());
                 listaJugadores.remove(i);
-                
             }
         }
 
@@ -133,8 +243,6 @@ public class OldMaid {
                 if (listaJugadores.size() == 1) 
                     break;
 
-                System.out.println(i);
-                System.out.println(listaJugadores.size());
                 int jugadorRobar = (i-1% listaJugadores.size() + listaJugadores.size())% listaJugadores.size();
 
                 // Turno del usuario
@@ -192,70 +300,72 @@ public class OldMaid {
                 }
             }
         }
-        System.out.println("El jugador " + listaJugadores.get(0).getNombre() + " perdio.");
+        System.out.println("\nEl jugador " + listaJugadores.get(0).getNombre() + " perdio.");
     } 
     
     public static void main(String[] args) {
     
         // OldMaid juego = new OldMaid(4);
         
-        // juego.juego();
+        OldMaid juego = new OldMaid(3);
+        
+        juego.juego();
 
-        Scanner sc = new Scanner(System.in);
-        String respuesta = " ";
-        int jugadores;
+        // Scanner sc = new Scanner(System.in);
+        // String respuesta = " ";
+        // int jugadores;
 
-        do {
-            try {
-                System.out.println("\n   Bienvenido  ");
-                System.out.println(" ~~ OLD MAID ~~ \n");
-                System.out.println("1) Reglas");
-                System.out.println("2) Jugar");
-                System.out.println("3) Historial");
-                System.out.println("4) Salir\n");
+        // do {
+        //     try {
+        //         System.out.println("\n   Bienvenido  ");
+        //         System.out.println(" ~~ OLD MAID ~~ \n");
+        //         System.out.println("1) Reglas");
+        //         System.out.println("2) Jugar");
+        //         System.out.println("3) Historial");
+        //         System.out.println("4) Salir\n");
 
-                respuesta = sc.nextLine();
+        //         respuesta = sc.nextLine();
 
-                switch (respuesta) {
-                    case "1":
-                        System.out.println("\n  *********** Reglas del juego ***********\n");
-                        System.out.println("- Cada jugador le debe robar una carta al \n" +
-                                           "  jugador que tenga a la derecha.");
-                        System.out.println("- Si logra formar un par, automáticamente \n"+
-                                           "  se descartan esas cartas.");
-                        System.out.println("- Si el jugador se queda sin cartas, tendrá\n"+
-                                           "  que abandonar la partida.");   
-                        System.out.println("- Pierde el jugador que quede al final.");                                                 
-                        break;
+        //         switch (respuesta) {
+        //             case "1":
+        //                 System.out.println("\n  *********** Reglas del juego ***********\n");
+        //                 System.out.println("- Cada jugador le debe robar una carta al \n" +
+        //                                    "  jugador que tenga a la derecha.");
+        //                 System.out.println("- Si logra formar un par, automáticamente \n"+
+        //                                    "  se descartan esas cartas.");
+        //                 System.out.println("- Si el jugador se queda sin cartas, tendrá\n"+
+        //                                    "  que abandonar la partida.");   
+        //                 System.out.println("- Pierde el jugador que quede al final.");                                                 
+        //                 break;
 
-                    case "2":
+        //             case "2":
                         
-                        System.out.println("¿Cuántos jugadores deseas en la partida?");
-                        jugadores = Integer.parseInt(sc.nextLine());
+        //                 System.out.println("¿Cuántos jugadores deseas en la partida?");
+        //                 jugadores = Integer.parseInt(sc.nextLine());
 
                         
-                        OldMaid juego = new OldMaid(jugadores);
-                        juego.juego();
-                        System.out.println("\n");
-                        break;
+        //                 OldMaid juego = new OldMaid(jugadores);
+        //                 juego.juego();
+        //                 System.out.println("\n");
+        //                 break;
                       
-                    case "3":
-                        System.out.println("\n********* Historial de la partida *********\n");
+        //             case "3":
+        //                 System.out.println("\n********* Historial de la partida *********\n");
                         
                     
-                    case "4":
-                        System.out.println("Esperamos que te hayas divertido");
-                        System.out.println("Vuelve pronto!");
-                        return;
+        //             case "4":
+        //                 System.out.println("Esperamos que te hayas divertido");
+        //                 System.out.println("Vuelve pronto!");
+        //                 return;
                                     
-                    default:
-                        break;
-                }
+        //             default:
+        //                 break;
+        //         }
 
-            } catch (Exception e) {
-                System.out.print("\nError: Vuelvelo a intentarlo.\n\n");
-                sc.next();
-            }
-        } while (respuesta != "3");                          
+        //     } catch (Exception e) {
+        //         System.out.print("\nError: Vuelvelo a intentarlo.\n\n");
+        //         sc.next();
+        //     }
+        // } while (respuesta != "3");                          
     }
 } 

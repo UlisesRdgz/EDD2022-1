@@ -187,19 +187,37 @@ public class OldMaid {
         for (int i = 0; i < listaJugadores.size(); i++) {
             if (i != listaJugadores.size()-1) {
                 partida.add(partida.size(), "\n" + listaJugadores.get(i).getNombre() + "  " +
-                listaJugadores.get(i).getCartas()); 
-                System.out.println(listaJugadores.get(i).getNombre() + "  " +
-                listaJugadores.get(i).getCartas()); 
+                listaJugadores.get(i).getCartas());
+                if (i != 0) {
+                    String lista = listaJugadores.get(i).getNombre() + "  ";
+                    for (int index = 0; index < listaJugadores.get(i).getCartas().size(); index++) {
+                        lista += "\uD83C\uDCA0" + " ";
+                    }
+                    System.out.println(lista);
+                } 
             } else if(i != 9 && i == listaJugadores.size()-1){
                 partida.add(partida.size(), "\n" + listaJugadores.get(i).getNombre() + "  " +
                 listaJugadores.get(i).getCartas() + "\n");
-                System.out.println(listaJugadores.get(i).getNombre() + "  " +
-                listaJugadores.get(i).getCartas() + "\n");  
+                String lista = listaJugadores.get(i).getNombre() + "  ";
+                for (int index = 0; index < listaJugadores.get(i).getCartas().size(); index++) {
+                    lista += "\uD83C\uDCA0" + " ";
+                }
+                System.out.println(lista + "\n");
             } else{
                 partida.add(partida.size(), "\n" + listaJugadores.get(i).getNombre() + " " +
                 listaJugadores.get(i).getCartas() + "\n");
-                System.out.println(listaJugadores.get(i).getNombre() + " " +
-                listaJugadores.get(i).getCartas() + "\n");
+                String lista = listaJugadores.get(i).getNombre() + " ";
+                for (int index = 0; index < listaJugadores.get(i).getCartas().size(); index++) {
+                    lista += "\uD83C\uDCA0" + " ";
+                }
+                System.out.println(lista + "\n");
+            }
+
+            if (i == 0) {
+                System.out.println(listaJugadores.get(0).getNombre() + "  " +
+                listaJugadores.get(0).getCartas()); 
+            }else{
+                
             }
         }
 

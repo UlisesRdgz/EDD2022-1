@@ -90,7 +90,7 @@ public class Jugador {
                 
                 if (!nombre.equals("Jugador 10")){
                     cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas:  " + uno + " " ;
-                    System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
+                    System.out.print("El " + nombre + " obtuvo el siguiente par de cartas:  " + uno + " ");
                 }else{ 
                     cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " " ;
                     System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");

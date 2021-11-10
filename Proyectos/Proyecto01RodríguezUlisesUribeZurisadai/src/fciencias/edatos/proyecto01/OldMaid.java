@@ -212,17 +212,50 @@ public class OldMaid {
 
         do {
             try {
-                System.out.println("\n   Bienvenido  ");
-                System.out.println(" ~~ OLD MAID ~~ \n");
-                System.out.println("1) Reglas");
-                System.out.println("2) Jugar");
-                System.out.println("3) Historial");
-                System.out.println("4) Salir\n");
+                System.out.println("\n------------------------.");
+                System.out.println("     ~ OLD MAID ~       |");
+                System.out.println("------------------------|");
+                System.out.println("1) Jugar                |");
+                System.out.println("2) Historial            |");
+                System.out.println("3) Reglas               |");
+                System.out.println("4) Salir                |");
+                System.out.println("------------------------");
 
+                
                 respuesta = sc.nextLine();
 
                 switch (respuesta) {
+                    
                     case "1":
+                    while(true){
+                        try {                      
+                        System.out.println("\n                A JUGAR!                ");
+                        System.out.println("¿Cuántos jugadores deseas en la partida?");
+                        jugadores = Integer.parseInt(sc.nextLine());
+
+                        if (jugadores == 1) {
+                            System.out.println(" D: Deben ser más de dos jugadores ");
+                            break;
+                        }
+
+                        OldMaid juego = new OldMaid(jugadores);
+                        juego.juego();
+                        System.out.println("\n");
+                        break;
+                        
+                                               
+                        } catch (Exception e) {
+                            System.out.println("\nError: Debes ingresar un número válido.");
+                        }                     
+                    } 
+                    break;
+
+                    case "2":
+                        System.out.println("\n *********** Historial del juego ***********\n");
+                        break;
+                        
+                      
+                    case "3":
                         System.out.println("\n  *********** Reglas del juego ***********\n");
                         System.out.println("- Cada jugador le debe robar una carta al \n" +
                                            "  jugador que tenga a la derecha.");
@@ -232,28 +265,14 @@ public class OldMaid {
                                            "  que abandonar la partida.");   
                         System.out.println("- Pierde el jugador que quede al final.");                                                 
                         break;
-
-                    case "2":
-                        
-                        System.out.println("¿Cuántos jugadores deseas en la partida?");
-                        jugadores = Integer.parseInt(sc.nextLine());
-
-                        
-                        OldMaid juego = new OldMaid(jugadores);
-                        juego.juego();
-                        System.out.println("\n");
-                        break;
-                      
-                    case "3":
-                        System.out.println("\n********* Historial de la partida *********\n");
-                        
+                            
                     
                     case "4":
-                        System.out.println("Esperamos que te hayas divertido");
-                        System.out.println("Vuelve pronto!");
+                        System.out.println("\n Hasta la próxima!");
                         return;
                                     
                     default:
+                        System.out.println("Error: Opción inválida.\ningresa una de las opciones");
                         break;
                 }
 
@@ -261,6 +280,6 @@ public class OldMaid {
                 System.out.print("\nError: Vuelvelo a intentarlo.\n\n");
                 sc.next();
             }
-        } while (respuesta != "3");                          
+        } while (respuesta != "4");                          
     }
 } 

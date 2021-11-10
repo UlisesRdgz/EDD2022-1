@@ -1,10 +1,6 @@
 package fciencias.edatos.proyecto01;
 
 import java.util.Scanner;
-
-import javax.print.attribute.Size2DSyntax;
-
-import java.util.List;
 import java.util.Random;
 
 public class OldMaid {

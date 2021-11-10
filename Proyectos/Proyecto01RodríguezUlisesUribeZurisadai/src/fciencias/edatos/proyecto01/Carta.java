@@ -1,6 +1,14 @@
 package fciencias.edatos.proyecto01;
 
+/**
+* Clase donde se crea la carta.
+* @author Rodríguez García Ulises.
+* @author Uribe García Zurisadai. 
+* @version 0.6 Noviembre 2021.
+* @since Estructuras de datos 2022-1. Proyecto 01.
+*/
 public class Carta {
+
     /** Valor de la carta */
     int numCarta;
 
@@ -18,15 +26,15 @@ public class Carta {
     }
 
     /**
-     * 
-     * @return el número de la carta
+     * Obtener el número de la carta.
+     * @return el número de la carta.
      */
     public int getNum() {
         return numCarta;
     }
 
     /**
-     * 
+     * Obtener el tipo de carta.
      * @return el tipo de carta
      */
     public String getType() {
@@ -34,7 +42,7 @@ public class Carta {
     }  
     
     /**
-     * 
+     * Da el número de la carta.
      * @return el número de la carta
      */
     public void setNum(int numCarta) {
@@ -42,7 +50,7 @@ public class Carta {
     }
 
     /**
-     * 
+     * Da el tipo de carta.
      * @return el tipo de carta
      */
     public void setType(String type) {
@@ -50,7 +58,8 @@ public class Carta {
     }   
 
     /**
-     * 
+     * Imprime las cartas dependiendo de su número y tipo.
+     * @return la carta correspondiente.
      */
     public String toString(){
         String carta = "";

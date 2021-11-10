@@ -3,6 +3,13 @@ package fciencias.edatos.proyecto01;
 import java.util.Scanner;
 import java.util.Random;
 
+/**
+* Clase en donde se desarrolla el juego OldMaid.
+* @author Rodríguez García Ulises.
+* @author Uribe García Zurisadai. 
+* @version 10 Noviembre 2021.
+* @since Estructuras de datos 2022-1. Proyecto 01.
+*/
 public class OldMaid {
 
     /** Baraja del juego */
@@ -18,7 +25,7 @@ public class OldMaid {
     TDAList<String> partida = new DoubleLinkedList<>();
 
     /**
-     * Contructor
+     * Contructor para los jugadores.
      * @param jugadores
      */
     public OldMaid(int jugadores){
@@ -90,7 +97,7 @@ public class OldMaid {
                                     listaJugadores.get(7).getCartas().add(j, baraja.getCarta(i));
 
                                 if (jugadores >= 9) {
-                                    /** Noveno jugadores */
+                                    /** Noveno jugador */
                                     for (int i = numeroCartas.get(7), j = 0; i < numeroCartas.get(8); i++, j++) 
                                         listaJugadores.get(8).getCartas().add(j, baraja.getCarta(i));
 
@@ -108,6 +115,12 @@ public class OldMaid {
         }
     }
 
+    /**
+     * Método de cuando sea el turno de usuario al jugar.
+     * @param i 
+     * @param jugadorRobar cartas que robara del otro jugador.
+     * @return la carta robada.
+     */
     public int turnoUsuario(int i, int jugadorRobar){
         Scanner sc = new Scanner(System.in);
         String respuesta = "";
@@ -117,9 +130,9 @@ public class OldMaid {
                 System.out.println("\n" + listaJugadores.get(i).getNombre() + ", tus cartas:");
                 partida.add(partida.size(), "\nCartas del jugador " + listaJugadores.get(i).getNombre() + " ");
                 System.out.println(listaJugadores.get(i).getCartas());
-                System.out.println("\nSi deseas reacomodar tus cartas escribe Si, en caso contrario No.");
+                System.out.println("\n¿Deseas reacomodar tus cartas? s/n");
                 respuesta = sc.nextLine();
-                if (respuesta.equals("Si")) {
+                if (respuesta.equals("s")) {
                     String opciones = "";
                     System.out.println("\n" + listaJugadores.get(i).getCartas());
                     for (int index = 1; index <= listaJugadores.get(i).getCartas().size(); index++) {
@@ -134,11 +147,11 @@ public class OldMaid {
                 }
                 
             } catch (Exception e) {
-                System.out.println("\nError: Debes escoger números validos, " +
+                System.out.println("\nError: Debes escoger números validos,\n" +
                                    "presiona enter para intentar de nuevo");
                 sc.nextLine();
             }
-        }while(!respuesta.equals("No"));
+        }while(!respuesta.equals("n"));
 
         int stolen = -1;
         do{
@@ -170,12 +183,22 @@ public class OldMaid {
         return stolen;
     }
 
+    /**
+     * Método para el turno de la máquina al jugar.
+     * @param jugadorRobar cartas que robara del otro jugador.
+     * @return la carta robada.
+     */
     public int turnoMaquina(int jugadorRobar){
         Random rn = new Random();
         int stolen = rn.nextInt(listaJugadores.get(jugadorRobar).getCartas().size());  
         return stolen;
     }
 
+    /**
+     * Método que clasifica las rondas y los turnos de cada jugador,
+     * sus tiradas y cartas robadas.
+     * @return el registro de la jugada.
+     */
     public void juego(){
         baraja.shuffle();
         listaJugadores.get(0).setJugador(true);
@@ -238,7 +261,7 @@ public class OldMaid {
         int ronda = 2;
         while(listaJugadores.size() > 1){
             int stolen = 0;
-            partida.add(partida.size(), "\n\n ----------------- Ronda " + ronda + " -----------------");
+            partida.add(partida.size(), "\n\n ----------------- Ronda " + ronda + " -----------------\n");
             System.out.println("\n ----------------- Ronda " + ronda++ + " -----------------");
             
             for (int i = 0; i < listaJugadores.size(); i++) {
@@ -296,6 +319,10 @@ public class OldMaid {
                     listaJugadores.get(0).getCartas() + " ''");
     } 
 
+    /**
+     * Imprime lel registro que se ha llevado de la partida.
+     * @return el registro del juego 
+     */
     public String toString(){
         String registro = "";
         for (int i = 0; i < partida.size(); i++) {
@@ -329,6 +356,7 @@ public class OldMaid {
                 switch (respuesta) {
                     
                     case "1":
+                        
                     do{
                         try {                      
                             System.out.println("\n                A JUGAR!                ");
@@ -336,7 +364,7 @@ public class OldMaid {
                             jugadores = Integer.parseInt(sc.nextLine());
 
                             if (jugadores < 2 || jugadores > 10) {
-                                System.out.println("\n D: Deben ser más de dos jugadores ");
+                                System.out.println("\n D: Deben ser de dos a 10 jugadores ");
                             }else{
                                 OldMaid juego = new OldMaid(jugadores);
                                 juego.juego();
@@ -352,25 +380,26 @@ public class OldMaid {
                     break;
 
                     case "2":
-                        System.out.println("\n *********** Historial del juego ***********\n");
+                        System.out.println("\n************* Historial del juego *************\n");
                         System.out.println(partida);
                         break;
                         
                       
                     case "3":
-                        System.out.println("\n  *********** Reglas del juego ***********\n");
-                        System.out.println("- Cada jugador le debe robar una carta al \n" +
+                        System.out.println("\n************* Reglas del juego *************\n");
+                        System.out.println("> Cada jugador le debe robar una carta al \n" +
                                            "  jugador que tenga a la derecha.");
-                        System.out.println("- Si logra formar un par, automáticamente \n"+
+                        System.out.println("> Si logra formar un par, automáticamente \n"+
                                            "  se descartan esas cartas.");
-                        System.out.println("- Si el jugador se queda sin cartas, tendrá\n"+
+                        System.out.println("> Si el jugador se queda sin cartas, tendrá\n"+
                                            "  que abandonar la partida.");   
-                        System.out.println("- Pierde el jugador que quede al final.");                                                 
+                        System.out.println("> Pierde el jugador que quede al final con\n"+
+                                           "  la carta SOLTERONA.");                                                 
                         break;
                             
                     
                     case "4":
-                        System.out.println("\n Hasta la próxima!");
+                        System.out.println("\nHasta la próximaa! :)");
                         return;
                                     
                     default:

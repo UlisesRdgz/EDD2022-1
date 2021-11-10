@@ -87,18 +87,15 @@ public class Jugador {
         String cartasIguales = "";
         for (int i = 0; i < cartas.size(); i++) {
             if (uno.equals(cartas.get(i))){
-                if (isUser()){
+                
+                if (!nombre.equals("Jugador 10")){
+                    cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas:  " + uno + " " ;
                     System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
-                    cartasIguales += "\nEl " + nombre + " obtuvo el siguiente par de cartas: " + uno + " " ;
-                }else{
-                    if (!nombre.equals("Jugador 10")){
-                        cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas:  " + uno + " " ;
-                        System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
-                    }else{ 
-                        cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " " ;
-                        System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
-                    }
+                }else{ 
+                    cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " " ;
+                    System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
                 }
+                
                 cartas.remove(i);
             }
             
@@ -126,5 +123,13 @@ public class Jugador {
         if (cartas.isEmpty())
             return true;
         return false;
+    }
+
+    public void rearrange(int carta1, int carta2){
+        Carta aux = new Carta(cartas.get(carta1).getNum(), cartas.get(carta1).getType());
+        cartas.get(carta1).setNum(cartas.get(carta2).getNum());
+        cartas.get(carta1).setType(cartas.get(carta2).getType());
+        cartas.get(carta2).setNum(aux.getNum());
+        cartas.get(carta2).setType(aux.getType());
     }
 }

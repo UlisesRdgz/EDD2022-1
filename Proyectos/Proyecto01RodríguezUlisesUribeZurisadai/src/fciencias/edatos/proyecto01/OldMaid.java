@@ -114,11 +114,37 @@ public class OldMaid {
 
     public int turnoUsuario(int i, int jugadorRobar){
         Scanner sc = new Scanner(System.in);
-        System.out.println("\n" + listaJugadores.get(i).getNombre() + ", tus cartas:");
-        partida.add(partida.size(), "\nCartas del jugador " + listaJugadores.get(i).getNombre() + " ");
-        System.out.println(listaJugadores.get(i).getCartas());
-        int stolen = -1;
+        String respuesta = "";
+        int carta1, carta2;
+        do{
+            try {
+                System.out.println("\n" + listaJugadores.get(i).getNombre() + ", tus cartas:");
+                partida.add(partida.size(), "\nCartas del jugador " + listaJugadores.get(i).getNombre() + " ");
+                System.out.println(listaJugadores.get(i).getCartas());
+                System.out.println("\nSi deseas reacomodar tus cartas escribe Si, en caso contrario No.");
+                respuesta = sc.nextLine();
+                if (respuesta.equals("Si")) {
+                    String opciones = "";
+                    System.out.println("\n" + listaJugadores.get(i).getCartas());
+                    for (int index = 1; index <= listaJugadores.get(i).getCartas().size(); index++) {
+                        opciones += index + " ";
+                    }
+                    System.out.println(opciones + "\n");
+                    System.out.println("Escribe la primera carta");
+                    carta1 = Integer.parseInt(sc.nextLine())-1;
+                    System.out.println("Escribe la segunda carta");
+                    carta2 = Integer.parseInt(sc.nextLine())-1;
+                    listaJugadores.get(i).rearrange(carta1, carta2);
+                }
+                
+            } catch (Exception e) {
+                System.out.println("\nError: Debes escoger números validos, " +
+                                   "presiona enter para intentar de nuevo");
+                sc.nextLine();
+            }
+        }while(!respuesta.equals("No"));
 
+        int stolen = -1;
         do{
             try {
                 System.out.println("");
@@ -132,12 +158,12 @@ public class OldMaid {
                     lista += index + " ";
                 }
                 System.out.println(lista);
-                stolen = sc.nextInt() - 1;
+                stolen = Integer.parseInt(sc.nextLine()) - 1;
             } catch (Exception e) {
-                System.out.println("\nError:");
-                sc.next();
+                System.out.println("\nError: Presiona enter para continuar.");
+                sc.nextLine();
             } if(stolen < 0 || stolen >= listaJugadores.get(jugadorRobar).getCartas().size()){
-                System.out.println("\nIngresa algún número del 1 al " + (listaJugadores.get(jugadorRobar).getCartas().size()));
+                System.out.println("\nIngresa un número del 1 al " + (listaJugadores.get(jugadorRobar).getCartas().size()));
             }
             
         }while(stolen < 0 || stolen >= listaJugadores.get(jugadorRobar).getCartas().size());
@@ -189,7 +215,7 @@ public class OldMaid {
 
             // Eliminar jugadores sin cartas
             if (listaJugadores.get(i).verificarJugador()) {
-                System.out.println("Se borró el jugador " + listaJugadores.get(i).getNombre());
+                System.out.println(listaJugadores.get(i).getNombre() + " se quedó sin cartas.");
                 listaJugadores.remove(i);
             }
         }
@@ -236,7 +262,7 @@ public class OldMaid {
                     }
                     // Eliminar jugadores sin cartas
                     if (listaJugadores.get(j).verificarJugador()) {
-                        System.out.println("Se borró el jugador " + listaJugadores.get(j).getNombre());
+                        System.out.println(listaJugadores.get(j).getNombre() + " se quedó sin cartas.");
                         partida.add(partida.size(), "\n" + listaJugadores.get(j).getNombre() + " se quedó sin cartas.");
                         listaJugadores.remove(j);
                         if (i == j) 
@@ -270,7 +296,7 @@ public class OldMaid {
         Scanner sc = new Scanner(System.in);
         String respuesta = " ";
         String partida = "No has iniciado ninguna partida\n";
-        int jugadores;
+        int jugadores = 0;
 
         do {
             try {
@@ -289,28 +315,26 @@ public class OldMaid {
                 switch (respuesta) {
                     
                     case "1":
-                    while(true){
+                    do{
                         try {                      
-                        System.out.println("\n                A JUGAR!                ");
-                        System.out.println("¿Cuántos jugadores deseas en la partida?");
-                        jugadores = Integer.parseInt(sc.nextLine());
+                            System.out.println("\n                A JUGAR!                ");
+                            System.out.println("¿Cuántos jugadores deseas en la partida?");
+                            jugadores = Integer.parseInt(sc.nextLine());
 
-                        if (jugadores == 1 || jugadores > 10) {
-                            System.out.println("\n D: Deben ser más de dos jugadores ");
-                            break;
-                        }
-
-                        OldMaid juego = new OldMaid(jugadores);
-                        juego.juego();
-                        System.out.println("\n");
-                        partida = juego.toString();
-                        break;
-                        
+                            if (jugadores < 2 || jugadores > 10) {
+                                System.out.println("\n D: Deben ser más de dos jugadores ");
+                            }else{
+                                OldMaid juego = new OldMaid(jugadores);
+                                juego.juego();
+                                System.out.println("\n");
+                                partida = juego.toString();
+                                break;
+                            }
                                                
                         } catch (Exception e) {
                             System.out.println("\nError: Debes ingresar un número válido.");
                         }                     
-                    } 
+                    } while(jugadores < 2 || jugadores > 10);
                     break;
 
                     case "2":

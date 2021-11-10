@@ -31,7 +31,23 @@ public class Carta {
      */
     public String getType() {
         return type;
-    }    
+    }  
+    
+    /**
+     * 
+     * @return el número de la carta
+     */
+    public void setNum(int numCarta) {
+        this.numCarta = numCarta;
+    }
+
+    /**
+     * 
+     * @return el tipo de carta
+     */
+    public void setType(String type) {
+        this.type = type;
+    }   
 
     /**
      * 

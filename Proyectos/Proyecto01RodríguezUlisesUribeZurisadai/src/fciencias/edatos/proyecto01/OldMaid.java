@@ -25,8 +25,8 @@ public class OldMaid {
     TDAList<String> partida = new DoubleLinkedList<>();
 
     /**
-     * Contructor para los jugadores.
-     * @param jugadores
+     * Contructor del juego OldMaid.
+     * @param players número de jugadores.
      */
     public OldMaid(int jugadores){
         this.jugadores = jugadores;
@@ -116,9 +116,9 @@ public class OldMaid {
     }
 
     /**
-     * Método de cuando sea el turno de usuario al jugar.
-     * @param i 
-     * @param jugadorRobar cartas que robara del otro jugador.
+     * Método para que el jugador realize su turno.
+     * @param i Posición del jugador.
+     * @param jugadorRobar Posición del jugador a robar.
      * @return la carta robada.
      */
     public int turnoUsuario(int i, int jugadorRobar){
@@ -128,7 +128,6 @@ public class OldMaid {
         do{
             try {
                 System.out.println("\n" + listaJugadores.get(i).getNombre() + ", tus cartas:");
-                partida.add(partida.size(), "\nCartas del jugador " + listaJugadores.get(i).getNombre() + " ");
                 System.out.println(listaJugadores.get(i).getCartas());
                 System.out.println("\n¿Deseas reacomodar tus cartas? s/n");
                 respuesta = sc.nextLine();
@@ -177,15 +176,14 @@ public class OldMaid {
             
         }while(stolen < 0 || stolen >= listaJugadores.get(jugadorRobar).getCartas().size());
 
-        System.out.print("\033[H\033[2J");  
-        System.out.flush();
+        clearScreen();
         System.out.println("Robaste la carta " + listaJugadores.get(jugadorRobar).getCartas().get(stolen));
         return stolen;
     }
 
     /**
-     * Método para el turno de la máquina al jugar.
-     * @param jugadorRobar cartas que robara del otro jugador.
+     * Método que máquina la maquina realize su turno.
+     * @param jugadorRobar jugador al que robaremos la carta..
      * @return la carta robada.
      */
     public int turnoMaquina(int jugadorRobar){
@@ -197,11 +195,11 @@ public class OldMaid {
     /**
      * Método que clasifica las rondas y los turnos de cada jugador,
      * sus tiradas y cartas robadas.
-     * @return el registro de la jugada.
      */
     public void juego(){
         baraja.shuffle();
         listaJugadores.get(0).setJugador(true);
+        clearScreen();
 
         System.out.println(" ----------------- Ronda 1 -----------------\n");
         partida.add(0, " ----------------- Ronda 1 -----------------\n");
@@ -239,8 +237,6 @@ public class OldMaid {
             if (i == 0) {
                 System.out.println(listaJugadores.get(0).getNombre() + "  " +
                 listaJugadores.get(0).getCartas()); 
-            }else{
-                
             }
         }
 
@@ -261,7 +257,9 @@ public class OldMaid {
         int ronda = 2;
         while(listaJugadores.size() > 1){
             int stolen = 0;
-            partida.add(partida.size(), "\n\n ----------------- Ronda " + ronda + " -----------------\n");
+            sleep(3000);
+            clearScreen();
+            partida.add(partida.size(), "\n\n ----------------- Ronda " + ronda + " -----------------");
             System.out.println("\n ----------------- Ronda " + ronda++ + " -----------------");
             
             for (int i = 0; i < listaJugadores.size(); i++) {
@@ -284,6 +282,7 @@ public class OldMaid {
 
                 // Robamos la carta
                 listaJugadores.get(i).robar(stolen, listaJugadores.get(jugadorRobar));
+                sleep(500);
                 partida.add(partida.size(), "\nCartas del " + listaJugadores.get(i).getNombre() + ": " + listaJugadores.get(i).getCartas());
                 String lista = "\nCartas del " + listaJugadores.get(i).getNombre() + ": ";
                 for (int index = 0; index < listaJugadores.get(i).getCartas().size(); index++) {
@@ -328,9 +327,20 @@ public class OldMaid {
         for (int i = 0; i < partida.size(); i++) {
             registro += partida.get(i);
         }
-
-
         return registro;
+    }
+
+    public static void sleep(int i){
+        try {
+            Thread.sleep(1*i);
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+
+    public static void clearScreen(){
+        System.out.print("\033[H\033[2J");  
+        System.out.flush();
     }
     
     public static void main(String[] args) {
@@ -367,6 +377,13 @@ public class OldMaid {
                                 System.out.println("\n D: Deben ser de dos a 10 jugadores ");
                             }else{
                                 OldMaid juego = new OldMaid(jugadores);
+                                System.out.println("\nBaraja inicial.\n");
+                                juego.baraja.printDeck();
+                                sleep(1000);  
+                                System.out.println("\n\nBarajeamos\n");
+                                sleep(2000);
+                                System.out.println("Descartamos una carta: \uD83C\uDCA0 \n");
+                                sleep(2000);        
                                 juego.juego();
                                 System.out.println("\n");
                                 partida = juego.toString();

@@ -18,58 +18,43 @@ public class Jugador {
     /** Cartas comparadas */
     Carta uno, dos;
 
-    /** Jugador real */
+    /** Jugador usuario */
     boolean usuario = false;
 
     /**
-     * Constructor de la clase
-     * @param nombre
+     * Constructor del jugador.
+     * @param nombre del jugador.
      */
     public Jugador(String nombre){
         this.nombre = nombre;
     }
 
     /**
-     * Obtener nombre.
-     * @return el nombre dado.
+     * Devuelve el nombre del jugador.
+     * @return el nombre del jugador.
      */
     public String getNombre(){
         return nombre;
     }
 
     /**
-     * Da las cartas
-     * @param cartas
+     * Devuelve las cartas del jugador.
+     * @return las cartas del jugador.
      */
     public TDAList<Carta> getCartas(){
         return cartas;
     }
 
-    /**
-     * Establecer el nombre del jugador
-     * @param nombre
-     */
-    public void setNombre(String nombre){
-        this.nombre = nombre;
-    }
-
-    /**
-     * Le asigna cartas al jugador
-     * @param cartas
-     */
-    public void setCartas(TDAList<Carta> cartas){
-        this.cartas = cartas;
-    }
-
     /** 
-     * Para indicar que es el usuario quien jugará. 
+     * Indica si el jugador es usuario o máquina.
      */
     public void setJugador(boolean usuario){
         this.usuario = usuario;
     }
 
     /** 
-     * @return al usuario que jugará
+     * Verifica si es usuario o máquina.
+     * @return true si es usuario, false en otro caso.
      */
     public boolean isUser(){
         return usuario;
@@ -77,8 +62,8 @@ public class Jugador {
 
     /**
      * Compara las cartas de los jugadores.
-     * @return false si no hay cartas con el mismo número,
-     * true en el caso contrario.
+     * @return true si hay cartas con el mismo número,
+     *         false en el caso contrario.
      */
     public boolean compare(){
         int aux = 1;
@@ -96,7 +81,7 @@ public class Jugador {
     }
 
     /**
-     * Método que elimina las cartas par de cada jugador.
+     * Método que elimina las cartas iguales de cada jugador.
      * @return las cartas par.
      */
     public String eliminarCartas(){
@@ -131,18 +116,18 @@ public class Jugador {
 
     /**
      * Método para robar las cartas al jugador de la izquierda.
-     * @param steel
-     * @param stolen
+     * @param steal carta que se desea robar.
+     * @param stolen Jugador al que robaremos la carta.
      */
-    public void robar(int steel, Jugador stolen){
-        Carta robada = stolen.getCartas().get(steel);
-        stolen.getCartas().remove(steel);
+    public void robar(int steal, Jugador stolen){
+        Carta robada = stolen.getCartas().get(steal);
+        stolen.getCartas().remove(steal);
         cartas.add(cartas.size(), robada);
     }
 
     /**
-     * Método para verificar que el jugador sigue teniendo cartas.
-     * @return falso si tiene cartas, true si no tiene.
+     * Verificar si el jugador sigue teniendo cartas.
+     * @return true si ya no tiene, false en caso de que aún tenga.
      */
     public boolean verificarJugador(){
         if (cartas.isEmpty())
@@ -151,7 +136,7 @@ public class Jugador {
     }
 
     /**
-     * Reorganiza las cartas del jugador.
+     * Intercambia las cartas del jugador.
      * @param carta1 primera carta,
      * @param carta2 segunda carta.
      */

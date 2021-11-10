@@ -1,7 +1,7 @@
 package fciencias.edatos.proyecto01;
 
 /**
-* Clase donde se crea la carta.
+* Clase donde se crea cada carta para la baraja.
 * @author Rodríguez García Ulises.
 * @author Uribe García Zurisadai. 
 * @version 0.6 Noviembre 2021.
@@ -17,8 +17,8 @@ public class Carta {
 
     /**
      * Contructor de la clase carta.
-     * @param numCarta
-     * @param type
+     * @param numCarta número de la carta.
+     * @param type tipo de la carta.
      */
     public Carta(int numCarta, String type){
         this.numCarta = numCarta;
@@ -42,23 +42,21 @@ public class Carta {
     }  
     
     /**
-     * Da el número de la carta.
-     * @return el número de la carta
+     * Modifica el número de la carta.
      */
     public void setNum(int numCarta) {
         this.numCarta = numCarta;
     }
 
     /**
-     * Da el tipo de carta.
-     * @return el tipo de carta
+     * Modifica el tipo de carta.
      */
     public void setType(String type) {
         this.type = type;
     }   
 
     /**
-     * Imprime las cartas dependiendo de su número y tipo.
+     * Da el formato a las cartas dependiendo de su número y tipo.
      * @return la carta correspondiente.
      */
     public String toString(){
@@ -92,7 +90,6 @@ public class Carta {
                     carta = "\uD83C\uDCAD";
                 else if (numCarta == 13)
                     carta = "\uD83C\uDCAE";
-
                 break;
 
             case "Corazon":
@@ -151,7 +148,6 @@ public class Carta {
                     carta = "\uD83C\uDCCD";
                 else if (numCarta == 13)
                     carta = "\uD83C\uDCCE";
-              
                 break;
 
             case "Trebol":
@@ -186,7 +182,6 @@ public class Carta {
             default:
                 break;
         }
-        
         return carta;
     }
 }

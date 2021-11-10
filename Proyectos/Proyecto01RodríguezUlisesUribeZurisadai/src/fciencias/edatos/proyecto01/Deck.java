@@ -3,7 +3,7 @@ package fciencias.edatos.proyecto01;
 import java.util.Random;
 
 /**
-* Clase para la baraja.
+* Clase para crear la baraja.
 * @author Rodríguez García Ulises.
 * @author Uribe García Zurisadai. 
 * @version 10 Noviembre 2021.
@@ -15,7 +15,7 @@ public class Deck{
     Carta deck[] = new Carta[52];
 
     /**
-     * Contructor baraja, números y tipos de carta.
+     * Contructor para la baraja, con números y tipos de carta.
      */
     public Deck(){
         for (int i = 0; i < 13; i++) {
@@ -27,9 +27,9 @@ public class Deck{
     }
 
     /**
-     * Toma las cartas de la clase Carta
-     * @param i para ir obteniendo las cartas
-     * @return la baraja con cartas
+     * Devuelve la carta en la posición i.
+     * @param i posición de la carta a obtener.
+     * @return la carta en la posición i.
      */
     public Carta getCarta(int i){
         return deck[i];

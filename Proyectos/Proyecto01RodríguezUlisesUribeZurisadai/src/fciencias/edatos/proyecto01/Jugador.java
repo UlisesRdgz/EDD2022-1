@@ -83,24 +83,32 @@ public class Jugador {
         return false;
     }
 
-    public void eliminarCartas(){
+    public String eliminarCartas(){
+        String cartasIguales = "";
         for (int i = 0; i < cartas.size(); i++) {
             if (uno.equals(cartas.get(i))){
-                if (isUser()) 
+                if (isUser()){
                     System.out.print("Cuentas con el siguiente par de cartas: " + uno + " ");
-                else
+                    cartasIguales += "\nCuentas con el siguiente par de cartas: " + uno + " " ;
+                }else{
                     System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
+                    cartasIguales += "\nEl " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ";
+                }
                 cartas.remove(i);
             }
             
             if (dos.equals(cartas.get(i))){
-                if (isUser()) 
+                if (isUser()){
                     System.out.println(dos);
-                else
+                    cartasIguales += dos;
+                }else{
                     System.out.println(dos);
+                    cartasIguales += dos;
+                }
                 cartas.remove(i);
             }
         }
+        return cartasIguales;
     }
 
     public void robar(int steel, Jugador stolen){

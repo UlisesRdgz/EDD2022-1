@@ -89,10 +89,13 @@ public class Jugador {
             if (uno.equals(cartas.get(i))){
                 if (isUser()){
                     System.out.print("Cuentas con el siguiente par de cartas: " + uno + " ");
-                    cartasIguales += "\nCuentas con el siguiente par de cartas: " + uno + " " ;
+                    cartasIguales += "\nEl " + nombre + " obtuvo el siguiente par de cartas: " + uno + " " ;
                 }else{
                     System.out.print("El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ");
-                    cartasIguales += "\nEl " + nombre + " obtuvo el siguiente par de cartas: " + uno + " ";
+                    if (!nombre.equals("Jugador 10")) 
+                        cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas:  " + uno + " " ;
+                    else 
+                        cartasIguales += "El " + nombre + " obtuvo el siguiente par de cartas: " + uno + " " ;
                 }
                 cartas.remove(i);
             }

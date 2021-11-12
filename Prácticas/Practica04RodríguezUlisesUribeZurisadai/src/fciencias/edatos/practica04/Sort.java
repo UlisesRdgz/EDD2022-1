@@ -11,6 +11,18 @@ import java.util.Arrays;
  */
 public class Sort{
 
+    /**
+     * Intercambia dos elementos de posición en una misma colección
+     * @param arreglo arreglo que cambia la posición de elementos dados.
+     * @param i índice del primer elemento 
+     * @param j índice del segundo elemento
+     */
+    private static void swap(int[] arreglo, int i, int j) {
+        int temp = arreglo[i];
+        arreglo[i] = arreglo[j];
+        arreglo[j] = temp;
+    }
+
     public static void quickSort() {
         
     }

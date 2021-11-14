@@ -1,13 +1,12 @@
-# Práctica 03 :)
+# Práctica 04 :)
 
 ## Rodríguez García Ulises - 318042202 &emsp;&emsp;&emsp;&emsp;&emsp; Uribe García Zurisadai - 318223197
 
 ### Descripción
-Encontrar las distintas soluciones de un laberinto dependiendo de su inicio y su final.
+Programar y analizar algunos algoritmos de ordenamiento cuadráticos contra algoritmos de ordenamiento logarítmicos, y ver su tiempo de ejecución.
 
 ### Inconvenientes
-Tuvimos problemas con el inicio ya que no aparecía como visitado, se volvía a visitar a pesar de haber estado
-ya ahí y se empezaba a hacer el camino al final sólo que quedaban algunas casillas del camino vacías. 
+Hubo inconvenientes al momento de entender algunos ordenamientos, en elordenamiento de merge no sabiamos cómo funcionaba y tuvimos que volver a ver los videos.
 
 ### Compilación y ejecución
 Para ejecutar esta práctica se utilizarán los siguientes comandos:
@@ -17,11 +16,10 @@ Para ejecutar esta práctica se utilizarán los siguientes comandos:
 * ant clean - Para limpiar el proyecto.
 
 ### ¿Qué hizo cada quien?
-Ambos participamos en la práctica en general, primero nos dividimos los métodos e intentamos implementarlos 
-pero no funcionaron a la primera, así que fuimos arreglando los errores entre ambos.
+Ambos participamos en la práctica en general, primero nos dividimos los métodos, fuimos resolviendo nuestras dudas en conjunto.
 
-* Ulises - Subió la clase Stack y Maze -- Main
-* Zurisadai - Subió la clase Queque y Box -- Main
+* Ulises - quickSort, merge, generate
+* Zurisadai - swap, find
 
 ### ¿Cómo nos organizamos?
-Nuevamente tuvimos videollamadas
+Nos dividimos los métodos y tuvimos llamadas para aportar ideas o resolver dudas.

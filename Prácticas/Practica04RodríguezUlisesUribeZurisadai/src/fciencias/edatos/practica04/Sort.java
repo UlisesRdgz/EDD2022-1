@@ -1,8 +1,5 @@
 package fciencias.edatos.practica04;
 
-import java.util.Arrays;
-import java.util.Random;
-
 /**
  * Implementación de métodos
  * @author Rodríguez García Ulises.
@@ -24,19 +21,35 @@ public class Sort{
         arr[j] = temp;
     }
 
-    public static void quicksort(int[] arr){
-        quicksort(arr, 0, arr.length-1);
+	/**
+	 * Subdivide el arreglo en subarreglos más pequeños y los ordena. 
+	 * @param arr el arrelgo a ordenar.
+	 */
+    public static void quickSort(int[] arr){
+        quickSort(arr, 0, arr.length-1);
     }
         
-
-    public static void quicksort(int[] arr, int lo, int hi) {
+	/**
+	 * Auxiliar de quickSort para dividir y mezclar.
+	 * @param arr el arreglo con los elementos a dividir y ordenar.
+	 * @param lo el índice de inicio a modificación.
+	 * @param hi el índice del último elemento.
+	 */
+    public static void quickSort(int[] arr, int lo, int hi) {
         if(hi <= lo)
             return;
         int j = partition(arr, lo, hi);
-        quicksort(arr, lo, j-1);
-        quicksort(arr, j+1, hi);
+        quickSort(arr, lo, j-1);
+        quickSort(arr, j+1, hi);
     }
 
+	/**
+	 * Método para dividir el arreglo. 
+	 * @param arr el arreglo con los elementos a modificar.
+	 * @param lo el inicio de la primera mitad.
+	 * @param hi el índice del último elemento.
+	 * @return el número ordenado.
+	 */
     public static int partition (int arr[], int lo, int hi){
         int i = lo;
         int j = hi+1;
@@ -97,7 +110,7 @@ public class Sort{
 	 */
 	private static void merge(int[] arr, int lo, int mid, int hi){
 		int i = 0, j = 0;
-        //Creamos un dos arreglos auxiliares
+        //Creamos dos arreglos auxiliares
         int aux1[] = new int[mid - lo + 1];
         int aux2[] = new int[hi - mid];
 		
@@ -152,42 +165,5 @@ public class Sort{
 			return find(arr, elem, lo, mid-1);
 		else
 			return find(arr, elem, mid+1, hi);
-	}
-
-    /**
-	 * Crea un nuevo arreglo con números pseudoaleatorios.
-	 * @param n el tamaño del arreglo a crear.
-	 * @param max el mayor elemento a generar en el arreglo.
-	 * @return un arreglo de tamaño n con números pseudoaleatorios de 0 a 19.
-	 */
-	public static int[] generate(int n, int max){
-		int[] res = new int[n];
-		Random rn = new Random();
-		for(int i = 0 ; i < n; i++)
-			res[i] = rn.nextInt(max);
-		return res;
-	}
-
-    public static void main(String[] args) {
-		int[] arr1 = generate(100, 10);
-		int[] arr2 = Arrays.copyOf(arr1, arr1.length);
-
-
-		System.out.println("No ordenado: " + Arrays.toString(arr1));
-		double inicio = System.currentTimeMillis();
-		quicksort(arr1);
-		find(arr1, 2);
-		double fin = System.currentTimeMillis();
-		System.out.println("Ordenado: " + Arrays.toString(arr1) + "\n");
-		System.out.println("Ordenado con quicksort tardó: " + (fin - inicio) + " milisegundos");
-
-		System.out.println("No ordenado: " + Arrays.toString(arr2));
-		inicio = System.currentTimeMillis();
-		mergeSort(arr2);
-		fin = System.currentTimeMillis();
-		System.out.println("Ordenado: " + Arrays.toString(arr2) + "\n");
-		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
-
-		System.out.println("Find: " + find(arr1, 2));
 	}
 }

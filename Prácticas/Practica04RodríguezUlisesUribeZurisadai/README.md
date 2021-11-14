@@ -18,7 +18,7 @@ Para ejecutar esta práctica se utilizarán los siguientes comandos:
 ### ¿Qué hizo cada quien?
 Ambos participamos en la práctica en general, primero nos dividimos los métodos, fuimos resolviendo nuestras dudas en conjunto.
 
-* Ulises - quickSort, merge, generate
+* Ulises - quickSort, merge
 * Zurisadai - swap, find
 
 ### ¿Cómo nos organizamos?

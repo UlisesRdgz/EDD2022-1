@@ -120,9 +120,39 @@ public class Sort{
 		}
 	}
 
-    public int find(int[] arr, int e){
-        return e;
-    }
+    /**
+	 * Verifica si un elemento está contenido en un arreglo, y si 
+	 * no encontramos el elemento entonces -1.
+	 * @param arr el arreglo donde buscar.
+	 * @param e el elemento a buscar.
+	 */
+	public static int find(int[] arr, int e){
+		return find(arr, e, 0, arr.length-1);
+	}
+	
+	/**
+	 * Regresa la posición de un elemento en un arreglo.
+	 * @param arr el arreglo donde buscar.
+	 * @param elem el elemento a buscar.
+	 * @param lo el inicio de la primera mitad.
+	 * @param mid el índice de la mitad del subarreglo.
+	 * @param hi el índice del último elemento.
+	 * @return la posición del el elemento
+	*/
+	private static int find(int[] arr, int elem, int lo, int hi){
+		if(lo>hi)
+			return -1;
+	
+		int mid = lo + ((hi-lo)/2);
+	
+		if(arr[mid] == elem)
+			return mid;
+	
+		if(arr[mid] > elem)
+			return find(arr, elem, lo, mid-1);
+		else
+			return find(arr, elem, mid+1, hi);
+	}
 
     /**
 	 * Crea un nuevo arreglo con números pseudoaleatorios.
@@ -139,18 +169,25 @@ public class Sort{
 	}
 
     public static void main(String[] args) {
-		int[] arr1 = generate(100000, 100);
+		int[] arr1 = generate(100, 10);
 		int[] arr2 = Arrays.copyOf(arr1, arr1.length);
 
 
+		System.out.println("No ordenado: " + Arrays.toString(arr1));
 		double inicio = System.currentTimeMillis();
 		quicksort(arr1);
+		find(arr1, 2);
 		double fin = System.currentTimeMillis();
+		System.out.println("Ordenado: " + Arrays.toString(arr1) + "\n");
 		System.out.println("Ordenado con quicksort tardó: " + (fin - inicio) + " milisegundos");
 
+		System.out.println("No ordenado: " + Arrays.toString(arr2));
 		inicio = System.currentTimeMillis();
 		mergeSort(arr2);
 		fin = System.currentTimeMillis();
+		System.out.println("Ordenado: " + Arrays.toString(arr2) + "\n");
 		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
+
+		System.out.println("Find: " + find(arr1, 2));
 	}
 }

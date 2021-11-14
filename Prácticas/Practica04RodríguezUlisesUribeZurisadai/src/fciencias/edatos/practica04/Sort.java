@@ -1,5 +1,8 @@
 package fciencias.edatos.practica04;
 
+import java.util.Arrays;
+import java.util.Random;
+
 /**
  * Implementación de métodos
  * @author Rodríguez García Ulises.
@@ -30,7 +33,7 @@ public class Sort{
     }
         
 	/**
-	 * Auxiliar de quickSort para dividir y mezclar.
+	 * Auxiliar de quickSort para dividir y ordenar.
 	 * @param arr el arreglo con los elementos a dividir y ordenar.
 	 * @param lo el índice de inicio a modificación.
 	 * @param hi el índice del último elemento.
@@ -165,5 +168,42 @@ public class Sort{
 			return find(arr, elem, lo, mid-1);
 		else
 			return find(arr, elem, mid+1, hi);
+	}
+	
+	/**
+	 * Crea un nuevo arreglo con números pseudoaleatorios.
+	 * @param n el tamaño del arreglo a crear.
+	 * @param max el mayor elemento a generar en el arreglo.
+	 * @return un arreglo de tamaño n con números pseudoaleatorios de 0 a 19.
+	 */
+	public static int[] generate(int n, int max){
+		int[] res = new int[n];
+		Random rn = new Random();
+		for(int i = 0 ; i < n; i++)
+			res[i] = rn.nextInt(max);
+		return res;
+	}
+
+    public static void main(String[] args) {
+		int[] arr1 = generate(10000, 10);
+		int[] arr2 = Arrays.copyOf(arr1, arr1.length);
+
+
+		// System.out.println("No ordenado: " + Arrays.toString(arr1));
+		double inicio = System.currentTimeMillis();
+		quickSort(arr1);
+		find(arr1, 2);
+		double fin = System.currentTimeMillis();
+		// System.out.println("Ordenado: " + Arrays.toString(arr1) + "\n");
+		System.out.println("Ordenado con quicksort tardó: " + (fin - inicio) + " milisegundos");
+
+		// System.out.println("No ordenado: " + Arrays.toString(arr2));
+		inicio = System.currentTimeMillis();
+		mergeSort(arr2);
+		fin = System.currentTimeMillis();
+		// System.out.println("Ordenado: " + Arrays.toString(arr2) + "\n");
+		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
+
+		// System.out.println("Find: " + find(arr1, 2));
 	}
 }

@@ -107,6 +107,16 @@ public class Sort{
             aux2[k] = arr[mid + k + 1];
 
 		for(int k = lo ; k <= hi; k++){
+			if (i < aux1.length && j < aux2.length) {
+				if (aux1[i] < aux2[j])
+					arr[k] = aux1[i++];
+				else 
+					arr[k] = aux2[j++];
+			}
+			else if(i < aux1.length)
+				arr[k] = aux1[i++];
+			else 
+				arr[k] = aux2[j++];
 		}
 	}
 
@@ -129,16 +139,18 @@ public class Sort{
 	}
 
     public static void main(String[] args) {
-		int[] arr1 = generate(15, 15);
+		int[] arr1 = generate(100000, 100);
 		int[] arr2 = Arrays.copyOf(arr1, arr1.length);
-		int[] arr3 = Arrays.copyOf(arr1, arr1.length);
-		//System.out.println("No ordenado: " + Arrays.toString(arr1));
-		
-        System.out.println("\nNo ordenado: " + Arrays.toString(arr1));
+
+
 		double inicio = System.currentTimeMillis();
 		quicksort(arr1);
 		double fin = System.currentTimeMillis();
-		System.out.println("Ordenado: " + Arrays.toString(arr1) + "\n");
 		System.out.println("Ordenado con quicksort tardó: " + (fin - inicio) + " milisegundos");
+
+		inicio = System.currentTimeMillis();
+		mergeSort(arr2);
+		fin = System.currentTimeMillis();
+		System.out.println("Ordenado con mergeSort tardó: " + (fin - inicio) + " milisegundos");
 	}
 }

@@ -69,19 +69,16 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
         	root = new BinaryNode(k, e, null);
 			return;
 		}
-
-        BinaryNode actual = root;
-        insert(actual, e, k);
+        insert(root, e, k);
 	}
 	
 	private void insert(BinaryNode actual, T e, K k){
 
         if(k.compareTo(actual.key) < 0){ // Verificamos en la izquierda
-			if (actual.left != null)
-                insert(actual.left, e, k);
+			if (actual.left == null) 
+                actual.left = new BinaryNode(k, e, actual);
 			else
-				actual.left = new BinaryNode(k, e, actual);
-                
+                insert(actual.left, e, k);
 		} else { // Verificar en la derecha
             if (actual.rigth != null)
                 insert(actual.rigth, e, k);
@@ -95,16 +92,32 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		return null;
     }
 
+
+	/**
+	* Encuentra la clave k con valor o peso mínimo del árbol.
+	* @return el elemento con llave de peso mínimo.
+	*/
     @Override
     public T findMin() {
-        return null;
+		if (isEmpty()) {
+			return null;
+		}
+		BinaryNode actual = root;
+		
+		while (actual.left != null) {
+			actual = actual.left;
+		}
+		return actual.element;
+	
     }
+			
 
     @Override
     public T findMax() {
         return null;
     }
 
+	
     @Override
     public void preorden() {
         preorden(root);
@@ -168,5 +181,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
             return true;
         return false;
     }
+
+
 }
 

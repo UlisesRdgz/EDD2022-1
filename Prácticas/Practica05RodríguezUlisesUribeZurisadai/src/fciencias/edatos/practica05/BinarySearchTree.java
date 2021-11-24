@@ -114,7 +114,14 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 
     @Override
     public T findMax() {
-        return null;
+        if (isEmpty())
+			return null;
+		BinaryNode actual = root;
+
+        while (actual.rigth != null) 
+			actual = actual.rigth;
+
+		return actual.element;
     }
 
 	

@@ -17,6 +17,9 @@ public class Main {
         tree.inorden();
         System.out.println("");
         tree.postorden();
+        tree.delete(1);
+        System.out.println("");
+        tree.preorden();
 
      }
 }

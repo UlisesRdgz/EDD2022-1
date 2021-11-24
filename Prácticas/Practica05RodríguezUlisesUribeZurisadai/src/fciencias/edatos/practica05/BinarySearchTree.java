@@ -89,8 +89,48 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 
     @Override
     public T delete(K k) {
-		return null;
+		BinaryNode actual = retrieve(root, k);
+		T aux = null;
+
+		/**  Caso donde no existe el elemento que se va a borrar. */
+		if (actual == null) {
+			return null;
+		}
+
+		/** Caso donde no tiene hijos. */
+	    if(actual.left == null && actual.rigth == null) {
+			aux = actual.element;
+			if (actual.parent.left == actual){ 
+				actual.parent.left = null;
+			} else{
+				actual.parent.rigth = null;
+			}
+			return aux;
+		}
+
+		/** Caso donde tiene sólo un hijo */
+		if (actual.left != null || actual.rigth != null) {
+			aux = actual.element;
+
+			if (actual.left != null) { 
+
+				if (actual.parent.left == actual) 
+					actual.parent.left = actual.left;
+				else
+					actual.parent.rigth = actual.left;
+
+			} else {
+
+				if (actual.parent.left == actual) 
+					actual.parent.left = actual.left;
+				else 
+					actual.parent.rigth = actual.left;
+			}
+			return aux;
+		}
     }
+
+
 
 
 	/**

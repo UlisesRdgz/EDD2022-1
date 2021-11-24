@@ -13,6 +13,10 @@ public class Main {
         tree.insert("G", 0);
 
         tree.preorden();
+        System.out.println("");
+        tree.inorden();
+        System.out.println("");
+        tree.postorden();
 
      }
 }

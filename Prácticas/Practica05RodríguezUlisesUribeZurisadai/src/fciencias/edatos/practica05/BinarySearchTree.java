@@ -126,12 +126,40 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 
     @Override
     public void inorden() {
-        
+        inorden(root);
+    }
+
+	public void inorden(BinaryNode actual){
+
+		if (actual == null)
+			return;
+
+        if (actual.left != null)
+            inorden(actual.left);
+
+		System.out.println(actual.element);
+
+		if (actual.rigth != null)
+            inorden(actual.rigth);
     }
 
     @Override
     public void postorden() {
-        
+        postorden(root);
+    }
+
+	public void postorden(BinaryNode actual){
+
+		if (actual == null)
+			return;
+
+        if (actual.left != null)
+            postorden(actual.left);
+
+		if (actual.rigth != null)
+            postorden(actual.rigth);
+
+		System.out.println(actual.element);
     }
 
     @Override

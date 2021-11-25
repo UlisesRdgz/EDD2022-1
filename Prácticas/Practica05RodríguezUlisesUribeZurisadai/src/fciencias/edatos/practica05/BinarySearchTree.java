@@ -47,7 +47,12 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 
 	/** Root */
 	private BinaryNode root;
-
+	
+	/**
+	* Recupera el objeto con clave k.
+	* @param k la clave a buscar.
+	* @return el elemento con clave k o null si no existe.
+	*/
 	@Override
 	public T retrieve(K k){
 		BinaryNode node = retrieve(root, k);
@@ -56,6 +61,12 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		return node.element;
 	}
 
+	/**
+	 * Método auxiliar de retrieve.
+	 * @param actual nodo actual.
+	 * @param k la clave a buscar.
+	 * @return el elemento.
+	 */
 	private BinaryNode retrieve(BinaryNode actual, K k){
 		// No se encuentra el elemento
 		if(actual == null)
@@ -87,6 +98,12 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
         insert(root, e, k);
 	}
 	
+	/**
+	 * Método auxiliar de insert.
+	 * @param actual nodo actual.
+	 * @param e elemento a ingresar.
+	 * @param k la clave del elemento a ingresar
+	 */
 	private void insert(BinaryNode actual, T e, K k){
 
         if(k.compareTo(actual.key) < 0){ // Verificamos en la izquierda
@@ -174,9 +191,10 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
     }
 
 	/**
-	 * Cambia de posición dos elementos entre sí.
-	 * @param a el índice del primer elemento a cambiar.
-	 * @param b el índice del segundo elemento a cambiar.
+	 * Método auxiliar que cambia la posición del primer 
+	 * elemento con el segundo.
+	 * @param a nodo a cambiar.
+	 * @param b nodo con el que se hace el cambio.
 	 */
 	private void swap(BinaryNode a, BinaryNode b){
 		a.element = b.element;
@@ -220,19 +238,24 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
     }
 
 	/** 
-	* Recorre el árbol en forma de Preorden.
+	* Recorre el árbol en Preorden.
 	*/
     @Override
     public void preorden() {
         preorden(root);
     }
 
+	/**
+	 * Método auxiliar de preorden.
+	 * @param actual nodo que se irá recorriendo.
+	 */
     public void preorden(BinaryNode actual){
 
 		if (actual == null)
 			return;
 
-        System.out.println(actual.element);
+        System.out.println("Elemento: " + actual.element +
+						   "\tClave: " + actual.key);
 
         if (actual.left != null)
             preorden(actual.left);
@@ -242,13 +265,17 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
     }
 
 	/** 
-	* Recorre el árbol en forma de Inorden. 
+	* Recorre el árbol en Inorden. 
 	*/
     @Override
     public void inorden() {
         inorden(root);
     }
 
+	/**
+	 * Método auxiliar de inorden.
+	 * @param actual nodo que se irá recorriendo.
+	 */
 	public void inorden(BinaryNode actual){
 
 		if (actual == null)
@@ -257,20 +284,25 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
         if (actual.left != null)
             inorden(actual.left);
 
-		System.out.println(actual.element);
+		System.out.println("Elemento: " + actual.element +
+						   "\tClave: " + actual.key);
 
 		if (actual.rigth != null)
             inorden(actual.rigth);
     }
 
 	/** 
-	* Recorre el árbol en forma de Postorden.
+	* Recorre el árbol en Postorden.
 	*/
     @Override
     public void postorden() {
         postorden(root);
     }
 
+	/**
+	 * Método auxiliar de postorden.
+	 * @param actual nodo que se irá recorriendo.
+	 */
 	public void postorden(BinaryNode actual){
 
 		if (actual == null)
@@ -282,7 +314,8 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		if (actual.rigth != null)
             postorden(actual.rigth);
 
-		System.out.println(actual.element);
+		System.out.println("Elemento: " + actual.element +
+						   "\tClave: " + actual.key);
     }
 
 	/**
@@ -325,9 +358,9 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 						if (tree.isEmpty()) {
 							System.out.println("\nEl árbol está vacío.");
 						}else {
-							System.out.println("Clave del elemento: ");
+							System.out.println("\nClave del elemento: ");
 							k = Integer.parseInt(sc.nextLine());
-							System.out.println("El elemento con clave " + k + " es: " + tree.retrieve(k));
+							System.out.println("\nEl elemento con clave " + k + " es: " + tree.retrieve(k));
 						}
 						break;
 				
@@ -358,7 +391,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 						} else {							
 							System.out.println("\nColoca la clave del elemento que deseas eliminar: ");
 							k = Integer.parseInt(sc.nextLine());
-							System.out.println("\nEliminaste el elemento "+ k + " con la clave "+ tree.delete(k));
+							System.out.println("\nEliminaste el elemento "+ tree.delete(k) + " con la clave "+ k);
 
 						}break;
 
@@ -405,7 +438,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 										if (tree.isEmpty()) {
 											System.out.println("El árbol está vacío.");
 										} else {
-											System.out.println("\nPreorden del árbol");
+											System.out.println("\nPreorden del árbol\n");
 											tree.preorden();
 											
 										}break;
@@ -457,4 +490,3 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		while (respuesta != "8");
 	}	
 }
-

@@ -1,5 +1,7 @@
 package fciencias.edatos.practica05;
 
+import java.util.Scanner;
+
 public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySearchTree<K, T>	{
 	
 	/**
@@ -128,6 +130,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 			}
 			return aux;
 		}
+		return aux;
     }
 
 
@@ -229,6 +232,167 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
         return false;
     }
 
+	public static void main(String[] args) {
+		TDABinarySearchTree<Integer, String> tree = new BinarySearchTree<>();
+		Scanner sc = new Scanner(System.in);
+		String respuesta= " ", respuesta1 = " ";
 
+				System.out.println("\n     Binary Search tree");
+		do {
+			try {
+				System.out.println("----------------------------\n" +
+								"           Menú        \n" +
+                                " 1)  Obtener elemento \n" +
+                                " 2)  Insertar elemento \n" +
+                                " 3)  Eliminar elemento \n" +
+                                " 4)  Find Min \n" +
+                                " 5)  Find Max \n" +
+                                " 6)  Comprobar si es vacío\n" +
+                                " 7)  Recorrer el árbol \n" +
+                                " 8)  Salir");
+                respuesta = sc.nextLine();
+
+				switch (respuesta) {
+					case "1": // retrieve -- obtener elemento
+						
+						int k; // Clave.
+						String ele; // Elemento.
+
+						if (tree.isEmpty()) {
+							System.out.println("El árbol está vacío.");
+						}else {
+							System.out.println("Clave del elemento: ");
+							k = Integer.parseInt(sc.nextLine());
+							System.out.println("El elemento con clave " + k + " es: " + tree.retrieve(k));
+						}
+						break;
+				
+					case "2": // Instertar nodo
+						System.out.println("Recuerda que la clave = número");
+
+						do {
+							try {
+								
+								System.out.println("\nEscribe el elemento que deseas agregar: ");
+								ele = sc.nextLine();
+								System.out.println("Escribe la clave del elemento: ");
+								k = Integer.parseInt(sc.nextLine());
+								tree.insert(ele, k);
+								System.out.println("\nSe agregó correctamente.");
+								break;
+							
+							} catch (Exception e) {
+								System.out.println("\nOpción inválida.");
+							}
+						} while (true);
+						break;
+					
+					case "3": // Elimina Nodo
+
+						if (tree.isEmpty()) {
+							System.out.println("La lista está vacía.");
+							break;
+						} else {							
+							System.out.println("\nColoca la clave del elemento que deseas eliminar: ");
+							k = Integer.parseInt(sc.nextLine());
+							System.out.println("Eliminaste el elemento "+ k + " con la clave "+ tree.delete(k));
+							
+						}break;
+
+					case "4": // Encontrar el elemento mínimo
+					   
+						if (tree.isEmpty()) {
+							System.out.println("El árbol está vacío.");
+						}else {
+							System.out.println("El elemento con clave mínima en el árbol es: "+ tree.findMin());
+						}
+						break;
+
+					case "5": // Encontrar el elemento máximo
+						
+						if (tree.isEmpty()) {
+							System.out.println("El árbol está vacío.");
+						}else {
+							System.out.println("El elemento con clave máxima en el árbol es: "+ tree.findMax());
+						}
+						break;
+
+					case "6": // Comprobar si es vacío
+						
+						if(tree.isEmpty()){
+							System.out.println("\nEl árbol está vacío.");
+							break;						
+						}else{
+							System.out.println("\nEl árbol no está vacío.");
+							break;
+						}
+
+					case "7":
+					    	try {
+								System.out.println("       RECORRIDOS      ");
+								System.out.println(" a) Preorden     ");
+								System.out.println(" b) Inorden     ");
+								System.out.println(" c) Posorden     ");
+
+								respuesta1 = sc.nextLine();
+
+								switch (respuesta1) {
+									case "a":
+
+										if (tree.isEmpty()) {
+											System.out.println("El árbol está vacío.");
+										} else {
+											System.out.println("\nPreorden del árbol");
+											tree.preorden();
+											
+										}break;
+										
+
+									case "b":	
+
+										if (tree.isEmpty()) {
+											System.out.println("El árbol está vacío.");
+										} else {
+											System.out.println("\nInorden del árbol");
+											tree.inorden();
+											
+										}break;
+								
+									case "c":
+										
+										if (tree.isEmpty()) {
+											System.out.println("El árbol está vacío.");
+										} else {
+											System.out.println("\nPosorden del árbol");
+											tree.postorden();
+											
+										}break;
+
+									default:
+									    System.out.println("\nError: Opción inválida.\nIngresa una de las opciones.");
+										break;
+								}
+
+							} catch (Exception e) {
+								System.out.println("Error");
+								sc.nextLine();
+							}
+							break;
+						
+					case "8":
+						System.out.println("\nHasta la próximaa! :)");
+						return;
+
+					default:
+						System.out.println("\nError: Opción inválida.\nIngresa una de las opciones.");
+						break;
+				}
+				
+
+			} catch (Exception e) {
+                System.out.println("\nError: Vuelvelo a intentar\n");
+			}	
+		} while (respuesta != "8");
+	}	
 }
 

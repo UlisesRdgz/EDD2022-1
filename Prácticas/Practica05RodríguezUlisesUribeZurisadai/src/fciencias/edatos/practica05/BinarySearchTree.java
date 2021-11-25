@@ -2,6 +2,14 @@ package fciencias.edatos.practica05;
 
 import java.util.Scanner;
 
+/**
+* Define las operaciones sobre un árbol
+* binario de búsqueda.
+* @author Ulises Rodríguez García
+* @author Zurisadai Uribe García
+* @version 24 Noviembre 2021.
+* @since Estructuras de Datos 2022-1. Práctica 05.
+*/
 public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySearchTree<K, T>	{
 	
 	/**
@@ -65,6 +73,11 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		}
 	}
 
+	/**
+	* Inserta un nuevo elemento al árbol.
+	* @param e el elemento a ingresar.
+	* @param k la clave del elemento a ingresar.
+	*/
     @Override
 	public void insert(T e, K k){
         if (isEmpty()){
@@ -90,16 +103,15 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		}
 	}
 		
-	// Cuando solo tiene un hijo
-	// Swap con el hijo, ya sea derecho o izquierdo
-	// Borramos al hijo con el que se hizo swap. Podemos hacer null a ambos hijos
-
-	// Cuando tiene dos hijos
-		// Buscamos al maximo de los mínimos
-		// hacemos un swap actual con el maximo de los mínimos
-		// eliminar el nodo con el que se hizo swap
+	/**
+	* Elimina el nodo con clave k del árbol.
+	* @param k la clave que pertene al nodo a eliminar.
+	* @return el elemento almacenado en el nodo a eliminar,
+	* null si el nodo con clave k no existe.
+	*/
     @Override
     public T delete(K k) {
+		/** Caso donde el árbol esté vacío. */
 		if (isEmpty()) 
 			return null;
 
@@ -146,7 +158,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 			return aux;			
 
 		
-		/** Cuando tiene solo un hijo */
+		/** Caso donde tiene solo un hijo */
 		} else {
 
 			if (actual.left != null){
@@ -161,6 +173,11 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		}
     }
 
+	/**
+	 * Cambia de posición dos elementos entre sí.
+	 * @param a el índice del primer elemento a cambiar.
+	 * @param b el índice del segundo elemento a cambiar.
+	 */
 	private void swap(BinaryNode a, BinaryNode b){
 		a.element = b.element;
 		a.key = b.key;
@@ -185,7 +202,10 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 	
     }
 			
-
+	/**
+	* Encuentra la clave k con valor o peso máximo del árbol.
+	* @return el elemento con llave de peso máximo.
+	*/
     @Override
     public T findMax() {
         if (isEmpty())
@@ -199,7 +219,9 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		return actual.element;
     }
 
-	
+	/** 
+	* Recorre el árbol en forma de Preorden.
+	*/
     @Override
     public void preorden() {
         preorden(root);
@@ -219,6 +241,9 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
             preorden(actual.rigth);
     }
 
+	/** 
+	* Recorre el árbol en forma de Inorden. 
+	*/
     @Override
     public void inorden() {
         inorden(root);
@@ -238,6 +263,9 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
             inorden(actual.rigth);
     }
 
+	/** 
+	* Recorre el árbol en forma de Postorden.
+	*/
     @Override
     public void postorden() {
         postorden(root);
@@ -257,6 +285,10 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		System.out.println(actual.element);
     }
 
+	/**
+	* Verifica si el árbol es vacío.
+	* @return true si el árbol es vacío, false en otro caso.
+	*/
     @Override
     public boolean isEmpty() {
         if (root == null)
@@ -269,10 +301,10 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		Scanner sc = new Scanner(System.in);
 		String respuesta= " ", respuesta1 = " ";
 
-				System.out.println("\n     Binary Search tree");
+				System.out.println("\n      BINARY SEARCH TREE ");
 		do {
 			try {
-				System.out.println("----------------------------\n" +
+				System.out.println("\n----------------------------\n" +
 								"           Menú        \n" +
                                 " 1)  Obtener elemento \n" +
                                 " 2)  Insertar elemento \n" +
@@ -291,7 +323,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 						String ele; // Elemento.
 
 						if (tree.isEmpty()) {
-							System.out.println("El árbol está vacío.");
+							System.out.println("\nEl árbol está vacío.");
 						}else {
 							System.out.println("Clave del elemento: ");
 							k = Integer.parseInt(sc.nextLine());
@@ -300,14 +332,13 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 						break;
 				
 					case "2": // Instertar nodo
-						System.out.println("Recuerda que la clave = número");
 
 						do {
 							try {
 								
-								System.out.println("\nEscribe el elemento que deseas agregar: ");
+								System.out.println("\nEscribe el elemento que deseas agregar : ");
 								ele = sc.nextLine();
-								System.out.println("Escribe la clave del elemento: ");
+								System.out.println("Escribe la clave del elemento (número): ");
 								k = Integer.parseInt(sc.nextLine());
 								tree.insert(ele, k);
 								System.out.println("\nSe agregó correctamente.");
@@ -322,30 +353,30 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 					case "3": // Elimina Nodo
 
 						if (tree.isEmpty()) {
-							System.out.println("La lista está vacía.");
+							System.out.println("\nEl árbol está vacío.");
 							break;
 						} else {							
 							System.out.println("\nColoca la clave del elemento que deseas eliminar: ");
 							k = Integer.parseInt(sc.nextLine());
-							System.out.println("Eliminaste el elemento "+ k + " con la clave "+ tree.delete(k));
-							
+							System.out.println("\nEliminaste el elemento "+ k + " con la clave "+ tree.delete(k));
+
 						}break;
 
 					case "4": // Encontrar el elemento mínimo
 					   
 						if (tree.isEmpty()) {
-							System.out.println("El árbol está vacío.");
+							System.out.println("\nEl árbol está vacío.");
 						}else {
-							System.out.println("El elemento con clave mínima en el árbol es: "+ tree.findMin());
+							System.out.println("\nEl elemento con clave mínima en el árbol es: "+ tree.findMin());
 						}
 						break;
 
 					case "5": // Encontrar el elemento máximo
 						
 						if (tree.isEmpty()) {
-							System.out.println("El árbol está vacío.");
+							System.out.println("\nEl árbol está vacío.");
 						}else {
-							System.out.println("El elemento con clave máxima en el árbol es: "+ tree.findMax());
+							System.out.println("\nEl elemento con clave máxima en el árbol es: "+ tree.findMax());
 						}
 						break;
 
@@ -361,10 +392,10 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 
 					case "7":
 					    	try {
-								System.out.println("       RECORRIDOS      ");
+								System.out.println("\n        RECORRIDOS      ");
 								System.out.println(" a) Preorden     ");
 								System.out.println(" b) Inorden     ");
-								System.out.println(" c) Posorden     ");
+								System.out.println(" c) Postorden     ");
 
 								respuesta1 = sc.nextLine();
 
@@ -395,7 +426,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 										if (tree.isEmpty()) {
 											System.out.println("El árbol está vacío.");
 										} else {
-											System.out.println("\nPosorden del árbol");
+											System.out.println("\nPostorden del árbol");
 											tree.postorden();
 											
 										}break;
@@ -406,7 +437,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 								}
 
 							} catch (Exception e) {
-								System.out.println("Error");
+								System.out.println("\nError: Opción inválida.");
 								sc.nextLine();
 							}
 							break;
@@ -419,12 +450,11 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 						System.out.println("\nError: Opción inválida.\nIngresa una de las opciones.");
 						break;
 				}
-				
-
 			} catch (Exception e) {
                 System.out.println("\nError: Vuelvelo a intentar\n");
 			}	
-		} while (respuesta != "8");
+		} 
+		while (respuesta != "8");
 	}	
 }
 

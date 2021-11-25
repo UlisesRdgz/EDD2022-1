@@ -82,58 +82,89 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 			else
                 insert(actual.left, e, k);
 		} else { // Verificar en la derecha
-            if (actual.rigth != null)
-                insert(actual.rigth, e, k);
-			else
-				actual.rigth = new BinaryNode(k, e, actual);
+            if (actual.rigth == null)
+			actual.rigth = new BinaryNode(k, e, actual);
+					else
+				insert(actual.rigth, e, k);
+				
 		}
 	}
+		
+	// Cuando solo tiene un hijo
+	// Swap con el hijo, ya sea derecho o izquierdo
+	// Borramos al hijo con el que se hizo swap. Podemos hacer null a ambos hijos
 
+	// Cuando tiene dos hijos
+		// Buscamos al maximo de los mínimos
+		// hacemos un swap actual con el maximo de los mínimos
+		// eliminar el nodo con el que se hizo swap
     @Override
     public T delete(K k) {
-		BinaryNode actual = retrieve(root, k);
-		T aux = null;
-
-		/**  Caso donde no existe el elemento que se va a borrar. */
-		if (actual == null) {
+		if (isEmpty()) 
 			return null;
+
+		BinaryNode actual = retrieve(root, k);
+		T aux = actual.element;
+
+		/** Caso donde solo hay un elemento. */
+		if (actual == root) {
+			root = null;
+			return aux;
 		}
 
 		/** Caso donde no tiene hijos. */
 	    if(actual.left == null && actual.rigth == null) {
-			aux = actual.element;
-			if (actual.parent.left == actual){ 
+			if (actual.parent.left == actual) 
 				actual.parent.left = null;
-			} else{
+			else
 				actual.parent.rigth = null;
-			}
+	
 			return aux;
 		}
 
-		/** Caso donde tiene sólo un hijo */
-		if (actual.left != null || actual.rigth != null) {
-			aux = actual.element;
+		/** Caso donde tiene dos hijos */
+		if (actual.left != null && actual.rigth != null) {
+			BinaryNode maxNode = actual;
 
-			if (actual.left != null) { 
+			/** Buscamos el máximo de los mínimos */
+			do {
+				maxNode = maxNode.left;
+			} while (maxNode.left != null && maxNode.rigth == null);
 
-				if (actual.parent.left == actual) 
-					actual.parent.left = actual.left;
-				else
-					actual.parent.rigth = actual.left;
+			while (maxNode.rigth != null) 
+				maxNode = maxNode.rigth;
 
-			} else {
+			/** Actualizamos las referencias */
+			swap(actual, maxNode);
 
-				if (actual.parent.left == actual) 
-					actual.parent.left = actual.left;
-				else 
-					actual.parent.rigth = actual.left;
+			if (maxNode.left != null){
+				swap(maxNode, maxNode.left);
+				maxNode.left = null;
+			} else 
+				maxNode.parent.rigth = null;
+
+			return aux;			
+
+		
+		/** Cuando tiene solo un hijo */
+		} else {
+
+			if (actual.left != null){
+				swap(actual, actual.left);
+				actual.left = null;
+			}else {
+				swap(actual, actual.rigth);
+				actual.rigth = null;
 			}
+
 			return aux;
 		}
-		return aux;
     }
 
-
+	private void swap(BinaryNode a, BinaryNode b){
+		a.element = b.element;
+		a.key = b.key;
+	}
 
 
 	/**
@@ -142,14 +173,14 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 	*/
     @Override
     public T findMin() {
-		if (isEmpty()) {
+		if (isEmpty()) 
 			return null;
-		}
+	
 		BinaryNode actual = root;
 		
-		while (actual.left != null) {
+		while (actual.left != null) 
 			actual = actual.left;
-		}
+
 		return actual.element;
 	
     }
@@ -159,6 +190,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
     public T findMax() {
         if (isEmpty())
 			return null;
+			
 		BinaryNode actual = root;
 
         while (actual.rigth != null) 

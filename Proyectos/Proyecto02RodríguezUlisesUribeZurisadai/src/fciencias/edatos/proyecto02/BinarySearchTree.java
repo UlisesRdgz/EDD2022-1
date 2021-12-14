@@ -113,8 +113,8 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
                 insert(actual.left, e, k);
 		} else { // Verificar en la derecha
             if (actual.rigth == null)
-			actual.rigth = new BinaryNode(k, e, actual);
-					else
+				actual.rigth = new BinaryNode(k, e, actual);
+			else
 				insert(actual.rigth, e, k);
 				
 		}
@@ -329,14 +329,52 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
         return false;
     }
 
-	/** */
-	public boolean isLeaf(K k){
-		BinaryNode actual = retrieve(root, k);
+	/** Nodo que va a estar moviendose */
+	private BinaryNode move;
 
-		if (actual.left == null && actual.rigth == null) 
+	public T inicio(){
+		move = root;
+		return move.element;
+	}
+
+
+	/** Cambiar al nodo izquierdo */
+	public T moveLeft(){
+		
+		move = move.left;
+		return move.element;
+	}
+
+	/** Cambiar al nodo derecho */
+	public T moveRigth(){
+		
+		move = move.rigth;
+		return move.element;
+	}
+
+	/** */
+	public boolean isLeaf(){
+
+		if (move.left == null && move.rigth == null) 
 			return true;
 			
 		return false;
 	}
 
+	/** */
+	public T change(T e){
+		T aux = move.element;
+		move.element = e;	
+		return aux;
+	}
+
+	/** Agrega al nodo izquierdo */
+	public void addLeft(T e){ 
+        move.left = new BinaryNode(null, e, move);
+	}
+
+	/** Agrega al nodo derecho */
+	public void addRigth(T e){
+		move.rigth = new BinaryNode(null, e, move);
+	}
 }

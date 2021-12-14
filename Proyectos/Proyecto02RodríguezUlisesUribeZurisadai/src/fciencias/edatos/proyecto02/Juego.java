@@ -41,35 +41,22 @@ public class Juego {
             BinarySearchTree<Integer, String> piciosa = (BinarySearchTree<Integer, String>) lee.readObject();
             lee.close();            
 
-            System.out.println(piciosa.retrieve(inicial));
+            System.out.println(piciosa.inicio());
             
-            while (contador < 20 && !piciosa.isLeaf(posicion)) {
+            do {
                 System.out.println("S/N");
-                
                 respuesta = sc.nextLine();
 
                 if (respuesta.equals("S")) {
                     System.out.println("");
-
-                    if (posicion < inicial)
-                        posicion = posicion/2;
-                    else
-                        posicion -= (posicion-inicial)/2;
-                    
-                    System.out.println(posicion);
-                    System.out.println(piciosa.retrieve(posicion));
+                    System.out.println(piciosa.moveLeft());
 
                 } else {
                     System.out.println("");
-                    if (posicion < inicial) 
-                        posicion = (inicial + posicion)/2;
-                    else 
-                        posicion = inicial + (posicion/2);
-                    
-                    System.out.println(posicion);
-                    System.out.println(piciosa.retrieve(posicion));
+                    System.out.println(piciosa.moveRigth());
                 }
-            }
+
+            } while (contador < 20 && !piciosa.isLeaf());
 
             System.out.println("S/N");
             respuesta = sc.nextLine();
@@ -83,22 +70,14 @@ public class Juego {
                 System.out.println("Escribe el **** en el que pensaste");
                 respuesta = sc.nextLine();
 
-                System.out.println(posicion);
-                String aux = piciosa.delete(posicion);
-                piciosa.insert(pregunta, posicion);
+                String aux = piciosa.change(pregunta);
+                piciosa.addLeft(respuesta);
+                piciosa.addRigth(aux);
 
-                int posAux = posicion/2;
-                System.out.println(posAux);
-                piciosa.insert(respuesta, posAux);
-
-                posicion += (posicion/2);
-                System.out.println(posicion);
-                piciosa.insert(aux, posicion);
-
-               ObjectOutputStream escribe2 = new ObjectOutputStream(new FileOutputStream("Preguntas/bebe.txt"));
-               escribe2.writeObject(piciosa);
-               escribe2.flush();
-               escribe2.close();
+                ObjectOutputStream escribe2 = new ObjectOutputStream(new FileOutputStream("Preguntas/bebe.txt"));
+                escribe2.writeObject(piciosa);
+                escribe2.flush();
+                escribe2.close();
             }
     
         } catch (Exception e) {

@@ -1,4 +1,4 @@
-package fciencias.edatos.practica05;
+package fciencias.edatos.proyecto02;
 
 /**
 * Interfaz que define las operaciones sobre un arbol

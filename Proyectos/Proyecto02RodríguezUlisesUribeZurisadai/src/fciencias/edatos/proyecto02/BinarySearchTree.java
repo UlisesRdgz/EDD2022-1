@@ -1,7 +1,6 @@
 package fciencias.edatos.proyecto02;
 
 import java.io.Serializable;
-import java.util.Scanner;
 
 /**
 * Define las operaciones sobre un árbol

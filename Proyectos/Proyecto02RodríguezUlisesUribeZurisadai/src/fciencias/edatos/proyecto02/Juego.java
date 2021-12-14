@@ -10,7 +10,7 @@ public class Juego {
     
     public static void main(String[] args) {
 
-        int contador = 0, posicion = 10;
+        int contador = 0, posicion = 10, inicial = 10;
         String respuesta = "";
         Scanner sc = new Scanner(System.in);
 
@@ -24,11 +24,11 @@ public class Juego {
 
             // BinarySearchTree<Integer, String> q20 = new BinarySearchTree<>();
 
-            // q20.insert("¿Piciosa?", 10);
-            // q20.insert("¿Eres tu?", 5);
-            // q20.insert("¿Eres mi bebe?", 2);
-            // q20.insert("¿Quien eres?", 15);
-            // q20.insert("¿Eres Impostora?", 7);
+            // q20.insert("¿Sabe nadar?", 10);
+            // q20.insert("¿Es un pez?", 5);
+            // q20.insert("¿Ladra?", 15);
+            // q20.insert("¿Es un perro?", 12);
+            // q20.insert("¿Es un gato?", 17);
 
             // FileOutputStream file = new FileOutputStream("Preguntas/bebe.txt");
             // ObjectOutputStream escribe = new ObjectOutputStream(file);
@@ -41,7 +41,7 @@ public class Juego {
             BinarySearchTree<Integer, String> piciosa = (BinarySearchTree<Integer, String>) lee.readObject();
             lee.close();            
 
-            System.out.println(piciosa.retrieve(posicion));
+            System.out.println(piciosa.retrieve(inicial));
             
             while (contador < 20 && !piciosa.isLeaf(posicion)) {
                 System.out.println("S/N");
@@ -50,17 +50,32 @@ public class Juego {
 
                 if (respuesta.equals("S")) {
                     System.out.println("");
-                    posicion = posicion/2;
+
+                    if (posicion < inicial)
+                        posicion = posicion/2;
+                    else
+                        posicion -= (posicion-inicial)/2;
+                    
+                    System.out.println(posicion);
                     System.out.println(piciosa.retrieve(posicion));
+
                 } else {
                     System.out.println("");
-                    posicion += posicion/2;
+                    if (posicion < inicial) 
+                        posicion = (inicial + posicion)/2;
+                    else 
+                        posicion = inicial + (posicion/2);
+                    
+                    System.out.println(posicion);
                     System.out.println(piciosa.retrieve(posicion));
                 }
             }
 
+            System.out.println("S/N");
+            respuesta = sc.nextLine();
+
             if (contador < 20 && respuesta.equals("S")) 
-                System.out.println("Owww mi bebe");
+                System.out.println("\nHaz ganado");
 
             else {
                 System.out.println("Escribe una nueva pregunta para identificar lo que piensas");
@@ -68,13 +83,16 @@ public class Juego {
                 System.out.println("Escribe el **** en el que pensaste");
                 respuesta = sc.nextLine();
 
+                System.out.println(posicion);
                 String aux = piciosa.delete(posicion);
                 piciosa.insert(pregunta, posicion);
 
                 int posAux = posicion/2;
+                System.out.println(posAux);
                 piciosa.insert(respuesta, posAux);
 
-                posicion += posicion/2;
+                posicion += (posicion/2);
+                System.out.println(posicion);
                 piciosa.insert(aux, posicion);
 
                ObjectOutputStream escribe2 = new ObjectOutputStream(new FileOutputStream("Preguntas/bebe.txt"));

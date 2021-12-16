@@ -337,6 +337,11 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		return move.element;
 	}
 
+	/** */
+	public T actual(){
+		return move.element;
+	}
+
 
 	/** Cambiar al nodo izquierdo */
 	public T moveLeft(){
@@ -352,7 +357,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		return move.element;
 	}
 
-	/** */
+	/** Verifica si es una hoja */
 	public boolean isLeaf(){
 
 		if (move.left == null && move.rigth == null) 
@@ -361,7 +366,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		return false;
 	}
 
-	/** */
+	/** Sobreescribir */
 	public T change(T e){
 		T aux = move.element;
 		move.element = e;	

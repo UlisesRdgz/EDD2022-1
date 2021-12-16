@@ -43,55 +43,48 @@ public class Juego {
             BinarySearchTree<Integer, Question> piciosa = (BinarySearchTree<Integer, Question>) lee.readObject();
             lee.close();            
 
-            System.out.println(piciosa.inicio().getPregunta() + " " + piciosa.actual().getDate() + " " + piciosa.actual().getTime());
-            
-            do {
-                contador++;
-                System.out.println(contador);
-                System.out.println("S/N");
-                respuesta = sc.nextLine();
+            System.out.println(piciosa.inicio().getPregunta());
+            contador++;
 
-                if (respuesta.equals("S")) {
-                    System.out.println("");
-                    System.out.println(piciosa.moveLeft().getPregunta() + " " + piciosa.actual().getDate() + " " + piciosa.actual().getTime());
-
-                } else {
-                    System.out.println("");
-                    System.out.println(piciosa.moveRigth().getPregunta() + " " + piciosa.actual().getDate() + " " + piciosa.actual().getTime());
-                }
-
-            } while (contador < 20 && !piciosa.isLeaf());
-
-            if (contador < 20) {
-                
+            while (contador < 20 && !piciosa.isLeaf()) {
                 System.out.println("S/N");
                 respuesta = sc.nextLine();
 
                 if (respuesta.equals("S")) 
-                    System.out.println("\nHaz ganado");
+                    System.out.println("\n" + piciosa.moveLeft().getPregunta());
+    
+                else 
+                    System.out.println("\n" + piciosa.moveRigth().getPregunta());
 
-                else {
-                    System.out.println("Escribe una nueva pregunta para identificar lo que piensas");
-                    String pregunta = sc.nextLine();
-                    System.out.println("Escribe el **** en el que pensaste");
-                    respuesta = sc.nextLine();
+                contador++;
+            } 
+                
+            System.out.println("S/N");
+            respuesta = sc.nextLine();
 
-                    Question pregunta1 = new Question(pregunta, LocalDate.now(), LocalTime.now(), false);
-                    Question pregunta2 = new Question(respuesta, LocalDate.now(), LocalTime.now(), true);
-                    Question aux = piciosa.change(pregunta1);
-                    piciosa.addLeft(pregunta2);
-                    piciosa.addRigth(aux);
+            if (respuesta.equals("S")) 
+                System.out.println("\nHaz ganado");
 
-                    ObjectOutputStream escribe2 = new ObjectOutputStream(new FileOutputStream("Preguntas/bebe.txt"));
-                    escribe2.writeObject(piciosa);
-                    escribe2.flush();
-                    escribe2.close();
-                }
+            else if (respuesta.equals("N") && contador < 20){
+                System.out.println("Escribe una nueva pregunta para identificar lo que piensas");
+                String pregunta = sc.nextLine();
+                System.out.println("Escribe el **** en el que pensaste");
+                respuesta = sc.nextLine();
+
+                Question pregunta1 = new Question(pregunta, LocalDate.now(), LocalTime.now(), false);
+                Question pregunta2 = new Question(respuesta, LocalDate.now(), LocalTime.now(), true);
+                Question aux = piciosa.change(pregunta1);
+                piciosa.addLeft(pregunta2);
+                piciosa.addRigth(aux);
+
+                ObjectOutputStream escribe2 = new ObjectOutputStream(new FileOutputStream("Preguntas/bebe.txt"));
+                escribe2.writeObject(piciosa);
+                escribe2.flush();
+                escribe2.close();
+                
             } else
                 System.out.println("Perdiste");
            
-           
-    
         } catch (Exception e) {
             System.out.println(e);
         }

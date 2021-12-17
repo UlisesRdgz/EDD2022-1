@@ -45,9 +45,12 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		}
 	}
 
-	/** Root */
+	/** Raíz */
 	private BinaryNode root;
-	
+
+	/** Tamaño del árbol */
+	private int size;
+
 	/**
 	* Recupera el objeto con clave k.
 	* @param k la clave a buscar.
@@ -93,9 +96,11 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 	public void insert(T e, K k){
         if (isEmpty()){
         	root = new BinaryNode(k, e, null);
+			size++;
 			return;
 		}
         insert(root, e, k);
+		size++;
 	}
 	
 	/**
@@ -138,6 +143,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		/** Caso donde solo hay un elemento. */
 		if (actual == root) {
 			root = null;
+			size--;
 			return aux;
 		}
 
@@ -147,7 +153,8 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 				actual.parent.left = null;
 			else
 				actual.parent.rigth = null;
-	
+				
+			size--;
 			return aux;
 		}
 
@@ -172,6 +179,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 			} else 
 				maxNode.parent.rigth = null;
 
+			size--;
 			return aux;			
 
 		
@@ -186,6 +194,7 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 				actual.rigth = null;
 			}
 
+			size--;
 			return aux;
 		}
     }
@@ -357,6 +366,25 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		return move.element;
 	}
 
+	/** Cambiar al nodo derecho */
+	public void moveParent(){
+		move = move.parent;
+	}
+
+	/** Cambiar al nodo izquierdo */
+	public T getLeft(){
+		if (move.left == null) 
+			return null;
+		return move.left.element;
+	}
+
+	/** Cambiar al nodo derecho */
+	public T getRigth(){
+		if (move.rigth == null) 
+			return null;
+		return move.rigth.element;
+	}
+
 	/** Verifica si es una hoja */
 	public boolean isLeaf(){
 
@@ -376,10 +404,36 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 	/** Agrega al nodo izquierdo */
 	public void addLeft(T e){ 
         move.left = new BinaryNode(null, e, move);
+		size++;
 	}
 
 	/** Agrega al nodo derecho */
 	public void addRigth(T e){
 		move.rigth = new BinaryNode(null, e, move);
+		size++;
+	}
+
+	/** */
+	private int c;
+
+	public int sizeLeaf(){
+		c = 0;
+		sizeLeaf(root);
+		return c;
+	}
+
+	/** */
+	private void sizeLeaf(BinaryNode actual){
+		if (actual != null) {
+			if (actual.left == null && actual.rigth == null) 
+				c++;
+			sizeLeaf(actual.left);
+			sizeLeaf(actual.rigth);
+		}
+	}
+
+	/** */
+	public int sizeNode(){
+		return size - sizeLeaf();
 	}
 }

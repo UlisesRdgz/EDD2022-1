@@ -11,6 +11,7 @@ public class Question implements Serializable{
     private LocalDate date;
     private LocalTime time;
     private boolean result;
+    private boolean visited = false;
 
     public Question(String question, LocalDate date, LocalTime time, boolean result) {
         this.question = question;
@@ -34,4 +35,16 @@ public class Question implements Serializable{
     public boolean getResult(){
         return result;
     }  
+
+    public boolean isVisited(){
+        return visited;
+    } 
+
+    public void visit(){
+        this.visited = true;
+    } 
+
+    public void unVisit(){
+        this.visited = false;
+    } 
 }

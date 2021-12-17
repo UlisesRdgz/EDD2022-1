@@ -8,19 +8,20 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
-public class Juego {
-    
+public class Game {
+
     public static void main(String[] args) {
 
+        Data juego = new Data();
         int contador = 0;
         String respuesta = "";
         Scanner sc = new Scanner(System.in);
 
-        // Question zuri = new Question("¿Sabe nadar?", LocalDate.now(), LocalTime.now(), false);
-        // Question zuri1 = new Question("¿Es un pez?", LocalDate.now(), LocalTime.now(), true);
-        // Question zuri2 = new Question("¿Ladra?", LocalDate.now(), LocalTime.now(), false);
-        // Question zuri3 = new Question("¿Es un perro?", LocalDate.now(), LocalTime.now(), true);
-        // Question zuri4 = new Question("¿Es un gato?", LocalDate.now(), LocalTime.now(), true);
+        Question zuri = new Question("¿Sabe nadar?", LocalDate.now(), LocalTime.now(), false);
+        Question zuri1 = new Question("¿Es un pez?", LocalDate.now(), LocalTime.now(), true);
+        Question zuri2 = new Question("¿Ladra?", LocalDate.now(), LocalTime.now(), false);
+        Question zuri3 = new Question("¿Es un perro?", LocalDate.now(), LocalTime.now(), true);
+        Question zuri4 = new Question("¿Es un gato?", LocalDate.now(), LocalTime.now(), true);
 
         try {
 
@@ -41,7 +42,22 @@ public class Juego {
             /** Leemos el árbol del archivo */
             ObjectInputStream lee = new ObjectInputStream(new FileInputStream("Preguntas/bebe.txt"));
             BinarySearchTree<Integer, Question> piciosa = (BinarySearchTree<Integer, Question>) lee.readObject();
-            lee.close();            
+            lee.close();   
+
+            Question[] preguntas = juego.toArray(piciosa);
+            for (int i = 0; i < preguntas.length; i++) {
+                preguntas[i].unVisit();
+            }
+
+            System.out.println("\nPreguntas ordenadas alfabeticamente\n");
+            juego.preguntasAlf(piciosa, preguntas);
+            System.out.println("\nPreguntas ordenadas por fecha\n");
+            juego.preguntasFecha(piciosa, preguntas);
+
+            System.out.println("\nRespuestas ordenadas alfabeticamente\n");
+            juego.respuestasAlf(piciosa, preguntas);
+            System.out.println("\nRespuestas ordenadas por fecha\n");
+            juego.respuestasFecha(piciosa, preguntas);
 
             System.out.println(piciosa.inicio().getPregunta());
             contador++;

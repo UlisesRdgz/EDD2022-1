@@ -5,6 +5,11 @@ import java.util.Arrays;
 
 public class Data implements Serializable{
 
+    /**
+     * Método para guardar el árbol en un arreglo.
+     * @param arbol que será guardado en el arreglo.
+     * @return el arreglo con el árbol guardado.
+     */
     public Question[] toArray(BinarySearchTree<Integer, Question> arbol) {
 
         int i = 0;
@@ -32,6 +37,11 @@ public class Data implements Serializable{
         return preguntas;
     }
 
+    /**
+     * Método para imprimir las preguntas del árbol en orden alfabético.
+     * @param arbol obtener el tamaño de los nodos que no son hojas.
+     * @param preguntas el arreglo con el árbol guardado.
+     */
     public void preguntasAlf(BinarySearchTree<Integer, Question> arbol, Question[] preguntas) {
         String[] preguntasAlf = new String[arbol.sizeNode()];
         int posicion = 0;
@@ -49,6 +59,12 @@ public class Data implements Serializable{
         }
     }
 
+    /**
+     * Método para imprimir las preguntas del árbol en el orden en 
+     * que fueron agregadas.
+     * @param arbol obtener el tamaño de los nodos que no son hojas.
+     * @param preguntas el arreglo con el árbol guardado.
+     */
     public void preguntasFecha(BinarySearchTree<Integer, Question> arbol, Question[] preguntas) {
         String[] preguntasFecha = new String[arbol.sizeNode()];
         int posicion = 0;
@@ -66,6 +82,11 @@ public class Data implements Serializable{
         }
     }
 
+    /**
+     * Método para imprimir las respuetas del árbol en orden alfabético.
+     * @param arbol obtener el tamaño de los nodos que no son hojas.
+     * @param preguntas el arreglo con el árbol guardado.
+     */
     public void respuestasAlf(BinarySearchTree<Integer, Question> arbol, Question[] preguntas) {
         String[] respuestasAlf = new String[arbol.sizeLeaf()];
         int posicion = 0;
@@ -83,6 +104,12 @@ public class Data implements Serializable{
         }
     }
 
+    /**
+     * Método para imprimir las respuestas del árbol en el orden en 
+     * que fueron agregadas.
+     * @param arbol obtener el tamaño de los nodos que no son hojas.
+     * @param preguntas el arreglo con el árbol guardado.
+     */
     public void respuestasFecha(BinarySearchTree<Integer, Question> arbol, Question[] preguntas) {
         String[] respuestasFecha = new String[arbol.sizeLeaf()];
         int posicion = 0;

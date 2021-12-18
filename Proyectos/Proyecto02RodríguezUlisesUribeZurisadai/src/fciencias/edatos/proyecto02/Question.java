@@ -20,30 +20,56 @@ public class Question implements Serializable{
         this.result = result;
     }
 
+    /**
+     * Accede a la pregunta.
+     * @return la pregunta.
+     */
     public String getPregunta() {
         return question;
     }
 
+    /**
+     * Accede a la fecha.
+     * @return la fecha.
+     */
     public LocalDate getDate() {
         return date;
     }
 
+    /**
+     * Accede a la hora.
+     * @return la hora.
+     */
     public LocalTime getTime(){
         return time;
     }
 
+    /**
+     * Accede al resultado.
+     * @return el resultado.
+     */
     public boolean getResult(){
         return result;
     }  
 
+    /**
+     * Permite saber si la pregunta fue visitada.
+     * @return true si fue visitada, false en otro caso.
+     */
     public boolean isVisited(){
         return visited;
     } 
 
+    /**
+     * Visita la pregunta.
+     */
     public void visit(){
         this.visited = true;
     } 
 
+    /**
+     * Cambia el valor de la pregunta a no visitada.
+     */
     public void unVisit(){
         this.visited = false;
     } 

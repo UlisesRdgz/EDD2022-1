@@ -338,91 +338,131 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
         return false;
     }
 
-	/** Nodo que va a estar moviendose */
+	/** Nodo que recorre el árbol. */
 	private BinaryNode move;
 
+	/**
+	 * 
+	 * @return
+	 */
 	public T inicio(){
 		move = root;
 		return move.element;
 	}
 
-	/** */
+	/**
+	 * Elemento en el nodo actual.
+	 * @return el elemento actual.
+	 */
 	public T actual(){
 		return move.element;
 	}
 
 
-	/** Cambiar al nodo izquierdo */
+	/**
+	 * Mueve el nodo al nodo izquierdo.
+	 * @return el elemento del nodo.
+	 */
 	public T moveLeft(){
 		
 		move = move.left;
 		return move.element;
 	}
 
-	/** Cambiar al nodo derecho */
+	/**
+	 * Mueve el nodo al nodo derecho.
+	 * @return el elemento del nodo.
+	 */
 	public T moveRigth(){
 		
 		move = move.rigth;
 		return move.element;
 	}
 
-	/** Cambiar al nodo derecho */
+	/**
+	 * Mueve el nodo al nodo padre.
+	 */
 	public void moveParent(){
 		move = move.parent;
 	}
 
-	/** Cambiar al nodo izquierdo */
+	/**
+	 * Obtiene el elemento del nodo izquierdo.
+	 * @return el elemento del nodo izquierdo.
+	 */
 	public T getLeft(){
 		if (move.left == null) 
 			return null;
 		return move.left.element;
 	}
 
-	/** Cambiar al nodo derecho */
+	/**
+	 * Obtiene el elemento del nodo derecho.
+	 * @return el elemento del nodo derecho.
+	 */
 	public T getRigth(){
 		if (move.rigth == null) 
 			return null;
 		return move.rigth.element;
 	}
 
-	/** Verifica si es una hoja */
+	/**
+	 * Verifica si el nodo es una hoja.
+	 * @return true si es hoja, false en otro caso.
+	 */
 	public boolean isLeaf(){
-
 		if (move.left == null && move.rigth == null) 
 			return true;
 			
 		return false;
 	}
 
-	/** Sobreescribir */
+	/**
+	 * Sobreescribe el elemento del nodo.
+	 * @param e elemento con el cual se va a sobreescribir el nodo.
+	 * @return el elemento que anteriormente estaba en el nodo.
+	 */
 	public T change(T e){
 		T aux = move.element;
 		move.element = e;	
 		return aux;
 	}
 
-	/** Agrega al nodo izquierdo */
+	/**
+	 * Agrega un nuevo nodo a la izquierda.
+	 * @param e elemento del nuevo nodo.
+	 */
 	public void addLeft(T e){ 
         move.left = new BinaryNode(null, e, move);
 		size++;
 	}
 
-	/** Agrega al nodo derecho */
+	/**
+	 * Agrega un nuevo nodo a la derecha.
+	 * @param e elemento del nuevo nodo.
+	 */
 	public void addRigth(T e){
 		move.rigth = new BinaryNode(null, e, move);
 		size++;
 	}
 
-	/** */
+	/** Contador del número de hojas*/
 	private int c;
 
+	/**
+	 * Método para contar el número de hojas en un árbol.
+	 * @return el número de hojas en el árbol.
+	 */
 	public int sizeLeaf(){
 		c = 0;
 		sizeLeaf(root);
 		return c;
 	}
 
-	/** */
+	/**
+	 * Método auxiliar para contar el número de hojas.
+	 * @param actual nodo para procesar.
+	 */
 	private void sizeLeaf(BinaryNode actual){
 		if (actual != null) {
 			if (actual.left == null && actual.rigth == null) 
@@ -432,7 +472,10 @@ public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySe
 		}
 	}
 
-	/** */
+	/**
+	 * Método para contar el número de nodos que no son hojas.
+	 * @return el número de nodos que no son hojas.
+	 */
 	public int sizeNode(){
 		return size - sizeLeaf();
 	}

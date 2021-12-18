@@ -72,7 +72,7 @@ public class Data implements Serializable{
 
         for (int i = 0; i < preguntas.length; i++) {
             if (preguntas[i].getResult()){ 
-                respuestasAlf[posicion] = "Pregunta: " + preguntas[i].getPregunta();
+                respuestasAlf[posicion] = "Personaje: " + preguntas[i].getPregunta();
                 posicion++;
             }
         }
@@ -89,7 +89,7 @@ public class Data implements Serializable{
 
         for (int i = 0; i < preguntas.length; i++) {
             if (preguntas[i].getResult()){ 
-                respuestasFecha[posicion] = "Fecha: " + preguntas[i].getDate() + " Hora: " + preguntas[i].getTime() + " Pregunta: " + preguntas[i].getPregunta();
+                respuestasFecha[posicion] = "Fecha: " + preguntas[i].getDate() + " Hora: " + preguntas[i].getTime() + " Personaje: " + preguntas[i].getPregunta();
                 posicion++;
             }
         }

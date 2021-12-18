@@ -34,6 +34,56 @@ public class Game {
                     case "1": //Juego con la computadora
                         int contador = 0;
 
+                        // Question p1 = new Question("¿Es de sexo femenino?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p2 = new Question("¿Es humana?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p3 = new Question("¿Es princesa?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p4 = new Question("Blancanieves", LocalDate.now(), LocalTime.now(), true);
+                        // Question p5 = new Question("Maléfica", LocalDate.now(), LocalTime.now(), true);
+
+                        // Question p6 = new Question("¿Es animal?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p7 = new Question("Nala", LocalDate.now(), LocalTime.now(), true);
+                        // Question p8 = new Question("¿Es un juguete?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p9 = new Question("Betty", LocalDate.now(), LocalTime.now(), true);
+                        // Question p10 = new Question("Señora Potts", LocalDate.now(), LocalTime.now(), true);
+
+                        // Question p11 = new Question("¿Es humano?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p12 = new Question("¿Vive en la selva?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p13 = new Question("Tarzan", LocalDate.now(), LocalTime.now(), true);
+                        // Question p14 = new Question("FLynn Rider", LocalDate.now(), LocalTime.now(), true);
+
+                        // Question p15 = new Question("¿Es animal?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p16 = new Question("Sebastián", LocalDate.now(), LocalTime.now(), true);
+                        // Question p17 = new Question("¿Es un carro?", LocalDate.now(), LocalTime.now(), false);
+                        // Question p18 = new Question("Rayo McQueen", LocalDate.now(), LocalTime.now(), true);
+                        // Question p19 = new Question("Olaf", LocalDate.now(), LocalTime.now(), true);
+                        // BinarySearchTree<Integer, Question> q20 = new BinarySearchTree<>();
+
+                        // q20.insert(p1, 20);
+                        // q20.insert(p2, 10);
+                        // q20.insert(p3, 5);
+                        // q20.insert(p4, 2);
+                        // q20.insert(p5, 7);
+                        // q20.insert(p6, 15);
+                        // q20.insert(p7, 12);
+                        // q20.insert(p8, 18);
+                        // q20.insert(p9, 16);
+                        // q20.insert(p10, 19);
+                        // q20.insert(p11, 30);
+                        // q20.insert(p12, 25);
+                        // q20.insert(p13, 22);
+                        // q20.insert(p14, 28);
+                        // q20.insert(p15, 35);
+                        // q20.insert(p16, 32);
+                        // q20.insert(p17, 38);
+                        // q20.insert(p18, 37);
+                        // q20.insert(p19, 39);
+        
+                        // FileOutputStream file = new FileOutputStream("Preguntas/Personajes.txt");
+                        // ObjectOutputStream escribe = new ObjectOutputStream(file);
+                        // escribe.writeObject(q20);
+                        // escribe.flush();
+                        // escribe.close();
+
                         System.out.println("\n\u2B50 Personajes de Disney \u2B50");
         
                         /** Leemos el árbol del archivo */

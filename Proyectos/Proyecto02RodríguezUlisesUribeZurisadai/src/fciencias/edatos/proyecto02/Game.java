@@ -14,7 +14,7 @@ public class Game {
 
         Data juego = new Data();
         int contador = 0;
-        String entrada = "", respuesta = "", respuesta1 = "";
+        String entrada = "", entrada1 = "", respuesta = "", respuesta1 = "";
         Scanner sc = new Scanner(System.in);
         BinarySearchTree<Integer, Question> arbol = null;
         Question[] preguntas = null;
@@ -60,40 +60,46 @@ public class Game {
                         lee.close();   
         
                         preguntas = juego.toArray(arbol);
-                        for (int i = 0; i < preguntas.length; i++) {
+
+                        for (int i = 0; i < preguntas.length; i++) 
                             preguntas[i].unVisit();
-                        }
         
-                        System.out.println(arbol.inicio().getPregunta());
+                        arbol.inicio();
                         contador++;
         
                         while (contador < 20 && !arbol.isLeaf()) {
-                            System.out.println("S/N");
+                            System.out.println("\n" + arbol.actual().getPregunta() + "\nPor favor escribe: S/N");
                             entrada = sc.nextLine();
         
-                            if (entrada.equals("S")) 
-                                System.out.println("\n" + arbol.moveLeft().getPregunta());
+                            if (entrada.equals("S") || entrada.equals("N")) {
+
+                                if (entrada.equals("S")) 
+                                    arbol.moveLeft();
                 
-                            else 
-                                System.out.println("\n" + arbol.moveRigth().getPregunta());
-        
-                            contador++;
+                                else 
+                                    arbol.moveRigth();
+
+                                contador++;
+                            }
                         } 
-                            
-                        System.out.println("S/N");
-                        entrada = sc.nextLine();
+                          
+                        do {
+                            System.out.println("\n" + arbol.actual().getPregunta() + "\nPor favor escribe: S/N");
+                            entrada1 = sc.nextLine();
+                        } while (!entrada1.equals("S") && !entrada1.equals("N"));
+                        
         
-                        if (entrada.equals("S")) 
+                        if (entrada1.equals("S")) 
                             System.out.println("\nHaz ganado");
         
-                        else if (entrada.equals("N") && contador < 20){
-                            System.out.println("Escribe una nueva pregunta para identificar lo que piensas");
+                        else if (entrada1.equals("N") && contador < 20){
+                            System.out.println("\nEscribe una nueva pregunta para identificar lo que piensas");
                             String pregunta = sc.nextLine();
-                            System.out.println("Escribe el **** en el que pensaste");
-                            entrada = sc.nextLine();
+                            System.out.println("\nEscribe el **** en el que pensaste");
+                            String personaje = sc.nextLine();
         
                             Question pregunta1 = new Question(pregunta, LocalDate.now(), LocalTime.now(), false);
-                            Question pregunta2 = new Question(entrada, LocalDate.now(), LocalTime.now(), true);
+                            Question pregunta2 = new Question(personaje, LocalDate.now(), LocalTime.now(), true);
                             Question aux = arbol.change(pregunta1);
                             arbol.addLeft(pregunta2);
                             arbol.addRigth(aux);
@@ -110,45 +116,56 @@ public class Game {
 
                     case "2": //Listados de Datos
 
-                        boolean flag = true;
-                            while (flag){ // Se repite hasta que vayan al menú
-                                    System.out.println("\n          * Historial *            ");
-                                    System.out.println("a) Listado de preguntas              ");
-                                    System.out.println("b) Listado de preguntas agregadas    ");
-                                    System.out.println("c) Listado de entes                  ");
-                                    System.out.println("d) Listado de entes agregados        ");
-                                    System.out.println("e) Volver al menú        ");
+                        /** Leemos el árbol del archivo */
+                        ObjectInputStream lee2 = new ObjectInputStream(new FileInputStream("Preguntas/bebe.txt"));
+                        arbol = (BinarySearchTree<Integer, Question>) lee2.readObject();
+                        lee2.close();   
 
+                        preguntas = juego.toArray(arbol);
+
+                        for (int i = 0; i < preguntas.length; i++) 
+                            preguntas[i].unVisit();
+
+                        boolean flag = true;
+
+                        while (flag){ // Se repite hasta que vayan al menú
+                            System.out.println("\n          * Historial *            ");
+                            System.out.println("a) Listado de preguntas              ");
+                            System.out.println("b) Listado de preguntas agregadas    ");
+                            System.out.println("c) Listado de entes                  ");
+                            System.out.println("d) Listado de entes agregados        ");
+                            System.out.println("e) Volver al menú                    ");
+
+                            respuesta1 = sc.nextLine();
         
-                                    respuesta1 = sc.nextLine();
-        
-                                    switch (respuesta1) {
-                                        case "a":
-                                            System.out.println("\nListado de preguntas ordenadas Alfabéticamente\n");
-                                            juego.preguntasAlf(arbol, preguntas);
-                                            break;
+                            switch (respuesta1) {
+                                case "a":
+                                    System.out.println("\nListado de preguntas ordenadas Alfabéticamente\n");
+                                    juego.preguntasAlf(arbol, preguntas);
+                                    break;
                                         
-                                        case "b":
-                                            System.out.println("\nListado de preguntas ordenadas por Fecha\n"); 
-                                            juego.preguntasFecha(arbol, preguntas);                                       
-                                            break; 
+                                case "b":
+                                    System.out.println("\nListado de preguntas ordenadas por Fecha\n"); 
+                                    juego.preguntasFecha(arbol, preguntas);                                       
+                                    break; 
                                     
-                                        case "c":
-                                            System.out.println("\nListado de entes ordenadas Alfabéticamente\n");
-                                            juego.respuestasAlf(arbol, preguntas);                                        
-                                            break;  
+                                case "c":
+                                    System.out.println("\nListado de entes ordenadas Alfabéticamente\n");
+                                    juego.respuestasAlf(arbol, preguntas);                                        
+                                    break;  
                                         
-                                        case "d":
-                                            System.out.println("\nListado de entes ordenadas por Fecha\n");
-                                            juego.respuestasFecha(arbol, preguntas);                                        
-                                            break;    
+                                case "d":
+                                    System.out.println("\nListado de entes ordenadas por Fecha\n");
+                                    juego.respuestasFecha(arbol, preguntas);                                        
+                                    break;    
                                     
-                                        case "e":
-                                            flag = false;
+                                case "e":
+                                    flag = false;
+                                    break;
                                             
-                                        default:
-                                            System.out.println("\nError: Inserte una letra válida");
-                                            break;
+                                default:
+                                    System.out.println("\nError: Inserte una letra válida");
+                                    break;
                                 }                    
                         }break;
                     
@@ -166,4 +183,4 @@ public class Game {
             }    
         } while (respuesta != "3");        
     }
-}
+} 

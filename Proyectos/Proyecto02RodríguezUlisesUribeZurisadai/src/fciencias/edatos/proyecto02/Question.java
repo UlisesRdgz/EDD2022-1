@@ -13,6 +13,13 @@ public class Question implements Serializable{
     private boolean result;
     private boolean visited = false;
 
+    /**
+     * Contructor de la clase Question.
+     * @param question pregunta de true o false.
+     * @param date fecha de la creación.
+     * @param time hora de la creación.
+     * @param result saber si es pregunta o respuesta.
+     */
     public Question(String question, LocalDate date, LocalTime time, boolean result) {
         this.question = question;
         this.date = date;

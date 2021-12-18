@@ -1,34 +1,33 @@
-# Proyecto 01 :)
+# Proyecto 02 :)
 
 ## Rodríguez García Ulises - 318042202 &emsp;&emsp;&emsp;&emsp;&emsp; Uribe García Zurisadai - 318223197
 
 ### Descripción
-Desarrollar un programa para el juego Solterona con baraja inglesa y con el 
-jugador vs la máquina.
+Desarrollar un programa para el juego 20Q que consiste en que alguien piense en un objeto
+y el resto de los jugadores deberá adivinar cuál es el personaje haciendo a lo más
+20 preguntas cuyas respuestas solo pueden ser sí o no.
 
 ### Inconvenientes
-El método para asignar las cartas a los jugadores de la forma más equitativa
-posible salía demasiado largo y no encontrabamos una forma de optimizarlo,
-al momento de que el usuario ganara y la computadora siguiera, se creaba un
-bucle o mandaba error.
+Al momento de unir el juego con el main, sólo uno de los dos casos funcionaba y el otro 
+marcaba error ya que el árbol sólo funcionaba la primera vez que se utilizaba, ya que
+el arreglo ya estaba lleno y la variable no se reiniciaba.
 
 
 ### Compilación y ejecución
-Para ejecutar esta práctica se utilizarán los siguientes comandos:
+Para ejecutar este Proyecto se utilizarán los siguientes comandos:
+
 * ant build - Para crear la carpeta en donde irán los .class y .jar
 * ant jar - Para compilar el proyecto.
 * ant run - Para ejecutar el proyecto.
-* ant clean - Para limpiar el proyecto.
+* ant clean - Para limpiar la terminal.
 
 ### ¿Qué hizo cada quien?
 Ambos participamos en el Proyecto en general, nos dividimos las clases que creímos
 útiles para el desarrollo del Proyecto e implementamos algunos de sus métodos, 
 fuimos arreglando los errores.
 
-* Ulises - Subió la clase OldMaid y Jugador -- Main
-* Zurisadai - Subió la clase Deck y Carta, además de apoyar en clase OldMaid -- Main
 
 ### ¿Cómo nos organizamos?
-Nos reunimos para ver la logística del Proyecto, posteriormente nos volvimos
-a ver para empezar las clases e irlas complementando, de igual forma tuvimos
-llamadas constantes para terminar el trabajo.
+Virtualmente conversamos para ver la logística del Proyecto, nos comunicamos por medio
+de llamadas y meets para ir complementando las clases, hacíamos lluvia de ideas y nos
+apoyábamos si había algún inconveniente.

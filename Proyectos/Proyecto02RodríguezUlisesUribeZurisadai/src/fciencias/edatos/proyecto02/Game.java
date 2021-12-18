@@ -34,6 +34,7 @@ public class Game {
                     case "1": //Juego con la computadora
                         int contador = 0;
 
+                        /** Crea el árbol original */
                         // Question p1 = new Question("¿Es de sexo femenino?", LocalDate.now(), LocalTime.now(), false);
                         // Question p2 = new Question("¿Es humana?", LocalDate.now(), LocalTime.now(), false);
                         // Question p3 = new Question("¿Es princesa?", LocalDate.now(), LocalTime.now(), false);

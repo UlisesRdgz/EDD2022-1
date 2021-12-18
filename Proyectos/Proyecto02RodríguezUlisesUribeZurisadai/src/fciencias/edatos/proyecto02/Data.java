@@ -5,15 +5,14 @@ import java.util.Arrays;
 
 public class Data implements Serializable{
 
-    private int i = 0;
-
     public Question[] toArray(BinarySearchTree<Integer, Question> arbol) {
 
+        int i = 0;
         arbol.inicio();
         Question[] preguntas = new Question[arbol.sizeLeaf() + arbol.sizeNode()];
 
         while (i < preguntas.length) {
-
+            
             if(!arbol.actual().isVisited()){
                 preguntas[i] = arbol.actual();
                 arbol.actual().visit();
@@ -101,6 +100,3 @@ public class Data implements Serializable{
         }
     }
 }
-
-
-

@@ -7,12 +7,12 @@ package fciencias.edatos.practica06;
 * @version 19 Diciembre 2021.
 * @since Estructuras de Datos 2022-1. Práctica 06.
 */
-public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<K, T>{
+public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<K, T> {
 
     /**
 	 * Nodo de un arbol AVL.
 	 */
-	public class AVLNode{
+	public class AVLNode {
 
 		/** Altura del nodo. */
 		public int altura;
@@ -38,7 +38,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 		 * @param key la clave del nodo.
 		 * @param padre el padre del nodo
 		 */
-		public AVLNode(K key, T element, AVLNode parent){
+		public AVLNode(K key, T element, AVLNode parent) {
 			this.element = element;
 			this.key = key;
 			this.parent = parent;
@@ -48,14 +48,18 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 		/**
 		 * Calcula la altura del nodo.
 		 */
-		public int getAltura(){
-			// Si este nodo es hoja
-			if(left == null && rigth==null){
+		public int getAltura() {
+			/** Si es una hoja */
+			if(left == null && rigth==null)
 				return 0;
-			} else if(left != null && rigth != null){ // Dos hijos
+
+			/** Dos hijos */
+			else if(left != null && rigth != null){ // Dos hijos
 				int max = left.getAltura() > rigth.getAltura() ? left.getAltura() : rigth.getAltura();
 				return 1 + max;
-			} else{ // Tiene solo un hijo
+
+			/** Si tiene solo un hijo */
+			} else{
 				boolean hasLeft = left!=null;
 				return 1 + (hasLeft ? left.getAltura() : rigth.getAltura());
 			}
@@ -64,7 +68,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 		/**
 		 * Actualiza la altura del nodo.
 		 */
-		public void actualizaAltura(){
+		public void actualizaAltura() {
 			this.altura = this.getAltura();
 		}
 	}
@@ -80,7 +84,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
     @Override
     public T retrieve(K k) {
         AVLNode node = retrieve(k, root);
-		if(node == null)
+		if (node == null)
 			return null;
 		return node.element;
     }
@@ -91,20 +95,19 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	 * @param actual el nodo actual
 	 * @return el nodo con clave k o null si no existe.
 	 */
-	private AVLNode retrieve(K k, AVLNode actual){
+	private AVLNode retrieve(K k, AVLNode actual) {
 		// No se encuentra el elemento.
-		if(actual == null)
+		if (actual == null)
 			return null;
 
-		/*********** Posible error */
 		int compare = k.compareTo(actual.key);
 
 		// Si encontramos el elemento
-		if(compare == 0)
+		if (compare == 0)
 			return actual;
 
 		// Comparamos los elementos
-		if(k.compareTo(actual.key) < 0) // Verificamos en la izquierda
+		if (k.compareTo(actual.key) < 0) // Verificamos en la izquierda
 			return retrieve(k, actual.left);
 		else // Verificar en la derecha
 			return retrieve(k, actual.rigth);
@@ -117,15 +120,15 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	*/
     @Override
     public void insert(T e, K k) {
-        if (isEmpty()){
+        if (isEmpty()) {
         	root = new AVLNode(k, e, null);
 			return;
 		}
 
         AVLNode v = insert(k, e, root);
 
-		// Rebalancear a partir de v hasta raiz
-		//rebalancea(v);
+		/** Rebalancea */
+		balance(v);
     }
 
 	/**
@@ -135,8 +138,10 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	 * @param actual el nodo actual
 	 * @return 
 	 */
-	public AVLNode insert(K k, T e, AVLNode actual){
-		if(k.compareTo(actual.key) < 0){ // Verificamos en la izquierda
+	public AVLNode insert(K k, T e, AVLNode actual) {
+
+		/** Verificamos en la izquierda */
+		if(k.compareTo(actual.key) < 0) {
 			if (actual.left == null){
         		actual.left = new AVLNode(k, e, actual);
 				return actual.left;
@@ -144,7 +149,8 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 			} else
 				return insert(k, e, actual.left);
 
-		} else { // Verificar en la derecha
+		/** Verificar en la derecha */
+		} else {
             if (actual.rigth == null){
 				actual.rigth = new AVLNode(k, e, actual);
 				return actual.rigth;
@@ -164,22 +170,21 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
     public T delete(K k) {
         AVLNode v = retrieve(k, root);
 
-		// El elemento que queremos eliminar no está en el árbol
-		if(v == null)
+		/** El elemento que queremos eliminar no está en el árbol */
+		if (v == null)
 			return null;
 
 		T eliminado = v.element;
 
-		// Eliminar con auxiliar
+		/** Eliminar con auxiliar */
 		AVLNode w = delete(v);
 
-		// Rebalancear
-		//rebalancea(w);
-
+		/** Rebalancea */
+		balance(w);
 		return eliminado;
     }
 
-	private AVLNode delete(AVLNode actual){
+	private AVLNode delete(AVLNode actual) {
 
 		/** Caso donde tiene dos hijos. */
 		if (actual.left != null && actual.rigth != null) {
@@ -198,15 +203,15 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 
 		/** Caso donde tiene solo un hijo. */
 		} else {
-			if(actual.left != null){
+			if (actual.left != null) {
 				swap(actual, actual.left);
 				return delete(actual.left);
-			} else{
+				
+			} else {
 				swap(actual, actual.rigth);
 				return delete(actual.rigth);
 			}
 		}
-
 	}
 
 	/**
@@ -215,7 +220,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	 * @param v primer nodo a cambiar.
 	 * @param w segundo nodo a cambiar.
 	 */
-	private void swap(AVLNode v, AVLNode w){
+	private void swap(AVLNode v, AVLNode w) {
 		T value = v.element;
 		K llave = v.key;
 		v.element = w.element;
@@ -263,7 +268,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	 * empezando desde el nodo dado.
 	 * @return el nodo con llave de peso máximo.
 	 */
-	private AVLNode findMax(AVLNode actual){
+	private AVLNode findMax(AVLNode actual) {
 		if (isEmpty())
 			return null;
 
@@ -271,6 +276,116 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 			actual = actual.rigth;
 
 		return actual;
+	}
+
+	/**
+	* Verifica si el árbol es vacío.
+	* @return true si el árbol es vacío, false en otro caso.
+	*/
+    @Override
+    public boolean isEmpty() {
+        if (root == null)
+            return true;
+			
+        return false;
+    }
+
+	/**
+	 * 
+	 */
+	public void balance(AVLNode actual) {
+
+		if (actual == null)
+			return;
+			
+		/** Desbalance a la derecha */
+		if (getHeigh(actual.rigth) == getHeigh(actual.left) + 2) {
+				
+			/** Caso 1 */
+			if (getHeigh(actual.rigth.rigth) == getHeigh(actual.rigth) -1) {
+				leftRotation(actual);
+		
+			/** Caso 2 */
+			} else {
+				rightRotation(actual.rigth);
+				leftRotation(actual);
+			}
+				
+		}
+
+		/** Desbalance a la izquierda */
+		if (getHeigh(actual.left) == getHeigh(actual.rigth) + 2) {
+			/** Caso 1 */
+			if (getHeigh(actual.left.left) == getHeigh(actual.left) -1) {
+				rightRotation(actual);
+		
+			/** Caso 2 */
+			} else {
+				leftRotation(actual.left);
+				rightRotation(actual);
+			}
+		}
+
+		balance(actual.parent);
+	}
+
+	/** */
+	private int getHeigh(AVLNode actual){
+
+		if (actual == null) 
+			return -1;
+		
+		return actual.getAltura();
+	}
+
+	/**
+	 * 
+	 */
+	private void rightRotation(AVLNode actual) {
+		AVLNode newRoot = actual.left;
+		AVLNode aux = newRoot.rigth;
+
+		swap(newRoot, actual);
+
+		actual.left = actual.left.left;
+		if (actual.left != null)
+			actual.left.parent = actual;
+
+		newRoot.rigth = actual.rigth;
+		if (actual.rigth != null) 
+			actual.rigth.parent = newRoot;
+		
+		actual.rigth = newRoot;
+		newRoot.parent = actual;
+
+		newRoot.left = aux;
+		if (aux != null)
+			aux.parent = newRoot;
+	}
+
+	/**
+	 * 
+	 */
+	private void leftRotation(AVLNode actual) {
+		AVLNode newRoot = actual.rigth;
+		AVLNode aux = newRoot.left;
+
+		swap(newRoot, actual);
+
+		actual.rigth = actual.rigth.rigth;
+		if (actual.rigth != null)
+			actual.rigth.parent = actual;
+
+		newRoot.left = actual.left;
+		if (actual.left != null) 
+			actual.left.parent = newRoot;
+		
+		actual.left = newRoot;
+		newRoot.parent = actual;
+
+		newRoot.rigth = aux;
+		if (aux != null)
+			aux.parent = newRoot;
 	}
 
 	/**
@@ -285,7 +400,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	 * Método auxiliar de preorden.
 	 * @param actual nodo que se irá recorriendo.
 	 */
-    public void preorden(AVLNode actual){
+    public void preorden(AVLNode actual) {
 
 		if (actual == null)
 			return;
@@ -293,7 +408,6 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
         System.out.println("Elemento: " + actual.element +
 						   "\tClave: " + actual.key);
 
-		/***** Posible error */
         preorden(actual.left);
         preorden(actual.rigth);
     }
@@ -310,7 +424,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	 * Método auxiliar de inorden.
 	 * @param actual nodo que se irá recorriendo.
 	 */
-	public void inorden(AVLNode actual){
+	public void inorden(AVLNode actual) {
 
 		if (actual == null)
 			return;
@@ -346,36 +460,25 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 		System.out.println("Elemento: " + actual.element +
 						   "\tClave: " + actual.key);
     }
-    
-	/**
-	* Verifica si el árbol es vacío.
-	* @return true si el árbol es vacío, false en otro caso.
-	*/
-    @Override
-    public boolean isEmpty() {
-        if (root == null)
-            return true;
-        return false;
-    }
 
 	public static void main(String[] args) {
 		AVLTree<Integer, Integer> arbol = new AVLTree<>();
 
-		arbol.insert(9, 9);
-		arbol.insert(12, 12);
-		arbol.insert(3, 3);
-		arbol.insert(4, 4);
+		arbol.insert(10, 10);
+		arbol.insert(6, 6);
+		arbol.insert(8, 8);
 		arbol.insert(2, 2);
-		arbol.insert(5, 5);
-		arbol.insert(1, 1);
-		arbol.insert(11, 11);
 		arbol.insert(14, 14);
+		arbol.insert(16, 16);
+		arbol.insert(12, 12);
+		arbol.insert(11, 11);
 		arbol.insert(15, 15);
 
-		arbol.delete(9);
-		arbol.delete(12);
-		arbol.delete(5);
-
+		System.out.println("\nPreorden");
+		arbol.preorden();
+		System.out.println("\nInorden");
+		arbol.inorden();
+		System.out.println("\nPostorden");
 		arbol.postorden();
 	}
 }

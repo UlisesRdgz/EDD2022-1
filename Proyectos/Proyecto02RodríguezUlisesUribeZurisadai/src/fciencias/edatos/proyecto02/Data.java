@@ -3,6 +3,14 @@ package fciencias.edatos.proyecto02;
 import java.io.Serializable;
 import java.util.Arrays;
 
+/**
+* Define los métodos para imprimir el
+* historial de preguntas al usuario.
+* @author Ulises Rodríguez García
+* @author Zurisadai Uribe García
+* @version 17 Diciembre 2021.
+* @since Estructuras de Datos 2022-1. Proyecto02.
+*/
 public class Data implements Serializable{
 
     /**

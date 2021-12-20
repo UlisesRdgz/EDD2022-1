@@ -7,8 +7,8 @@ import java.io.Serializable;
 * binario de búsqueda.
 * @author Ulises Rodríguez García
 * @author Zurisadai Uribe García
-* @version 24 Noviembre 2021.
-* @since Estructuras de Datos 2022-1. Práctica 05.
+* @version 17 Diciembre 2021.
+* @since Estructuras de Datos 2022-1. Proyecto02.
 */
 public class BinarySearchTree<K extends Comparable<K>, T> implements TDABinarySearchTree<K, T>, Serializable	{
 	

@@ -4,7 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-
+/**
+* Clase que guarda los datos de las preguntas.
+* @author Ulises Rodríguez García
+* @author Zurisadai Uribe García
+* @version 17 Diciembre 2021.
+* @since Estructuras de Datos 2022-1. Proyecto 02.
+*/
 public class Question implements Serializable{
     
     private String question;

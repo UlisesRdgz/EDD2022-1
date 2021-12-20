@@ -8,6 +8,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Scanner;
 
+/**
+* Clase principal donde se ejecuta el juego 20Q.
+* @author Ulises Rodríguez García
+* @author Zurisadai Uribe García
+* @version 17 Diciembre 2021.
+* @since Estructuras de Datos 2022-1. Proyecto02.
+*/
 public class Game {
 
     public static void main(String[] args) {

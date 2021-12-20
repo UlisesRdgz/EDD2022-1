@@ -1,18 +1,16 @@
-# Práctica 05 :)
+# Práctica 06 :)
 
 ## Rodríguez García Ulises - 318042202 &emsp;&emsp;&emsp;&emsp;&emsp; Uribe García Zurisadai - 318223197
 
 ### Descripción
-Implementar y conocer el funcionamiento interno de la estructura de datos conocida como Binary
-Search Tree Arbol (BST) o Árbol Binario de Búsqueda.
+Implementar y conocer el funcionamiento interno de la estructura de datos conocida como Árbol AVL, que se basaen un orden jerárquico.
 
 ### Inconvenientes
-En el método que más nos atoramos fue en el delete ya que no sabíamos de que forma eliminar en 
-los casos donde se tenían dos hijos y sólo uno, de la misma manera en el main cuando sólo existía
-un nodo y queríamos eliminarlo nos mandaba un error ya que no era posible. 
+Parecía sencilla la práctica, pero cuando llegamos al método para balancear el árbol fue cuando empezamos a tener problemas, más que nada en las rotaciones, ya que no hacíamos bien el cambio de referencias.
 
 ### Compilación y ejecución
 Para ejecutar esta práctica se utilizarán los siguientes comandos:
+
 * ant build - Para crear la carpeta en donde irán los .class y .jar
 * ant jar - Para compilar la práctica.
 * ant run - Para ejecutar la práctica.
@@ -21,7 +19,7 @@ Para ejecutar esta práctica se utilizarán los siguientes comandos:
 ### ¿Qué hizo cada quien?
 Ambos participamos en la práctica en general, primero nos dividimos los métodos, fuimos resolviendo nuestras dudas en conjunto.
 
-* Ulises - insert, delete, findMax, recorridos
+* Ulises - insert, delete, findMax, recorridos, balance
 * Zurisadai - retrieve, delete, findMin, main
 
 ### ¿Cómo nos organizamos?

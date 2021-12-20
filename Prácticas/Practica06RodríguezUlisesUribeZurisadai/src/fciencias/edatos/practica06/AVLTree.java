@@ -1,10 +1,12 @@
 package fciencias.edatos.practica06;
 
+import java.util.Scanner;
+
 /**
 * Define las operaciones sobre un árbol AVL.
 * @author Ulises Rodríguez García
 * @author Zurisadai Uribe García
-* @version 19 Diciembre 2021.
+* @version 20 Diciembre 2021.
 * @since Estructuras de Datos 2022-1. Práctica 06.
 */
 public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<K, T> {
@@ -170,7 +172,7 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
     public T delete(K k) {
         AVLNode v = retrieve(k, root);
 
-		/** El elemento que queremos eliminar no está en el árbol */
+		/** El elemento que queremos eliminar no está en el árbol o es la raíz*/
 		if (v == null)
 			return null;
 
@@ -184,7 +186,18 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 		return eliminado;
     }
 
+	/**
+	 * Método auxiliar para borrar un nodo.
+	 * @param actual nodo sobre el cual se hará recursión.
+	 * @return regresa el padre del nodo.
+	 */
 	private AVLNode delete(AVLNode actual) {
+
+		/** Caso donde solo hay un nodo */
+		if (actual == root && (actual.left == null && actual.rigth == null)){
+			actual = null;
+			return actual;
+		}
 
 		/** Caso donde tiene dos hijos. */
 		if (actual.left != null && actual.rigth != null) {
@@ -291,9 +304,11 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
     }
 
 	/**
-	 * 
+	 * Método para balancear el árbol.
+	 * @param actual el nodo desde donde se comienza
+	 * a balancear el árbol
 	 */
-	public void balance(AVLNode actual) {
+	private void balance(AVLNode actual) {
 
 		if (actual == null)
 			return;
@@ -329,7 +344,11 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 		balance(actual.parent);
 	}
 
-	/** */
+	/**
+	 * Método para obtener la altura de cada nodo.
+	 * @param actual nodo para obtener la altura.
+	 * @return la altura del nodo.
+	 */
 	private int getHeigh(AVLNode actual){
 
 		if (actual == null) 
@@ -339,7 +358,9 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	}
 
 	/**
-	 * 
+	 * Rota el árbol a la derecha.
+	 * @param actual nodo a partir el cual
+	 * será rotado.
 	 */
 	private void rightRotation(AVLNode actual) {
 		AVLNode newRoot = actual.left;
@@ -364,7 +385,9 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
 	}
 
 	/**
-	 * 
+	 * Rota el árbol a la izquierda.
+	 * @param actual nodo a partir el cual
+	 * será rotado.
 	 */
 	private void leftRotation(AVLNode actual) {
 		AVLNode newRoot = actual.rigth;
@@ -462,23 +485,197 @@ public class AVLTree<K extends Comparable<K>, T> implements TDABinarySearchTree<
     }
 
 	public static void main(String[] args) {
-		AVLTree<Integer, Integer> arbol = new AVLTree<>();
 
-		arbol.insert(10, 10);
-		arbol.insert(6, 6);
-		arbol.insert(8, 8);
-		arbol.insert(2, 2);
-		arbol.insert(14, 14);
-		arbol.insert(16, 16);
-		arbol.insert(12, 12);
-		arbol.insert(11, 11);
-		arbol.insert(15, 15);
+		AVLTree<Integer, String> arbol = new AVLTree<>();
+		Scanner sc = new Scanner(System.in);
+		String respuesta = "", respuesta1 = "";
 
-		System.out.println("\nPreorden");
-		arbol.preorden();
-		System.out.println("\nInorden");
-		arbol.inorden();
-		System.out.println("\nPostorden");
-		arbol.postorden();
+			System.out.println("    AVLTree    ");
+		do {
+			try {		
+			System.out.println("\n-------------------------");
+			System.out.println("           Menu          ");
+			System.out.println( " 1)  Obtener elemento \n" +
+                                " 2)  Insertar elemento \n" +
+                                " 3)  Eliminar elemento \n" +
+                                " 4)  Find Min \n" +
+                                " 5)  Find Max \n" +
+                                " 6)  Comprobar si es vacío\n" +
+                                " 7)  Recorrer el árbol\n"+
+								" 8)  Salir");
+			
+			respuesta = sc.nextLine();	
+			
+			switch (respuesta) {
+				case "1": // Retrieve -- regresar algún elemento.
+					
+					int clave; // Clave.
+					String elemento; // Elemento.
+
+					if (arbol.isEmpty()) {
+						System.out.println("\nEl árbol está vacío.");
+					}else {
+
+						do {
+							try {
+								System.out.println("\nClave del elemento: ");
+								clave = Integer.parseInt(sc.nextLine());
+								String ele = arbol.retrieve(clave);
+							
+								if (ele == null) 
+									System.out.println("\nNo se existe el elemento con clave: " + clave);
+								else 
+									System.out.println("\nEl elemento con clave " + clave + " es: " + ele);
+								break;
+
+							} catch (Exception e) {
+								System.out.println("\nOpción inválida.");
+							}
+						} while (true);
+
+						break;
+					}
+					break;
+
+				case "2": // Insert -- Inserta algún elemento.
+					do {
+						try {
+							
+							System.out.println("\nEscribe el elemento que deseas agregar : ");
+							elemento = sc.nextLine();
+							System.out.println("Escribe la clave del elemento (número): ");
+							clave = Integer.parseInt(sc.nextLine());
+							arbol.insert(elemento, clave);
+							System.out.println("\nSe agregó correctamente.");
+							break;
+						
+						} catch (Exception e) {
+							System.out.println("\nOpción inválida.");
+						}
+					} while (true);
+					break;							
+
+				case "3": // Delete -- borra algún elemento.
+				 
+					if (arbol.isEmpty()) {
+						System.out.println("\nEl árbol está vacío.");
+						break;
+					}
+
+					do {
+						try {
+
+							System.out.println("\nColoca la clave del elemento que deseas eliminar: ");
+							clave = Integer.parseInt(sc.nextLine());
+							String ele = arbol.delete(clave);
+
+							if (ele == null) 
+								System.out.println("\nNo se existe el elemento con clave: " + clave);
+							else 
+								System.out.println("\nEliminaste el elemento "+ ele + " con la clave "+ clave);
+							break;
+
+						} catch (Exception e) {
+							System.out.println("\nOpción inválida.");
+						}
+					} while (true);
+
+					break;
+
+				case "4": // findMin -- Encuentra el elemento mínimo.
+
+					if (arbol.isEmpty()) {
+						System.out.println("\nEl árbol está vacío.");
+					}else {
+						System.out.println("\nEl elemento con clave mínima en el árbol es: "+ arbol.findMin());
+					}
+					break;
+
+				case "5": // findMax -- Encuentra el elemento máximo.
+
+					if (arbol.isEmpty()) {
+						System.out.println("\nEl árbol está vacío.");
+					}else {
+						System.out.println("\nEl elemento con clave máxima en el árbol es: "+ arbol.findMax());
+					}
+					break;
+
+
+				case "6": // isEmpty -- Verifica si el árbol está vacío.
+				
+					if(arbol.isEmpty()){
+						System.out.println("\nEl árbol está vacío.");
+						break;						
+					}else{
+						System.out.println("\nEl árbol no está vacío.");
+						break;
+					}
+
+
+				case "7":
+
+					boolean flag = true;
+
+					if (arbol.isEmpty()) {
+						System.out.println("\nEl árbol está vacío.");
+					} else {
+
+						do {
+							try {
+								System.out.println("\n-------------------------");
+								System.out.println("        RECORRIDOS       ");
+								System.out.println(" a) Preorden     ");
+								System.out.println(" b) Inorden     ");
+								System.out.println(" c) Postorden     ");
+								System.out.println(" d) Regresar al menú     ");
+	
+								respuesta1 = sc.nextLine();
+	
+								switch (respuesta1) {
+
+									case "a": 
+										System.out.println("\nPreorden del árbol\n");
+										arbol.preorden();
+										break;
+	
+									case "b":	
+										System.out.println("\nInorden del árbol");
+										arbol.inorden();
+										break;
+								
+									case "c":
+										System.out.println("\nPostorden del árbol");
+										arbol.postorden();
+										break;
+
+									case "d":
+										flag = false;
+										break;
+	
+									default:
+										System.out.println("\nError: Opción inválida.\nIngresa una de las opciones.");
+										break;
+								}
+	
+							} catch (Exception e) {
+								System.out.println("\nError: Opción inválida.");
+								sc.nextLine();
+							}
+						} while (true && flag);
+					}
+					break;
+					
+				case "8":
+					return;
+			
+				default:
+					System.out.println("\nError, Opción inválida.\nIngresa una de las opciones.");
+					break;
+			}
+								
+			} catch (Exception e) {
+				System.out.println("Error. Vuelvelo a intentar.");
+			}
+		} while (respuesta != "9");
 	}
 }

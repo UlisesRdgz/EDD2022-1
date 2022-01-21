@@ -8,6 +8,10 @@ import java.io.FileNotFoundException;
 
 public class ArrayReader {
     
+    /**
+     * Lee los valores de un txt y los almacena en un mapa.
+     * @param map mapa donde serán almacenados los valores.
+     */
     public static void readMap(TDAMap<String, Double> map) {
         try(BufferedReader reader = new BufferedReader(new FileReader("TablaPeriodica/tabla-periodica.txt"))){
 
@@ -17,11 +21,9 @@ public class ArrayReader {
                 // Guardamos el nombre y valor de los elementos.
                 String element = data[1]; 
                 Double value = Double.valueOf(data[2]);
-
                 map.put(element, value);
-                
             }
-            
+
         } catch(FileNotFoundException fnfe) {
             System.out.println("ARCHIVO NO ENCONTRADO");
         } catch(IOException ioe) {}
@@ -51,11 +53,13 @@ public class ArrayReader {
                                 sc = new Scanner(System.in);
                                 System.out.println("\nIngresa la secuencia de cadena (H2O)");
                                 String cadena = sc.nextLine();
+                                // Separa la cadena cada que encuentra una mayúscula.
                                 String[] elements = cadena.split("(?=\\p{Upper})");
 
                                 for (int i = 0; i < elements.length; i++) {
                                     System.out.println(elements[i]);
 
+                                    // Separa la cadena en letras y números.
                                     String[] values = elements[i].split("(?<=\\D)(?=\\d)");
                                     String nombre = values[0];
                                     Double masa;

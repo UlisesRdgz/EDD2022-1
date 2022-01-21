@@ -22,6 +22,9 @@ public class HashMap<K,V> implements TDAMap<K,V>{
 	/** Cantidad del cambio y escala. */
 	private long scale, shift;
 
+	/** Número de elementos */
+	private int size;
+
 	/**
 	* Crea un nuevo HashMap. 
 	* @param cap la capacidad de la tabla.
@@ -51,18 +54,32 @@ public class HashMap<K,V> implements TDAMap<K,V>{
 		this(17);
 	}
 
+	/**
+	* Regresa la cantidad de elementos contenidos en el mapa.
+	* @return la cantidad de elementos contenidos.
+	*/
 	@Override
 	public int size(){
-		// Tarea moral
-		return 0;
+		return size;
 	}
 
+	/**
+	* Obtiene el elemento con clave k en el mapa.
+	* @param key la clave asignada a un elemento para obtener.
+	* @return el elemento con clave key.
+	*/
 	@Override
 	public V get(K key){
 		int pos = hashFuction(key);
 		return table[pos];
 	}
 
+	/**
+	* Agrega un nuevo elemento al mapa.
+	* @param key la clave del elemento a agregar.
+	* @param value el elemento a agregar.
+	* @return el elemento antiguo almacenado con clave key o null si no existe.
+	*/
 	@Override
 	public V put(K key, V value){
 		int pos = hashFuction(key);
@@ -71,20 +88,32 @@ public class HashMap<K,V> implements TDAMap<K,V>{
 			System.out.println("\nRepetido\n");
 		}
 		table[pos] = value;
+		size++;
 		return oldValue;
 	}
 
+	/**
+	* Elimina el elemento con clave key.
+	* @param key la clave del elemento a remover.
+	* @return el elemento con clave key eliminado o null si no existe.
+	*/
 	@Override
 	public V remove(K key){
 		int pos = hashFuction(key);
 		V oldValue = table[pos];
 		table[pos] = null;
+		size--;
 		return oldValue;
 	}
 
+	/**
+	* Verifica si el mapa es vacio.
+	* @return true si es vacio, false en otro caso.
+	*/
 	@Override
 	public boolean isEmpty(){
-		// Tarea moral
+		if (size == 0) 
+			return true;
 		return false;
 	}
 

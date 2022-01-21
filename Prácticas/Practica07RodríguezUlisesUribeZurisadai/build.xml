@@ -25,7 +25,7 @@ Contiene los siguientes comandos:
 <manifest>
 <attribute name="DependencyFinder" value="main"/>
 <!--  TODO SET MAIN CLASS  -->
-<attribute name="Main-Class" value="fciencias.edatos.practica07.Main"/>
+<attribute name="Main-Class" value="fciencias.edatos.practica07.ArrayReader"/>
 </manifest>
 </jar>
 </target>

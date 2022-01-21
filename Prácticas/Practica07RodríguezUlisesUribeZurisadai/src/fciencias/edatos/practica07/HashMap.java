@@ -5,6 +5,8 @@ import java.util.Random;
 /**
 * Implementación básica de un HashMap.
 * @author Emmanuel Cruz Hernández.
+* @author Rodríguez García Ulises.
+* @author Uribe García Zurisadai.
 * @version 2.0 Enero 2022. Anterior 1.0 Enero 2021.
 * @since Estructuras de Datos 2022-1.
 */
@@ -48,13 +50,6 @@ public class HashMap<K,V> implements TDAMap<K,V>{
 	}
 
 	/**
-	* Crea un nuevo HashMap.
-	*/
-	public HashMap(){
-		this(17);
-	}
-
-	/**
 	* Regresa la cantidad de elementos contenidos en el mapa.
 	* @return la cantidad de elementos contenidos.
 	*/
@@ -84,9 +79,6 @@ public class HashMap<K,V> implements TDAMap<K,V>{
 	public V put(K key, V value){
 		int pos = hashFuction(key);
 		V oldValue = table[pos];
-		if (oldValue != null) {
-			System.out.println("\nRepetido\n");
-		}
 		table[pos] = value;
 		size++;
 		return oldValue;

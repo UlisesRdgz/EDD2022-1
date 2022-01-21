@@ -6,6 +6,13 @@ import java.util.Scanner;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 
+/**
+* Clase para leer el archivo y calcular el peso total.
+* @author Rodríguez García Ulises.
+* @author Uribe García Zurisadai.
+* @version 1.0 Enero 2022.
+* @since Estructuras de Datos 2022-1.
+*/
 public class ArrayReader {
     
     /**

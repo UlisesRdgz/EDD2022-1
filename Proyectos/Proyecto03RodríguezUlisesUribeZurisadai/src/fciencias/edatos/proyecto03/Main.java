@@ -21,18 +21,17 @@ public class Main {
             System.out.print(c);   
         }
 
-        int count = 0, score = 0;
+        int score = 0;
         String palabra;
         juego.start();
 
-        while(juego.isAlive()) {
-
+        while (juego.isAlive()) {
             System.out.println("\nIngresa la palabra");
-            palabra = sc.nextLine();
+            palabra = sc.next();
             palabra = palabra.toLowerCase();
 
-            // if(verifica.Check(generada, palabra)){
-            //     System.out.println("Esta dentro");
+            if(verifica.Check(generada, palabra)){
+                System.out.println("Esta dentro");
                 if(verifica.CheckDiccionary(palabra, map)){
                     System.out.println("Existe");
                     score += juego.Score(palabra, palabras);
@@ -40,10 +39,10 @@ public class Main {
                         palabras.add(0, palabra);
                     }
                 }
-            // }
-            count++;
-        }
+            }
+        } 
 
-        System.out.println(score);
+        System.out.println("\nTu score es de: " + score);
+        System.out.println(palabras);
     }
 }

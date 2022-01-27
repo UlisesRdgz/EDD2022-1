@@ -31,7 +31,7 @@ public class Game extends Thread{
      * de carácteres aleatorios.
      * @return una lista de carácteres aleatorios.
      */
-    public char[] Sequence() {
+    public char[] SequenceCPU() {
         char[] randomArray = new char[9];
 
         for (int i = 0; i < 9; i++) {

@@ -38,13 +38,14 @@ public class Game extends Thread implements Serializable{
      * de carácteres aleatorios.
      * @return una lista de carácteres aleatorios.
      */
-    public char[] Sequence() {
+    public char[] Sequence(String cadena) {
         char[] randomArray = new char[9];
+        char[] caracteres = cadena.toCharArray();
 
         for (int i = 0; i < 9; i++) {
             Random random = new Random();
-            char randomCharacter = (char) (random.nextInt(26) + 'a');
-            randomArray[i] = randomCharacter;
+            int randomCharacter = random.nextInt(caracteres.length);
+            randomArray[i] = caracteres[randomCharacter];
             // System.out.println("Generated Random Character: " + randomCharacter);
         }
 

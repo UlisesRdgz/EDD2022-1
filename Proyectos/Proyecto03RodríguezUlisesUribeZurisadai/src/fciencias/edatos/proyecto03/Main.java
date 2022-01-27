@@ -5,7 +5,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
 
-        TDAMap<String, String> map = new HashMap<>(1000000);
+        TDAMap<String, DoubleLinkedList<String>> map = new HashMap<>(700000);
         DicctionaryReader read = new DicctionaryReader();
         DoubleLinkedList<String> palabras = new DoubleLinkedList<>();
         Verify verifica = new Verify();
@@ -31,8 +31,8 @@ public class Main {
             palabra = sc.nextLine();
             palabra = palabra.toLowerCase();
 
-            if(verifica.Check(generada, palabra)){
-                System.out.println("Esta dentro");
+            // if(verifica.Check(generada, palabra)){
+            //     System.out.println("Esta dentro");
                 if(verifica.CheckDiccionary(palabra, map)){
                     System.out.println("Existe");
                     score += juego.Score(palabra, palabras);
@@ -40,7 +40,7 @@ public class Main {
                         palabras.add(0, palabra);
                     }
                 }
-            }
+            // }
             count++;
         }
 

@@ -79,8 +79,6 @@ public class HashMap<K,V> implements TDAMap<K,V>{
 	public V put(K key, V value){
 		int pos = hashFuction(key);
 		V oldValue = table[pos];
-		// if (oldValue != null)
-		// 	System.out.println("\nEsta repetido\n");
 		table[pos] = value;
 		size++;
 		return oldValue;

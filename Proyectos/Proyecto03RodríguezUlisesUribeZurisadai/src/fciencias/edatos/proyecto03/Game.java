@@ -13,9 +13,9 @@ public class Game extends Thread{
      * @return
      */
     public void Timer(){
-        int segundos = 0;
-        for (int i = 0; i < 10; i++) {
-            System.out.println(segundos++);
+        // int segundos = 0;
+        for (int i = 0; i < 60; i++) {
+            // System.out.println(segundos++);
             delay();
         }
     }

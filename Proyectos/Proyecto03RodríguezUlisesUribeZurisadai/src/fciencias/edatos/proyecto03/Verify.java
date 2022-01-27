@@ -54,12 +54,12 @@ public class Verify {
      * @return true si se encuentra en el diccionario,
      * false en otro caso.
      */
-    public boolean CheckDiccionary(String palabra, TDAMap<String, String> map){
+    public boolean CheckDiccionary(String palabra, TDAMap<String, DoubleLinkedList<String>> map){
 
-        String valor = map.get(palabra);
-        // System.out.println("Valor: " + valor);
+        if(map.get(palabra) == null)
+            return false;
 
-        if(valor != null)
+        if(map.get(palabra).contains(palabra))
             return true;
 
         return false;

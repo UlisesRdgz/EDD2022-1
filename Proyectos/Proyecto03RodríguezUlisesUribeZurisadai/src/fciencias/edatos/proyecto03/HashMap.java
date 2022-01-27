@@ -1,5 +1,6 @@
 package fciencias.edatos.proyecto03;
 
+import java.io.Serializable;
 import java.util.Random;
 
 /**
@@ -10,7 +11,7 @@ import java.util.Random;
 * @version 2.0 Enero 2022. Anterior 1.0 Enero 2021.
 * @since Estructuras de Datos 2022-1.
 */
-public class HashMap<K,V> implements TDAMap<K,V>{
+public class HashMap<K,V> implements TDAMap<K,V>, Serializable{
 
 	/** Arreglo de elementos. */
 	private V[] table;

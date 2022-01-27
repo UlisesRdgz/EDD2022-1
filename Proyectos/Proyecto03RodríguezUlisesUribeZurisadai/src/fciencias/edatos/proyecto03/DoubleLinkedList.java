@@ -1,5 +1,6 @@
 package fciencias.edatos.proyecto03;
 
+import java.io.Serializable;
 import java.util.Iterator;
 import java.util.NoSuchElementException;
 
@@ -11,9 +12,9 @@ import java.util.NoSuchElementException;
 * @since Estructuras de datos 2022-1. Prática 2.
 */
 
-public class DoubleLinkedList<T> implements TDAList<T>{
+public class DoubleLinkedList<T> implements TDAList<T>, Serializable{
 
-	private class Node{
+	private class Node implements Serializable{
 
 		/** Atributos */
 		private T element;

@@ -17,11 +17,10 @@ public class Main implements Serializable{
         read.readMap(map);
 
         //Opción computadora
-        String secuencia = "AAABBBCCCDDDEFFFGGGHHHIIIJJJKKKLLLMMMNNNÑÑÑOOOPPPQQQRRRSSSTTTUUUVVVWWWXXXYYYZZZ";
-        char[] generada = juego.Sequence(secuencia);
+        char[] generada = juego.Sequence();
         System.out.print("Caneda: ");
         for (char c : generada) {
-            System.out.print(c);   
+            System.out.print(Character.toUpperCase(c));   
         }
 
         int score = 0;

@@ -38,7 +38,8 @@ public class Game extends Thread implements Serializable{
      * de carácteres aleatorios.
      * @return una lista de carácteres aleatorios.
      */
-    public char[] Sequence(String cadena) {
+    public char[] Sequence() {
+        String cadena = "aaaaabbccddeeeeeffgghhiiiiijjkkllmmnnñoooooppqqrrssttuuuuuvwxyzz";
         char[] randomArray = new char[9];
         char[] caracteres = cadena.toCharArray();
 

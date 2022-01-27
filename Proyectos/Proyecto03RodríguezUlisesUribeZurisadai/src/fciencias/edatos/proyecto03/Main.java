@@ -33,54 +33,76 @@ public class Main implements Serializable{
                             DoubleLinkedList<Player> usuarios = new DoubleLinkedList<>();
                             Player nuevo = new Player("", 0);
                             Game juego = new Game();
-                    
-                            System.out.println("\n---------------- Jugar ----------------\n ");
-                            System.out.println("a) Secuencia creada por la computadora  ");
-                            System.out.println("b) Secuencia creada por el usuario      ");
-                            System.out.println("c) Menú principal                       ");
+                            char[] generada = new char[9];
 
-                            respuesta1 = sc.nextLine();
-        
-                            switch (respuesta1) {
-                                case "a":                           
+                            while (flag) {
+                                System.out.println("\n---------------- Jugar ----------------\n ");
+                                System.out.println("a) Secuencia creada por la computadora  ");
+                                System.out.println("b) Secuencia creada por el usuario      ");
 
-                                    System.out.println("\n\u269C Secuencia creada por la computadora  ");
-                                    
-                                    read.readMap(map);
+                                respuesta1 = sc.nextLine();
+                                read.readMap(map);
+            
+                                switch (respuesta1) {
+                                    case "a":                           
 
-                                    //Opción computadora
-                                    char[] generada = juego.sequenceCPU();
-                                    System.out.print("Cadena: ");
-                                    for (char c : generada) {
-                                        System.out.print(c);   
-                                    }
-                                    
-                                    int score = 0;
+                                        System.out.println("\n\u269C Secuencia creada por la computadora  ");
+                                        //Opción computadora
+                                        generada = juego.sequenceCPU();
+                                        flag = false;
+                                        break;
+                                            
+                                    case "b":
+                                        
+                                        System.out.println("\n\u269C Secuencia creada por el usuario    ");  
+                                        boolean correcta = false;
+                                        while(!correcta){
+                                            System.out.println("\nIngresa una cadena de 9 letras:");
+                                            String cadena = sc.nextLine(); 
+                                            generada = juego.sequenceUser(cadena);
+
+                                            if(generada != null)
+                                                correcta = true;
+                                        }                                  
+                                        
+                                        flag = false;
+                                        break; 
+                                                
+                                    default:
+                                        System.out.println("\nError: Inserte una opción válida");
+                                        break;
+                                }   
+                            }
+                                
+                                int score = 0, scoreFinal = 0;
                                     String palabra;
                                     juego.start();
-                                    
                                    
-                                    while (juego.isAlive()) {                                                                                   
+                                    while (juego.isAlive()) {             
+                                        System.out.print("\nCadena: ");
+                                        for (char c : generada) 
+                                            System.out.print(Character.toUpperCase(c));                                                                       
                                         System.out.println("\nIngresa la palabra: ");
                                         palabra = sc.nextLine();
                                         palabra = palabra.toLowerCase();
 
                                         if(juego.check(generada, palabra)){
-                                            //System.out.println("\nEstá dentro \u2713");
+                                            System.out.println("\nEstá dentro \u2713");
                                             if(juego.checkDiccionary(palabra, map)){
                                                 System.out.println("Existe \u2713");
-                                                score += juego.Score(palabra, palabras);
+                                                score = juego.Score(palabra, palabras);
+                                                scoreFinal += juego.Score(palabra, palabras);
                                                 if (juego.Score(palabra, palabras) != 0) {
-                                                    palabras.add(0, palabra);
+                                                    palabras.add(0, "Palabra: " + palabra + " Puntaje: " + score);
                                                 }
                                             }
                                         }
                                     }                                 
                                    
-                                    System.out.println("\nTu score es de: " + score);
+                                    System.out.println("\nTu score es de: " + scoreFinal);
                                     System.out.println(palabras); 
 
-                                    nuevo.setScore(180);
+                                    nuevo.setScore(scoreFinal);
                                     nuevo.setName("Zuri");
 
                                     if (read.readData() != null) {
@@ -91,25 +113,8 @@ public class Main implements Serializable{
                                     System.out.println(read.readData());
 
                                     juego.topPlayers(usuarios);
-
-                                    break;
-                                        
-                                case "b":
-                                    
-                                    System.out.println("\n\u269C Secuencia creada por el usuario    ");                                     
-                                   
-                                                                         
-                                    break; 
-                                    
-                                case "c":
-                                    flag = false;
-                                    break;
-                                            
-                                default:
-                                    System.out.println("\nError: Inserte una opción válida");
-                                    break;
-                                }                    
-                        }break;
+                                
+                                }break;
 
                     case "2":
                         System.out.println("\n-------------- Reglas ----------------");
@@ -120,8 +125,7 @@ public class Main implements Serializable{
                         System.out.println(" \u2743 Las palabras se puntuaran si: ");
                         System.out.println(" \u2743 No están repetidas las palabras. ");
                         System.out.println(" \u2743 Es una palabra válida. ");
-
-                        
+                        break;
 
                     case "3":
                         System.out.println("\n------------ Estadísticas ------------");

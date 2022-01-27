@@ -40,17 +40,28 @@ public class Game extends Thread implements Serializable{
      */
     public char[] sequenceCPU() {
         String cadena = "aaaaabbccddeeeeeffgghhiiiiijjkkllmmnnñoooooppqqrrssttuuuuuvwxyzz";
-        char[] randomArray = new char[9];
+        char[] cadenaRandom = new char[9];
         char[] caracteres = cadena.toCharArray();
 
         for (int i = 0; i < 9; i++) {
             Random random = new Random();
             int randomCharacter = random.nextInt(caracteres.length);
-            randomArray[i] = caracteres[randomCharacter];
+            cadenaRandom[i] = caracteres[randomCharacter];
             // System.out.println("Generated Random Character: " + randomCharacter);
         }
 
-        return randomArray;
+        return cadenaRandom;
+    }
+
+    public char[] sequenceUser(String cadena){
+        cadena = cadena.replaceAll("\\p{Punct}", "");
+        cadena = cadena.toLowerCase();
+
+        if (cadena.toCharArray().length > 9) {
+            return null;
+        }
+        char[] cadenaUsuario = cadena.toCharArray();
+        return cadenaUsuario;
     }
 
     /**
@@ -158,10 +169,7 @@ public class Game extends Thread implements Serializable{
             while(cont < 3){
                 i = 0;
                 for (int j = 1; j < aux.size(); j++) {
-                    // System.out.println("Primer: " + top[0] + " Aux: " + aux.get(j));
                     if (aux.get(i).getScore() < aux.get(j).getScore()) {
-                        // System.out.println("\nHola: " + aux.get(j).getName());
-                        // System.out.println("\nHola: " + aux.get(i).getName());
                         i = j;
                     } 
                 }

@@ -395,17 +395,16 @@ public class DoubleLinkedList<T> implements TDAList<T>, Serializable{
 	 */
     @Override 
 	public String toString(){
-		String formato = "[";
+		String formato = "";
 
         Node iterador = head;
         while(iterador != null){
-            	formato += iterador.getElement() + ", ";
+            	formato += iterador.getElement() + "\n";
             	iterador = iterador.getNext();
         }
-		formato += "\b\b]";
 
 		if(isEmpty())
-			formato = "[]";
+			formato = "";
 
         return formato;
 	}

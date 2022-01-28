@@ -4,34 +4,15 @@ import java.io.Serializable;
 import java.text.Normalizer;
 import java.util.Random;
 
-public class Game extends Thread implements Serializable{
-    
-    /**
-     * Inicia el conteo.
-     */
-    public void run(){
-        Timer();
-    }
-
-    /**
-     * Temporizador.
-     */
-    public void Timer(){
-        // int segundos = 0;
-        for (int i = 0; i < 10; i++) {
-            // System.out.println(segundos++);
-            delay();
-        }
-    }
-
-    /**
-     * Método para esperar un segundo.
-     */
-    public void delay(){
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {}
-    }
+/**
+* Define los métodos para generar, checar e imprimir
+* las cadenas.
+* @author Ulises Rodríguez García
+* @author Zurisadai Uribe García
+* @version 1.0 Enero 2022.
+* @since Estructuras de Datos 2022-1. Proyecto03.
+*/
+public class Game implements Serializable{
     
     /**
      * Método donde la computadora crea una secuencia
@@ -47,17 +28,22 @@ public class Game extends Thread implements Serializable{
             Random random = new Random();
             int randomCharacter = random.nextInt(caracteres.length);
             cadenaRandom[i] = caracteres[randomCharacter];
-            // System.out.println("Generated Random Character: " + randomCharacter);
         }
 
         return cadenaRandom;
     }
 
+    /**
+     * Verifica la secuencia que ingreso el usuario.
+     * @param cadena secuencia que ingreso el usuario.
+     * @return un arreglo con los carácteres de la secuencia.
+     */
     public char[] sequenceUser(String cadena){
         cadena = cadena.replaceAll("\\p{Punct}", "");
+        cadena = cadena.replaceAll("[^\\p{ASCII}]", "");
         cadena = cadena.toLowerCase();
 
-        if (cadena.toCharArray().length > 9) {
+        if (cadena.toCharArray().length > 9 || cadena.toCharArray().length < 9) {
             return null;
         }
         char[] cadenaUsuario = cadena.toCharArray();
@@ -116,7 +102,6 @@ public class Game extends Thread implements Serializable{
                 }
             }
         }
-
         if (contador == caracteres.length) 
             return true;
 
@@ -141,6 +126,10 @@ public class Game extends Thread implements Serializable{
         return false;
     }
 
+    /**
+     * Imprime los 3 mejores jugadores de una lista dada.
+     * @param jugadores lista de jugadores.
+     */
     public void topPlayers(DoubleLinkedList<Player> jugadores){
         Player[] top;
         DoubleLinkedList<Player> aux = jugadores;
